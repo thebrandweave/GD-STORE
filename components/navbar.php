@@ -22,6 +22,7 @@ $current_path = $_SERVER['SCRIPT_NAME'];
     <a href="<?php echo $shop_base; ?>about/index.php">About Us</a>
   </div>
 </div>
+
 <!-- Main Navbar -->
 <nav class="main-navbar">
   <div class="navbar-logo flex">
@@ -106,81 +107,45 @@ $current_path = $_SERVER['SCRIPT_NAME'];
       </div>
     <?php endif; ?>
   </div>
-  
-  <!-- Mobile Hamburger Button -->
-  <button class="mobile-menu-toggle" id="mobileMenuToggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
 </nav>
 
-<!-- Mobile Menu Overlay -->
-<div class="mobile-menu-overlay" id="mobileMenuOverlay">
-  <div class="mobile-menu-content">
-    <div class="mobile-menu-header">
-      <div class="mobile-logo">
-        <a href="<?php echo $shop_base; ?>index.php">
-          <img src="<?php echo $shop_base; ?>assets/image/gd-store-logo2.png" alt="GD Store" class="logo-image">
-        </a>
-      </div>
-      <button class="mobile-menu-close" id="mobileMenuClose" type="button">
-        <span class="close-icon">×</span>
-      </button>
-    </div>
-    
-    <div class="mobile-menu-body">
-      <!-- Mobile Search -->
-      <div class="mobile-search">
-        <form class="navbar-search">
-          <input type="text" placeholder="I'm looking for...">
-          <button type="submit"><i class="bi bi-search"></i></button>
-        </form>
-      </div>
-      
-      <!-- Mobile Navigation Links -->
-      <ul class="mobile-nav-links">
-        <li><a href="<?php echo $shop_base; ?>index.php" class="<?php echo (strpos($current_path, '/shop/index.php') !== false) ? 'active' : ''; ?>">Home</a></li>
-        <li><a href="<?php echo $shop_base; ?>category/index.php" class="<?php echo (strpos($current_path, '/shop/category') !== false) ? 'active' : ''; ?>">Categories</a></li>
-        <li><a href="<?php echo $shop_base; ?>products/index.php" class="<?php echo (strpos($current_path, '/shop/products') !== false) ? 'active' : ''; ?>">Products</a></li>
-        <li><a href="<?php echo $shop_base; ?>about/index.php" class="<?php echo (strpos($current_path, '/shop/about') !== false) ? 'active' : ''; ?>">About</a></li>
-        <li><a href="<?php echo $shop_base; ?>contact/index.php" class="<?php echo (strpos($current_path, '/shop/contact') !== false) ? 'active' : ''; ?>">Contact</a></li>
-      </ul>
-      
-      <!-- Mobile User Actions -->
-      <div class="mobile-user-actions">
-        <?php if (isset($_SESSION['user_id'])): ?>
-          <div class="mobile-icons">
-            <a href="<?php echo $shop_base; ?>notifications/index.php" class="mobile-icon-item">
-              <i class="bi bi-bell"></i>
-              <span>Notifications</span>
-              <?php if ($unread_count > 0): ?>
-                <span class="mobile-badge"><?php echo $unread_count; ?></span>
-              <?php endif; ?>
-            </a>
-            <a href="<?php echo $shop_base; ?>cart/index.php" class="mobile-icon-item">
-              <i class="bi bi-cart"></i>
-              <span>Cart</span>
-              <?php if ($cart_count > 0): ?>
-                <span class="mobile-badge"><?php echo $cart_count; ?></span>
-              <?php endif; ?>
-            </a>
-            <a href="<?php echo $shop_base; ?>profile/index.php" class="mobile-icon-item">
-              <i class="bi bi-person-circle"></i>
-              <span>Profile</span>
-            </a>
-          </div>
-          <a href="<?php echo $shop_base; ?>logout.php" class="mobile-logout-btn">Logout</a>
-        <?php else: ?>
-          <div class="mobile-auth-buttons">
-            <a href="<?php echo $shop_base; ?>login.php" class="mobile-login-btn">Login</a>
-            <!-- <a href="<?php echo $shop_base; ?>signup.php" class="mobile-signup-btn">Sign Up</a> -->
-          </div>
-        <?php endif; ?>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- Mobile Bottom Navigation -->
+<nav class="mobile-bottom-nav">
+  <a href="<?php echo $shop_base; ?>index.php" class="mobile-nav-item <?php echo (strpos($current_path, '/shop/index.php') !== false) ? 'active' : ''; ?>">
+    <i class="bi bi-house"></i>
+    <span>Home</span>
+  </a>
+  <a href="<?php echo $shop_base; ?>category/index.php" class="mobile-nav-item <?php echo (strpos($current_path, '/shop/category') !== false) ? 'active' : ''; ?>">
+    <i class="bi bi-grid"></i>
+    <span>Categories</span>
+  </a>
+  <a href="<?php echo $shop_base; ?>products/index.php" class="mobile-nav-item <?php echo (strpos($current_path, '/shop/products') !== false) ? 'active' : ''; ?>">
+    <i class="bi bi-box"></i>
+    <span>Products</span>
+  </a>
+  <?php if (isset($_SESSION['user_id'])): ?>
+    <a href="<?php echo $shop_base; ?>cart/index.php" class="mobile-nav-item <?php echo (strpos($current_path, '/shop/cart') !== false) ? 'active' : ''; ?>">
+      <i class="bi bi-cart"></i>
+      <span>Cart</span>
+      <?php if ($cart_count > 0): ?>
+        <span class="mobile-cart-badge"><?php echo $cart_count; ?></span>
+      <?php endif; ?>
+    </a>
+    <a href="<?php echo $shop_base; ?>profile/index.php" class="mobile-nav-item <?php echo (strpos($current_path, '/shop/profile') !== false) ? 'active' : ''; ?>">
+      <i class="bi bi-person"></i>
+      <span>Profile</span>
+    </a>
+  <?php else: ?>
+    <a href="<?php echo $shop_base; ?>about/index.php" class="mobile-nav-item <?php echo (strpos($current_path, '/shop/about') !== false) ? 'active' : ''; ?>">
+      <i class="bi bi-info-circle"></i>
+      <span>About</span>
+    </a>
+    <a href="<?php echo $shop_base; ?>login.php" class="mobile-nav-item <?php echo (strpos($current_path, '/shop/login') !== false) ? 'active' : ''; ?>">
+      <i class="bi bi-person"></i>
+      <span>Login</span>
+    </a>
+  <?php endif; ?>
+</nav>
 
 <style>
 .navbar-links a.active {
@@ -228,366 +193,91 @@ $current_path = $_SERVER['SCRIPT_NAME'];
     opacity: 1 !important;
 }
 
-/* Mobile Menu Toggle Button */
-.mobile-menu-toggle {
+/* Mobile Bottom Navigation */
+.mobile-bottom-nav {
     display: none;
-    flex-direction: column;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    gap: 4px;
-    z-index: 1001;
-}
-
-.mobile-menu-toggle span {
-    width: 25px;
-    height: 3px;
-    background-color: var(--accent-dark);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-/* Hamburger button stays as three lines - no transformation */
-.mobile-menu-toggle.active span {
-    /* Keep original hamburger appearance */
-}
-
-/* Mobile Menu Overlay */
-.mobile-menu-overlay {
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.95);
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #e0e0e0;
+    padding: 8px 0;
+    z-index: 9999;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    /* Ensure it stays fixed */
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
 }
 
-.mobile-menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.mobile-menu-content {
-    width: 100vw;
-    height: 100vh;
+.mobile-nav-item {
     display: flex;
     flex-direction: column;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    box-sizing: border-box;
-    position: relative;
-}
-
-.mobile-menu-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.3);
-    position: relative;
-    z-index: 1001;
-    flex-shrink: 0;
-    box-sizing: border-box;
-    width: 100%;
-}
-
-.mobile-logo .logo-image {
-    height: 40px;
-    width: auto;
-    max-width: 150px;
-}
-
-.mobile-menu-close {
-    background: var(--accent-dark);
-    border: 2px solid var(--accent-dark);
-    color: white;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    position: relative;
-    z-index: 1002;
-    flex-shrink: 0;
-    box-sizing: border-box;
-    font-size: 0;
-    line-height: 0;
-}
-
-.mobile-menu-close:hover {
-    background-color: var(--accent);
-    transform: scale(1.05);
-}
-
-.close-icon {
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 1;
-    color: inherit;
-    pointer-events: none;
-    display: block;
-}
-
-.mobile-menu-body {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    gap: 30px;
-    overflow-y: auto;
-    box-sizing: border-box;
-    width: 100%;
-    min-height: 0;
-}
-
-/* Mobile Search */
-.mobile-search {
-    margin-bottom: 20px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.mobile-search .navbar-search {
-    position: relative;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.mobile-search input {
-    width: 100%;
-    padding: 15px 50px 15px 20px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-size: 16px;
-    backdrop-filter: blur(10px);
-    box-sizing: border-box;
-    max-width: 100%;
-}
-
-.mobile-search input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.mobile-search input:focus {
-    outline: none;
-    border-color: var(--accent-dark);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.mobile-search button {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 5px;
-    z-index: 10;
-}
-
-/* Mobile Navigation Links */
-.mobile-nav-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.mobile-nav-links li {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.mobile-nav-links li a {
-    display: block;
-    padding: 16px 20px;
-    color: white;
+    padding: 8px 4px;
     text-decoration: none;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    background: rgba(255, 255, 255, 0.05);
-    width: 100%;
-    box-sizing: border-box;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-.mobile-nav-links li a:hover,
-.mobile-nav-links li a.active {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--accent-dark);
-    color: var(--accent-dark);
-    transform: translateX(8px);
-    box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
-}
-
-/* Mobile User Actions */
-.mobile-user-actions {
-    margin-top: auto;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.mobile-icons {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 20px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.mobile-icon-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 16px 20px;
-    color: white;
-    text-decoration: none;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    position: relative;
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid transparent;
-    width: 100%;
-    box-sizing: border-box;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-.mobile-icon-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(8px);
-    border-color: var(--accent-dark);
-}
-
-.mobile-icon-item i {
-    font-size: 18px;
-    min-width: 20px;
-    color: var(--accent-dark);
-    flex-shrink: 0;
-}
-
-.mobile-icon-item span {
-    font-size: 16px;
-    font-weight: 600;
-    flex: 1;
-    min-width: 0;
-}
-
-.mobile-badge {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--accent-dark);
-    color: white;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: #666;
     font-size: 12px;
-    font-weight: bold;
-    box-shadow: 0 2px 8px rgba(255, 214, 0, 0.3);
-    flex-shrink: 0;
-}
-
-.mobile-logout-btn,
-.mobile-login-btn,
-.mobile-signup-btn {
-    display: block;
-    width: 100%;
-    padding: 16px 20px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 16px;
+    font-weight: 500;
     transition: all 0.3s ease;
-    margin-bottom: 12px;
-    border: 2px solid transparent;
-    box-sizing: border-box;
-    max-width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    position: relative;
+    min-height: 60px;
 }
 
-.mobile-logout-btn,
-.mobile-signup-btn {
-    background: var(--accent-dark);
-    color: white;
-    box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
+.mobile-nav-item i {
+    font-size: 20px;
+    margin-bottom: 4px;
+    transition: all 0.3s ease;
 }
 
-.mobile-login-btn {
-    background: transparent;
+.mobile-nav-item span {
+    font-size: 11px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.mobile-nav-item:hover {
     color: var(--accent-dark);
-    border: 2px solid var(--accent-dark);
 }
 
-.mobile-logout-btn:hover,
-.mobile-signup-btn:hover {
-    background: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 214, 0, 0.3);
+.mobile-nav-item.active {
+    color: var(--accent-dark);
 }
 
-.mobile-login-btn:hover {
+.mobile-nav-item.active i {
+    transform: scale(1.1);
+}
+
+.mobile-cart-badge {
+    position: absolute;
+    top: 4px;
+    right: 50%;
+    transform: translateX(50%);
     background: var(--accent-dark);
     color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
-}
-
-.mobile-auth-buttons {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(255, 214, 0, 0.3);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .desktop-nav,
-    .navbar-search-icons {
+    .desktop-nav {
         display: none !important;
     }
     
-    .mobile-menu-toggle {
+    .mobile-bottom-nav {
         display: flex;
     }
     
@@ -598,279 +288,137 @@ $current_path = $_SERVER['SCRIPT_NAME'];
     .main-navbar {
         justify-content: space-between;
         padding: 15px 20px;
+        border-bottom: 1px solid #e0e0e0;
     }
     
     .topbar {
         display: none;
     }
     
-    /* Mobile menu responsive adjustments */
-    .mobile-menu-content {
-        padding: 0;
+    /* Adjust main content to account for bottom nav */
+    body {
+        padding-bottom: 76px !important;
+        margin-bottom: 0 !important;
     }
     
-    .mobile-menu-header {
-        padding: 15px 20px;
+    /* Ensure main content doesn't get hidden */
+    .main-content,
+    main,
+    .container {
+        padding-bottom: 76px !important;
     }
     
-    .mobile-menu-body {
-        padding: 15px 20px;
-        gap: 25px;
+    /* Mobile search adjustments */
+    .navbar-search {
+        flex: 1;
+        max-width: 300px;
+        margin: 0 15px;
     }
     
-    .mobile-nav-links li a {
-        padding: 14px 18px;
-        font-size: 15px;
+    .navbar-search input {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 20px;
+        font-size: 14px;
     }
     
-    .mobile-icon-item {
-        padding: 14px 18px;
+    /* Mobile icons adjustments */
+    .navbar-icons {
+        gap: 12px !important;
     }
     
-    .mobile-icon-item span {
-        font-size: 15px;
+    .icon-badge {
+        font-size: 18px;
     }
     
-    .mobile-logout-btn,
-    .mobile-login-btn,
-    .mobile-signup-btn {
-        padding: 14px 18px;
-        font-size: 15px;
+    .navbar-btn {
+        padding: 6px 16px !important;
+        font-size: 12px !important;
     }
 }
 
 @media (max-width: 480px) {
-    .mobile-menu-header {
+    .main-navbar {
         padding: 12px 15px;
     }
     
-    .mobile-menu-body {
-        padding: 12px 15px;
-        gap: 20px;
+    .logo-image {
+        height: 40px;
     }
     
-    .mobile-nav-links li a {
-        padding: 12px 16px;
-        font-size: 14px;
+    .navbar-search {
+        margin: 0 10px;
     }
     
-    .mobile-icon-item {
-        padding: 12px 16px;
+    .navbar-search input {
+        padding: 8px 12px;
+        font-size: 13px;
     }
     
-    .mobile-icon-item span {
-        font-size: 14px;
+    .navbar-icons {
+        gap: 8px !important;
     }
     
-    .mobile-logout-btn,
-    .mobile-login-btn,
-    .mobile-signup-btn {
-        padding: 12px 16px;
-        font-size: 14px;
+    .icon-badge {
+        font-size: 16px;
     }
     
-    .mobile-logo .logo-image {
-        height: 35px;
+    .navbar-btn {
+        padding: 5px 12px !important;
+        font-size: 11px !important;
     }
     
-    .mobile-menu-close {
-        width: 40px !important;
-        height: 40px !important;
-        font-size: 18px !important;
+    .mobile-nav-item {
+        padding: 6px 2px;
+        min-height: 56px;
+    }
+    
+    .mobile-nav-item i {
+        font-size: 18px;
+    }
+    
+    .mobile-nav-item span {
+        font-size: 10px;
+    }
+    
+    .mobile-cart-badge {
+        width: 14px;
+        height: 14px;
+        font-size: 9px;
     }
 }
 
 @media (min-width: 769px) {
-    .mobile-menu-overlay {
+    .mobile-bottom-nav {
         display: none;
     }
+    
+    body {
+        padding-bottom: 0;
+    }
 }
 
-/* Prevent body scroll when mobile menu is open */
-body.menu-open {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-}
-
-/* Ensure mobile menu covers full viewport */
+/* Ensure proper spacing for mobile */
 @media (max-width: 768px) {
-    .mobile-menu-overlay {
-        width: 100vw !important;
-        height: 100vh !important;
+    .main-content {
+        margin-bottom: 76px;
+    }
+    
+    /* Force bottom nav to stay fixed */
+    .mobile-bottom-nav {
+        position: fixed !important;
+        bottom: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        top: 0 !important;
-        bottom: 0 !important;
+        width: 100% !important;
+        z-index: 9999 !important;
+        transform: none !important;
     }
     
-    .mobile-menu-content {
-        width: 100vw !important;
-        height: 100vh !important;
-    }
-    
-    /* Hide hamburger button when mobile menu is open */
-    .mobile-menu-overlay.active ~ .main-navbar .mobile-menu-toggle,
-    .mobile-menu-overlay.active + .main-navbar .mobile-menu-toggle {
-        display: none !important;
-    }
-    
-    /* Alternative approach - hide hamburger when body has menu-open class */
-    body.menu-open .mobile-menu-toggle {
-        display: none !important;
+    /* Prevent any scrolling issues */
+    html, body {
+        overflow-x: hidden;
     }
 }
-</style>
-
-<script>
-// Simple and direct mobile menu functionality
-function openMobileMenu() {
-    document.getElementById('mobileMenuOverlay').classList.add('active');
-    document.body.classList.add('menu-open');
-    console.log('Menu opened');
-}
-
-function closeMobileMenu() {
-    console.log('closeMobileMenu function called');
-    const overlay = document.getElementById('mobileMenuOverlay');
-    
-    if (overlay) {
-        overlay.classList.remove('active');
-        overlay.style.display = ''; // Reset display property
-        console.log('Removed active class from overlay');
-    }
-    
-    document.body.classList.remove('menu-open');
-    console.log('Menu closed');
-}
-
-// Wait for DOM to be ready
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, setting up mobile menu...');
-    
-    // Get elements
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-    const mobileMenuClose = document.getElementById('mobileMenuClose');
-    
-    console.log('Elements found:', {
-        toggle: !!mobileMenuToggle,
-        overlay: !!mobileMenuOverlay,
-        close: !!mobileMenuClose
-    });
-    
-    if (!mobileMenuToggle || !mobileMenuOverlay || !mobileMenuClose) {
-        console.error('Some mobile menu elements not found!');
-        return;
-    }
-    
-    // Open menu
-    mobileMenuToggle.addEventListener('click', function() {
-        console.log('Toggle clicked');
-        openMobileMenu();
-        // Hide hamburger button when menu opens
-        mobileMenuToggle.style.display = 'none';
-    });
-    
-    // Simple close button handler - completely isolated
-    mobileMenuClose.onclick = function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-        
-        console.log('CLOSE BUTTON CLICKED!');
-        
-        // Close the menu properly
-        const overlay = document.getElementById('mobileMenuOverlay');
-        if (overlay) {
-            overlay.classList.remove('active');
-            overlay.style.display = ''; // Reset display property
-        }
-        document.body.classList.remove('menu-open');
-        
-        // Show hamburger button when menu closes
-        const toggle = document.getElementById('mobileMenuToggle');
-        if (toggle) {
-            toggle.style.display = 'flex';
-        }
-        
-        console.log('Menu closed!');
-        return false;
-    };
-    
-    // Close when clicking overlay background
-    mobileMenuOverlay.addEventListener('click', function(e) {
-        if (e.target === mobileMenuOverlay) {
-            console.log('Overlay background clicked');
-            closeMobileMenu();
-        }
-    });
-    
-    // Close on escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && mobileMenuOverlay.classList.contains('active')) {
-            console.log('Escape key pressed');
-            closeMobileMenu();
-        }
-    });
-    
-    // Close on window resize
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && mobileMenuOverlay.classList.contains('active')) {
-            closeMobileMenu();
-        }
-    });
-    
-    // Close when clicking navigation links
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
-    
-    // Close when clicking user action links
-    const mobileUserActions = document.querySelectorAll('.mobile-user-actions a');
-    mobileUserActions.forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
-    
-    console.log('Mobile menu setup complete');
-    
-    // Final close button handler - runs after everything else
-    setTimeout(function() {
-        const closeBtn = document.getElementById('mobileMenuClose');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-                
-                console.log('FINAL CLOSE HANDLER TRIGGERED');
-                
-                // Close the overlay properly
-                const overlay = document.getElementById('mobileMenuOverlay');
-                if (overlay) {
-                    overlay.classList.remove('active');
-                    overlay.style.display = ''; // Reset display property
-                }
-                
-                // Remove body class
-                document.body.classList.remove('menu-open');
-                
-                // Show hamburger button when menu closes
-                const toggle = document.getElementById('mobileMenuToggle');
-                if (toggle) {
-                    toggle.style.display = 'flex';
-                }
-                
-                console.log('Menu forcefully closed');
-                return false;
-            }, true); // Use capture phase
-        }
-    }, 100);
-});
-
-// Make functions globally available
-window.openMobileMenu = openMobileMenu;
-window.closeMobileMenu = closeMobileMenu;
-</script> 
+</style> 

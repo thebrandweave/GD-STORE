@@ -51,6 +51,7 @@ try {
     <title>GoldenDream Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         :root {
@@ -72,51 +73,7 @@ try {
             padding: 0;
             min-height: 100vh;
         }
-        .navbar {
-            width: 100%;
-            padding: 24px 0 18px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .navbar-logo {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent-dark);
-            letter-spacing: 2px;
-        }
-        .navbar-links {
-            display: flex;
-            gap: 32px;
-        }
-        .navbar-links a {
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.08rem;
-            transition: color 0.18s;
-        }
-        .navbar-links a:hover {
-            color: var(--accent);
-        }
-        .navbar-cta {
-            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-dark) 100%);
-            color: #111;
-            font-weight: 700;
-            border: none;
-            border-radius: 999px;
-            padding: 12px 32px;
-            font-size: 1.08rem;
-            box-shadow: 0 2px 12px rgba(255,214,0,0.10);
-            cursor: pointer;
-            transition: background 0.18s, color 0.18s;
-        }
-        .navbar-cta:hover {
-            background: var(--accent-dark);
-            color: #fff;
-        }
+        
         .hero {
             max-width: 1200px;
             margin: 48px auto 0 auto;
@@ -526,28 +483,21 @@ try {
             }
             .benefits-container {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
+                gap: 20px;
+            }
+            .benefit-item {
+                padding: 0 12px;
             }
             .benefit-icon {
                 font-size: 2.2rem;
+                margin-bottom: 14px;
             }
             .benefit-title {
                 font-size: 0.9rem;
+                line-height: 1.3;
             }
         }
         @media (max-width: 768px) {
-            .navbar {
-                padding: 16px 20px;
-            }
-            .navbar-logo {
-                font-size: 1.6rem;
-            }
-            .navbar-links {
-                gap: 20px;
-            }
-            .navbar-links a {
-                font-size: 1rem;
-            }
             .hero {
                 margin: 32px auto 0 auto;
                 gap: 24px;
@@ -667,10 +617,10 @@ try {
             }
             .benefits-container {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
+                gap: 16px;
             }
             .benefit-item {
-                padding: 0 12px;
+                padding: 0 10px;
             }
             .benefit-icon {
                 font-size: 1.8rem;
@@ -678,7 +628,8 @@ try {
             }
             .benefit-title {
                 font-size: 0.8rem;
-                margin-bottom: 4px;
+                line-height: 1.3;
+                margin-bottom: 0;
             }
             .newsletter-section {
                 padding: 48px 20px 56px 20px;
@@ -709,12 +660,6 @@ try {
             }
         }
         @media (max-width: 600px) {
-            .navbar {
-                padding: 12px 16px;
-            }
-            .navbar-logo {
-                font-size: 1.4rem;
-            }
             .hero {
                 margin: 24px auto 0 auto;
                 gap: 20px;
@@ -833,17 +778,18 @@ try {
             }
             .benefits-container {
                 grid-template-columns: 1fr;
-                gap: 16px;
+                gap: 20px;
             }
             .benefit-item {
-                padding: 0 8px;
+                padding: 0 12px;
             }
             .benefit-icon {
                 font-size: 1.6rem;
-                margin-bottom: 10px;
+                margin-bottom: 12px;
             }
             .benefit-title {
-                font-size: 0.75rem;
+                font-size: 0.8rem;
+                line-height: 1.3;
             }
             .newsletter-section {
                 padding: 40px 16px 48px 16px;
@@ -869,12 +815,6 @@ try {
             }
         }
         @media (max-width: 480px) {
-            .navbar {
-                padding: 10px 12px;
-            }
-            .navbar-logo {
-                font-size: 1.2rem;
-            }
             .hero {
                 margin: 20px auto 0 auto;
                 gap: 16px;
@@ -991,17 +931,18 @@ try {
                 padding: 12px 8px;
             }
             .benefits-container {
-                gap: 12px;
+                gap: 16px;
             }
             .benefit-item {
-                padding: 0 6px;
+                padding: 0 8px;
             }
             .benefit-icon {
                 font-size: 1.4rem;
-                margin-bottom: 8px;
+                margin-bottom: 10px;
             }
             .benefit-title {
-                font-size: 0.7rem;
+                font-size: 0.75rem;
+                line-height: 1.3;
             }
             .newsletter-section {
                 padding: 32px 12px 40px 12px;
@@ -1026,118 +967,8 @@ try {
                 font-size: 0.8rem;
             }
         }
-        .topbar {
-            background: #fafafa;
-            color: #232526;
-            font-size: 0.98rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 7px 4vw 7px 4vw;
-            border-bottom: 1px solid #ececec;
-        }
-        @media (max-width: 768px) {
-            .topbar {
-                display: none;
-            }
-        }
-        .topbar-left span {
-            margin-right: 24px;
-        }
-        .topbar-right a, .topbar-right span {
-            margin-left: 18px;
-            color: #232526;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.98rem;
-        }
-        .main-navbar {
-            background: #fff;
-            color: #232526;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 4vw;
-            min-height: 64px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-            position: relative;
-            z-index: 100;
-        }
-        .navbar-logo {
-            font-size: 2.1rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--accent-dark);
-            font-family: 'Montserrat', Arial, sans-serif;
-        }
-        .navbar-links {
-            display: flex;
-            gap: 36px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .navbar-links a {
-            color: #232526;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.08rem;
-            transition: color 0.18s;
-        }
-        .navbar-links a:hover {
-            color: var(--accent);
-        }
-        .navbar-search-icons {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
-        .navbar-search input {
-            border: none;
-            border-radius: 999px;
-            padding: 8px 18px;
-            font-size: 1rem;
-            background: #f7f7fa;
-            color: #232526;
-            width: 220px;
-            outline: none;
-            }
-        @media (max-width: 768px) {
-            .navbar-search {
-                display: none;
-            }
-            .navbar-search-icons {
-                gap: 12px;
-            }
-            .navbar-icons {
-                gap: 12px;
-            }
-            .navbar-icons a {
-                font-size: 1.2rem;
-            }
-        }
-        .navbar-icons {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
-        .navbar-icons a {
-            color: #232526;
-            font-size: 1.35rem;
-            position: relative;
-            text-decoration: none;
-        }
-        .icon-badge .badge {
-            position: absolute;
-            top: -7px;
-            right: -10px;
-            background: var(--accent);
-            color: #232526;
-            font-size: 0.78rem;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-weight: 700;
-        }
+        
+        
         .section-divider {
             background: #ececec;
         }
@@ -1771,28 +1602,68 @@ try {
         align-items: center;
         justify-content: center;
         padding: 0 18px;
+        transition: transform 0.3s ease;
+    }
+    .benefit-item:hover {
+        transform: translateY(-5px);
     }
     .benefit-icon {
         font-size: 2.8rem;
         color: var(--accent);
         margin-bottom: 16px;
+        transition: transform 0.3s ease;
+    }
+    .benefit-item:hover .benefit-icon {
+        transform: scale(1.1);
     }
     .benefit-title {
         font-size: 1rem;
         font-weight: 700;
         color: #fff;
         margin-bottom: 6px;
+        line-height: 1.3;
     }
 
     @media (max-width: 1200px) {
-        .benefits-container { grid-template-columns: repeat(2, 1fr); }
+        .benefits-container { 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 20px;
+        }
+        .benefit-item {
+            padding: 0 12px;
+        }
     }
     @media (max-width: 600px) {
-        .benefits-container { grid-template-columns: 1fr; }
+        .benefits-container { 
+            grid-template-columns: 1fr; 
+            gap: 24px;
+        }
+        .benefit-item {
+            padding: 0 16px;
+        }
+    }
+    
+    @media (max-width: 360px) {
+        .benefits-outer-box {
+            padding: 20px 12px;
+        }
+        .benefits-container {
+            gap: 20px;
+        }
+        .benefit-item {
+            padding: 0 10px;
+        }
+        .benefit-icon {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        .benefit-title {
+            font-size: 0.7rem;
+        }
     }
     /* Benefits Section Outer Box */
     .benefits-outer-box {
-        background:rgb(0, 0, 0);
+        background: rgb(0, 0, 0);
         border-radius: 0;
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
         padding: 36px 32px 32px 32px;
@@ -1800,103 +1671,26 @@ try {
         margin-bottom: 0;
         max-width: 1200px;
         width: 100%;
-    }
-    /* THEMED NEWSLETTER SECTION - BLACK BG */
-    .newsletter-section {
-        width: 100vw;
-        background: #111;
-        padding: 64px 0 72px 0;
-        margin: 0;
-        text-align: center;
         position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        font-family: 'Montserrat', sans-serif;
-        border-top: 1.5px solid #23211a;
+        overflow: hidden;
     }
-    .newsletter-title {
-        color: #fff;
-        font-size: 2.6rem;
-        font-weight: 800;
-        margin-bottom: 18px;
-        line-height: 1.15;
-        letter-spacing: 0.01em;
+    
+    .benefits-outer-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255, 214, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+        pointer-events: none;
     }
-    .newsletter-title .accent {
-        color: #ffd600;
-        background: none;
-        padding: 0 4px;
-        border-radius: 4px;
+    
+    .benefits-container {
+        position: relative;
+        z-index: 1;
     }
-    .newsletter-subtitle {
-        color: #fff;
-        font-size: 1.15rem;
-        margin-bottom: 38px;
-        font-weight: 400;
-    }
-    .newsletter-form {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0;
-        width: 100%;
-        max-width: 540px;
-        margin: 0 auto;
-        background: #fff;
-        border-radius: 999px;
-        box-shadow: 0 2px 16px 0 rgba(0,0,0,0.06);
-        border: 1.5px solid #23211a;
-        padding: 0;
-    }
-    .newsletter-input {
-        flex: 1;
-        border: none;
-        outline: none;
-        background: transparent;
-        padding: 18px 24px;
-        font-size: 1.08rem;
-        border-radius: 999px 0 0 999px;
-        color: #232526;
-        font-family: 'Montserrat', sans-serif;
-    }
-    .newsletter-input::placeholder {
-        color: #888;
-        font-size: 1.08rem;
-        font-family: 'Montserrat', sans-serif;
-    }
-    .newsletter-btn {
-        background: #ffd600;
-        color: #23211a;
-        font-weight: 700;
-        border: none;
-        border-radius: 0 999px 999px 0;
-        padding: 18px 38px;
-        font-size: 1.08rem;
-        letter-spacing: 0.12em;
-        cursor: pointer;
-        transition: background 0.18s, color 0.18s, transform 0.18s;
-        font-family: 'Montserrat', sans-serif;
-        box-shadow: 0 2px 8px 0 rgba(255,214,0,0.08);
-    }
-    .newsletter-btn:hover {
-        background: #ffe066;
-        color: #23211a;
-        transform: scale(0.97);
-    }
-    @media (max-width: 700px) {
-        .newsletter-title { font-size: 1.5rem; }
-        .newsletter-form { flex-direction: column; border-radius: 32px; max-width: 98vw; }
-        .newsletter-input, .newsletter-btn { border-radius: 32px; width: 100%; padding: 14px 16px; font-size: 1rem; }
-        .newsletter-btn { margin-top: 10px; }
-    }
-    @media (max-width: 480px) {
-        .newsletter-title { font-size: 1.3rem; }
-        .newsletter-subtitle { font-size: 0.9rem; }
-        .newsletter-form { border-radius: 16px; }
-        .newsletter-input, .newsletter-btn { border-radius: 16px; padding: 12px 14px; font-size: 0.9rem; }
-    }
+        
     .view-all-products-btn {
         display: inline-block;
         background: #ffd600;
@@ -1932,7 +1726,7 @@ try {
     </style>
 </head>
 <body>
-    <?php include 'components/navbar.php'; ?>
+    <?php include __DIR__ . '/components/navbar.php'; ?>
     <div class="fullimg-hero-carousel" id="fullimgHeroCarousel">
         <div class="fullimg-hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80');"></div>
         <div class="fullimg-hero-slide" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');"></div>

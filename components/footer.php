@@ -12,13 +12,15 @@ if ($shop_pos !== false) {
 ?>
 <section class="newsletter-section">
     <div class="newsletter-overlay"></div>
-    <div class="newsletter-content">
-    <h2 class="newsletter-title">Sign up for updates</h2>
-    <p class="newsletter-subtitle">Sign up for early sale access, new in, promotions and more</p>
-    <form class="newsletter-form">
-        <input type="email" placeholder="Enter your e-mail" class="newsletter-input" required>
-        <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
-    </form>
+    <div class="newsletter-container">
+        <div class="newsletter-content">
+        <h2 class="newsletter-title">Sign up for updates</h2>
+        <p class="newsletter-subtitle">Sign up for early sale access, new in, promotions and more</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your e-mail" class="newsletter-input" required>
+            <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+        </form>
+        </div>
     </div>
 </section>
 <footer class="shop-footer">
@@ -92,19 +94,23 @@ if ($shop_pos !== false) {
 
 <style>
 .newsletter-section {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    padding: 80px 20px;
+    padding: 80px 0;
     text-align: center;
     position: relative;
     color: #fff;
-    left: 0;
-    right: 0;
+    width: 100%;
+}
+
+.newsletter-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .newsletter-overlay {
@@ -122,6 +128,20 @@ if ($shop_pos !== false) {
     z-index: 2;
     max-width: 600px;
     margin: 0 auto;
+    animation: fadeInUp 0.8s ease-out;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .newsletter-title {
@@ -157,10 +177,13 @@ if ($shop_pos !== false) {
     max-width: 540px;
     margin: 0 auto;
     background: #fff;
-    border-radius: 999px;
-    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.06);
-    border: 1.5px solid #23211a;
-    padding: 0;
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border: 2px solid #ffd600;
+    padding: 4px;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
 }
 
 .newsletter-input {
@@ -168,57 +191,177 @@ if ($shop_pos !== false) {
     border: none;
     outline: none;
     background: transparent;
-    padding: 18px 24px;
-    font-size: 1.08rem;
-    border-radius: 999px 0 0 999px;
+    padding: 16px 24px;
+    font-size: 1rem;
+    border-radius: 46px 0 0 46px;
     color: #232526;
     font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.newsletter-input:focus {
+    background: rgba(255, 214, 0, 0.05);
 }
 
 .newsletter-input::placeholder {
-    color: #888;
-    font-size: 1.08rem;
+    color: #999;
+    font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    opacity: 0.8;
 }
 
 .newsletter-btn {
-    background: #ffd600;
+    background: linear-gradient(135deg, #ffd600 0%, #ffed4e 100%);
     color: #23211a;
     font-weight: 700;
     border: none;
-    border-radius: 0 999px 999px 0;
-    padding: 18px 38px;
-    font-size: 1.08rem;
-    letter-spacing: 0.12em;
+    border-radius: 0 46px 46px 0;
+    padding: 16px 32px;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
     cursor: pointer;
-    transition: background 0.18s, color 0.18s, transform 0.18s;
+    transition: all 0.3s ease;
     font-family: 'Montserrat', sans-serif;
-    box-shadow: 0 2px 8px 0 rgba(255,214,0,0.08);
+    box-shadow: 0 4px 16px rgba(255, 214, 0, 0.3);
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.newsletter-btn:hover::before {
+    left: 100%;
 }
 
 .newsletter-btn:hover {
-    background: #ffe066;
+    background: linear-gradient(135deg, #ffed4e 0%, #ffd600 100%);
     color: #23211a;
-    transform: scale(0.97);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 214, 0, 0.4);
+}
+
+.newsletter-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(255, 214, 0, 0.3);
+}
+
+/* Mobile touch improvements */
+@media (max-width: 768px) {
+    .newsletter-input {
+        min-height: 48px; /* Better touch target */
+    }
+    
+    .newsletter-btn {
+        min-height: 48px; /* Better touch target */
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .newsletter-form {
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 320px) {
+    .newsletter-section {
+        padding: 25px 0;
+    }
+    
+    .newsletter-container {
+        padding: 0 8px;
+    }
+    
+    .newsletter-title {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+    }
+    
+    .newsletter-subtitle {
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .newsletter-form {
+        padding: 3px;
+        gap: 3px;
+        border-radius: 15px;
+    }
+    
+    .newsletter-input, .newsletter-btn {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+        border-radius: 12px;
+        min-height: 44px;
+    }
+    
+    #backToTopBtn {
+        bottom: 80px;
+        right: 8px;
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+        z-index: 10000;
+    }
 }
 
 @media (max-width: 700px) {
     .newsletter-title { 
         font-size: 1.8rem; 
+        margin-bottom: 15px;
+    }
+    .newsletter-subtitle {
+        font-size: 1rem;
+        margin-bottom: 25px;
     }
     .newsletter-form { 
-        flex-direction: column; 
-        border-radius: 32px; 
-        max-width: 98vw; 
+        flex-direction: column !important; 
+        border-radius: 20px; 
+        max-width: 95%; 
+        gap: 8px;
+        padding: 8px;
+        border: 2px solid #ffd600;
+        width: 100%;
+        box-sizing: border-box;
     }
     .newsletter-input, .newsletter-btn { 
-        border-radius: 32px; 
-        width: 100%; 
-        padding: 14px 16px; 
+        border-radius: 16px; 
+        width: 100% !important; 
+        padding: 16px 20px; 
         font-size: 1rem; 
+        border: none;
+        box-sizing: border-box;
+        min-width: 0;
+        max-width: 100%;
+    }
+    .newsletter-input {
+        border: 1px solid #e0e0e0;
+        margin-bottom: 0;
+        background: #fff;
+        flex: none;
     }
     .newsletter-btn { 
-        margin-top: 10px; 
+        margin-top: 0; 
+        background: linear-gradient(135deg, #ffd600 0%, #ffed4e 100%);
+        color: #23211a;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(255, 214, 0, 0.3);
+        flex: none;
+        white-space: nowrap;
     }
 }
 
@@ -422,7 +565,7 @@ if ($shop_pos !== false) {
   position: fixed;
   bottom: 32px;
   right: 32px;
-  z-index: 1000;
+  z-index: 10000;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -446,6 +589,29 @@ if ($shop_pos !== false) {
 }
 
 @media (max-width: 768px) {
+  .newsletter-section {
+    padding: 60px 0;
+  }
+  
+  .newsletter-container {
+    padding: 0 15px;
+  }
+  
+  .newsletter-title {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+  }
+  
+  .newsletter-subtitle {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+  
+  .newsletter-form {
+    max-width: 100%;
+    border-radius: 40px;
+  }
+  
   .footer-content {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -540,45 +706,69 @@ if ($shop_pos !== false) {
   }
   
   #backToTopBtn {
-    bottom: 20px;
+    bottom: 100px;
     right: 20px !important;
     width: 44px;
     height: 44px;
     font-size: 1.5rem;
-    margin: 20px !important;
+    margin: 0 !important;
     padding: 0;
+    z-index: 10000;
   }
 }
 
 @media (max-width: 480px) {
   .newsletter-section {
-    padding: 60px 15px;
+    padding: 40px 0;
+  }
+  
+  .newsletter-container {
+    padding: 0 12px;
   }
   
   .newsletter-title {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    line-height: 1.2;
   }
   
   .newsletter-subtitle {
-    font-size: 1rem;
-    margin-bottom: 30px;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+    line-height: 1.4;
   }
   
   .newsletter-form {
-    max-width: 100%;
-    border-radius: 20px;
+    max-width: 100% !important;
+    width: 100% !important;
+    border-radius: 25px;
+    gap: 6px;
+    padding: 6px;
+    flex-direction: column !important;
+    box-sizing: border-box;
   }
   
   .newsletter-input, .newsletter-btn {
     border-radius: 20px;
-    padding: 12px 14px;
-    font-size: 0.95rem;
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    width: 100% !important;
+    box-sizing: border-box;
+    min-width: 0;
+    max-width: 100%;
+    flex: none;
+  }
+  
+  .newsletter-input {
+    border: 1px solid #e0e0e0;
   }
   
   .newsletter-btn {
-    margin-top: 8px;
+    margin-top: 0;
+    font-weight: 600;
+    white-space: nowrap;
   }
+}
   
   .footer-content {
     gap: 25px;
@@ -661,13 +851,14 @@ if ($shop_pos !== false) {
   }
   
   #backToTopBtn {
-    bottom: 15px;
+    bottom: 90px;
     right: 15px;
     width: 40px;
     height: 40px;
     font-size: 1.3rem;
     margin: 0;
     padding: 0;
+    z-index: 10000;
   }
   
   .shop-footer {
@@ -680,8 +871,47 @@ if ($shop_pos !== false) {
 }
 
 @media (max-width: 360px) {
+  .newsletter-section {
+    padding: 30px 0;
+  }
+  
+  .newsletter-container {
+    padding: 0 10px;
+  }
+  
+  .newsletter-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .newsletter-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+  
+  .newsletter-form {
+    border-radius: 20px;
+    gap: 4px;
+    padding: 4px;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-direction: column !important;
+    box-sizing: border-box;
+  }
+  
+  .newsletter-input, .newsletter-btn {
+    font-size: 0.85rem;
+    padding: 12px 14px;
+    border-radius: 16px;
+    width: 100% !important;
+    box-sizing: border-box;
+    min-width: 0;
+    max-width: 100%;
+    flex: none;
+  }
+  
   #backToTopBtn {
-    bottom: 15px;
+    bottom: 85px;
     right: 15px;
     width: 38px;
     height: 38px;
@@ -691,19 +921,7 @@ if ($shop_pos !== false) {
     box-sizing: border-box;
     max-width: calc(100vw - 30px);
     max-height: calc(100vh - 30px);
-  }
-  
-  .newsletter-title {
-    font-size: 1.4rem;
-  }
-  
-  .newsletter-subtitle {
-    font-size: 0.9rem;
-  }
-  
-  .newsletter-input, .newsletter-btn {
-    font-size: 0.9rem;
-    padding: 10px 12px;
+    z-index: 10000;
   }
   
   .footer-logo-image {

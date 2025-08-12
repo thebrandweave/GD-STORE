@@ -513,6 +513,7 @@ foreach ($result as $row) {
                 font-size: 2rem;
             }
             
+            
             .cart-items, .order-summary {
                 padding: 20px;
             }
