@@ -333,51 +333,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 font-size: 2rem;
             }
         }
-        .navbar {
-            width: 100%;
-            padding: 24px 0 18px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .navbar-logo {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent-dark);
-            letter-spacing: 2px;
-        }
-        .navbar-links {
-            display: flex;
-            gap: 32px;
-        }
-        .navbar-links a {
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.08rem;
-            transition: color 0.18s;
-        }
-        .navbar-links a:hover {
-            color: var(--accent);
-        }
-        .navbar-cta {
-            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-dark) 100%);
-            color: #111;
-            font-weight: 700;
-            border: none;
-            border-radius: 999px;
-            padding: 12px 32px;
-            font-size: 1.08rem;
-            box-shadow: 0 2px 12px rgba(255,214,0,0.10);
-            cursor: pointer;
-            transition: background 0.18s, color 0.18s;
-        }
-        .navbar-cta:hover {
-            background: var(--accent-dark);
-            color: #fff;
-        }
     </style>
 </head>
 <body>

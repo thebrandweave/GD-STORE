@@ -471,6 +471,12 @@ try {
                 padding: 12px 28px;
                 font-size: 1rem;
             }
+            .benefits-merged {
+                display: none;
+            }
+            .benefits-mobile {
+                display: block;
+            }
             .benefits-section {
                 position: relative;
                 top: auto;
@@ -608,6 +614,12 @@ try {
             .fullimg-hero-dot {
                 width: 8px;
                 height: 8px;
+            }
+            .benefits-merged {
+                display: none;
+            }
+            .benefits-mobile {
+                display: block;
             }
             .benefits-section {
                 margin-top: 30px;
@@ -1590,6 +1602,53 @@ try {
         text-align: center;
         z-index: 10;
     }
+    
+    /* Benefits Section - Merged with Hero (PC View) */
+    .benefits-merged {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 1200px;
+        width: 100%;
+        padding: 0 16px;
+        text-align: center;
+        z-index: 10;
+        display: block;
+    }
+    
+    /* Benefits Section - Separate for Mobile */
+    .benefits-mobile {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin-top: 40px;
+        padding: 0 20px;
+        display: none;
+        background: rgb(0, 0, 0);
+        border-radius: 0;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+        padding: 36px 32px 32px 32px;
+        margin-top: 0;
+        margin-bottom: 0;
+        max-width: 1200px;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .benefits-mobile::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255, 214, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+        pointer-events: none;
+    }
+    
     .benefits-container {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -1633,6 +1692,21 @@ try {
             padding: 0 12px;
         }
     }
+    @media (max-width: 900px) {
+        .benefits-merged {
+            display: none;
+        }
+        .benefits-mobile {
+            display: block;
+        }
+        .benefits-container { 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 20px;
+        }
+        .benefit-item {
+            padding: 0 12px;
+        }
+    }
     @media (max-width: 600px) {
         .benefits-container { 
             grid-template-columns: 1fr; 
@@ -1644,7 +1718,7 @@ try {
     }
     
     @media (max-width: 360px) {
-        .benefits-outer-box {
+        .benefits-mobile {
             padding: 20px 12px;
         }
         .benefits-container {
@@ -1661,7 +1735,7 @@ try {
             font-size: 0.7rem;
         }
     }
-    /* Benefits Section Outer Box */
+    /* Benefits Section Outer Box - Legacy styles for mobile */
     .benefits-outer-box {
         background: rgb(0, 0, 0);
         border-radius: 0;
@@ -1673,6 +1747,7 @@ try {
         width: 100%;
         position: relative;
         overflow: hidden;
+        display: none;
     }
     
     .benefits-outer-box::before {
@@ -1747,9 +1822,40 @@ try {
             <div class="fullimg-hero-dot" data-index="2"></div>
             <div class="fullimg-hero-dot" data-index="3"></div>
         </div>
+        
+        <!-- Benefits Section - Merged with Hero for PC View -->
+        <section class="benefits-section benefits-merged">
+            <div class="benefits-container">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="bi bi-headset"></i>
+                    </div>
+                    <h3 class="benefit-title">Customer Support</h3>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <h3 class="benefit-title">Best Seller</h3>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="bi bi-award"></i>
+                    </div>
+                    <h3 class="benefit-title">Premium Quality</h3>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h3 class="benefit-title">Safe & Secure Checkout</h3>
+                </div>
+            </div>
+        </section>
     </div>
-    <!-- Benefits Section -->
-    <section class="benefits-section benefits-outer-box">
+    
+    <!-- Benefits Section - Separate for Mobile View -->
+    <section class="benefits-section benefits-mobile">
         <div class="benefits-container">
             <div class="benefit-item">
                 <div class="benefit-icon">

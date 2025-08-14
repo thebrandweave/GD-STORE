@@ -1,13 +1,18 @@
 <?php
-// Dynamically determine the base path for shop components
+// Dynamically determine the base path for the project
 $script_name = $_SERVER['SCRIPT_NAME'];
-$shop_pos = strpos($script_name, '/shop/');
+$request_uri = $_SERVER['REQUEST_URI'];
 
-if ($shop_pos !== false) {
-    $shop_base = substr($script_name, 0, $shop_pos + strlen('/shop/'));
+// Extract the project folder name from the script path
+$path_parts = explode('/', trim($script_name, '/'));
+$project_folder = $path_parts[0] ?? '';
+
+// Build the base path dynamically
+if (!empty($project_folder)) {
+    $base_path = '/' . $project_folder . '/';
 } else {
-    // Fallback for live server where /shop/ might not be in the path
-    $shop_base = '/';
+    // Fallback for root deployment
+    $base_path = '/';
 }
 ?>
 <section class="newsletter-section">
@@ -28,7 +33,7 @@ if ($shop_pos !== false) {
     <div class="footer-content">
       <div class="footer-section footer-brand">
         <div class="footer-logo">
-          <img src="<?php echo $shop_base; ?>assets/image/gd-store-logo2.png" alt="GD Store" class="footer-logo-image">
+          <img src="<?php echo $base_path; ?>assets/image/gd-store-logo2.png" alt="GD Store" class="footer-logo-image">
         </div>
         <p class="footer-description">Premium gold and diamond jewelry for every occasion. We offer the finest collection of traditional and modern jewelry designs, crafted with excellence and delivered with trust.</p>
         <div class="company-info">
@@ -50,11 +55,11 @@ if ($shop_pos !== false) {
       <div class="footer-section">
         <h4 class="footer-heading">Quick Links</h4>
         <ul class="footer-links">
-          <li><a href="<?php echo $shop_base; ?>index.php">Home</a></li>
-          <li><a href="<?php echo $shop_base; ?>category/index.php">Categories</a></li>
-          <li><a href="<?php echo $shop_base; ?>products/index.php">Products</a></li>
-          <li><a href="<?php echo $shop_base; ?>about/index.php">About</a></li>
-          <li><a href="<?php echo $shop_base; ?>contact/index.php">Contact</a></li>
+          <li><a href="<?php echo $base_path; ?>index.php">Home</a></li>
+          <li><a href="<?php echo $base_path; ?>category/index.php">Categories</a></li>
+          <li><a href="<?php echo $base_path; ?>products/index.php">Products</a></li>
+          <li><a href="<?php echo $base_path; ?>about/index.php">About</a></li>
+          <li><a href="<?php echo $base_path; ?>contact/index.php">Contact</a></li>
         </ul>
       </div>
       
@@ -84,7 +89,7 @@ if ($shop_pos !== false) {
       <p class="copyright">Golden Dream © <?php echo date('Y'); ?>. All Rights Reserved.</p>
       <div class="developed-by">
         <span>Developed by</span>
-        <img src="<?php echo $shop_base; ?>assets/image/developer_logo.png" alt="Developer Logo" class="developer-logo">
+        <img src="<?php echo $base_path; ?>assets/image/developer_logo.png" alt="Developer Logo" class="developer-logo">
       </div>
     </div>
   </div>

@@ -1,15 +1,41 @@
 <?php
-// Dynamically determine the base path for shop components
+// Dynamically determine the base path for the project
 $script_name = $_SERVER['SCRIPT_NAME'];
-$shop_pos = strpos($script_name, '/shop/');
+$request_uri = $_SERVER['REQUEST_URI'];
 
-if ($shop_pos !== false) {
-    $shop_base = substr($script_name, 0, $shop_pos + strlen('/shop/'));
+// Extract the project folder name from the script path
+$path_parts = explode('/', trim($script_name, '/'));
+$project_folder = $path_parts[0] ?? '';
+
+// Build the base path dynamically
+if (!empty($project_folder)) {
+    $base_path = '/' . $project_folder . '/';
 } else {
-    // Fallback for live server where /shop/ might not be in the path
-    $shop_base = '/';
+    // Fallback for root deployment
+    $base_path = '/';
 }
+
 $current_path = $_SERVER['SCRIPT_NAME'];
+
+// Normalize current route relative to base path for accurate active-state checks
+$current_uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+if (strpos($current_uri_path, $base_path) === 0) {
+	$relative_path = substr($current_uri_path, strlen($base_path));
+} else {
+	$relative_path = ltrim($current_uri_path, '/');
+}
+$relative_path = trim($relative_path, '/');
+
+// Determine active sections (ensure Home doesn't match nested index.php like products/index.php)
+$is_home = ($relative_path === '' || $relative_path === 'index.php');
+$is_category = (strpos($relative_path, 'category') === 0);
+$is_products = (strpos($relative_path, 'products') === 0);
+$is_about = (strpos($relative_path, 'about') === 0);
+$is_contact = (strpos($relative_path, 'contact') === 0);
+$is_cart = (strpos($relative_path, 'cart') === 0);
+$is_profile = (strpos($relative_path, 'profile') === 0);
+$is_notifications = (strpos($relative_path, 'notifications') === 0);
+$is_login = (strpos($relative_path, 'login') === 0);
 ?>
 <!-- Top Info Bar -->
 <div class="topbar">
@@ -18,26 +44,26 @@ $current_path = $_SERVER['SCRIPT_NAME'];
     <span>goldendream175@gmail.com</span>
   </div>
   <div class="topbar-right">
-    <a href="<?php echo $shop_base; ?>contact/index.php">Contact Us</a>
-    <a href="<?php echo $shop_base; ?>about/index.php">About Us</a>
+    <a href="<?php echo $base_path; ?>contact/index.php">Contact Us</a>
+    <a href="<?php echo $base_path; ?>about/index.php">About Us</a>
   </div>
 </div>
 
 <!-- Main Navbar -->
 <nav class="main-navbar">
   <div class="navbar-logo flex">
-    <a href="<?php echo $shop_base; ?>index.php">
-      <img src="<?php echo $shop_base; ?>assets/image/gd-store-logo2.png" alt="GD Store" class="logo-image">
+    <a href="<?php echo $base_path; ?>index.php">
+      <img src="<?php echo $base_path; ?>assets/image/gd-store-logo2.png" alt="GD Store" class="logo-image">
     </a>
   </div>
   
   <!-- Desktop Navigation -->
   <ul class="navbar-links desktop-nav">
-    <li><a href="<?php echo $shop_base; ?>index.php" class="<?php echo (strpos($current_path, '/shop/index.php') !== false) ? 'active' : ''; ?>">Home</a></li>
-    <li><a href="<?php echo $shop_base; ?>category/index.php" class="<?php echo (strpos($current_path, '/shop/category') !== false) ? 'active' : ''; ?>">Categories</a></li>
-    <li><a href="<?php echo $shop_base; ?>products/index.php" class="<?php echo (strpos($current_path, '/shop/products') !== false) ? 'active' : ''; ?>">Products</a></li>
-    <li><a href="<?php echo $shop_base; ?>about/index.php" class="<?php echo (strpos($current_path, '/shop/about') !== false) ? 'active' : ''; ?>">About</a></li>
-    <li><a href="<?php echo $shop_base; ?>contact/index.php" class="<?php echo (strpos($current_path, '/shop/contact') !== false) ? 'active' : ''; ?>">Contact</a></li>
+    <li><a href="<?php echo $base_path; ?>index.php" class="<?php echo $is_home ? 'active' : ''; ?>">Home</a></li>
+    <li><a href="<?php echo $base_path; ?>category/index.php" class="<?php echo $is_category ? 'active' : ''; ?>">Categories</a></li>
+    <li><a href="<?php echo $base_path; ?>products/index.php" class="<?php echo $is_products ? 'active' : ''; ?>">Products</a></li>
+    <li><a href="<?php echo $base_path; ?>about/index.php" class="<?php echo $is_about ? 'active' : ''; ?>">About</a></li>
+    <li><a href="<?php echo $base_path; ?>contact/index.php" class="<?php echo $is_contact ? 'active' : ''; ?>">Contact</a></li>
   </ul>
   
   <div class="navbar-search-icons">
@@ -85,25 +111,25 @@ $current_path = $_SERVER['SCRIPT_NAME'];
             }
         }
         ?>
-        <a href="<?php echo $shop_base; ?>notifications/index.php" class="icon-badge">
+        <a href="<?php echo $base_path; ?>notifications/index.php" class="icon-badge">
             <i class="bi bi-bell"></i>
             <?php if ($unread_count > 0): ?>
                 <span class="badge"><?php echo $unread_count; ?></span>
             <?php endif; ?>
         </a>
-        <a href="<?php echo $shop_base; ?>cart/index.php" class="icon-badge">
+        <a href="<?php echo $base_path; ?>cart/index.php" class="icon-badge">
             <i class="bi bi-cart"></i>
             <?php if ($cart_count > 0): ?>
                 <span class="badge"><?php echo $cart_count; ?></span>
             <?php endif; ?>
         </a>
-        <a href="<?php echo $shop_base; ?>profile/index.php" class="profile-icon"><i class="bi bi-person-circle"></i></a>
-        <a href="<?php echo $shop_base; ?>logout.php" class="navbar-btn" style="background:var(--accent-dark);color:#fff;padding:8px 22px;border-radius:999px;font-weight:700;text-decoration:none;transition:background 0.18s,color 0.18s;font-size: var(--font-size-sm);">Logout</a>
+        <a href="<?php echo $base_path; ?>profile/index.php" class="profile-icon"><i class="bi bi-person-circle"></i></a>
+        <a href="<?php echo $base_path; ?>logout.php" class="navbar-btn" style="background:var(--accent-dark);color:#fff;padding:8px 22px;border-radius:999px;font-weight:700;text-decoration:none;transition:background 0.18s,color 0.18s;font-size: var(--font-size-sm);">Logout</a>
       </div>
     <?php else: ?>
       <div style="display:flex;gap:12px;align-items:center;">
-        <a href="<?php echo $shop_base; ?>login.php" class="navbar-btn" style="background:transparent;color:var(--accent-dark);border:2px solid var(--accent-dark);padding:8px 22px;border-radius:999px;font-weight:700;text-decoration:none;transition:background 0.18s,color 0.18s;">Login</a>
-        <!-- <a href="<?php echo $shop_base; ?>signup.php" class="navbar-btn" style="background:var(--accent-dark);color:#fff;padding:8px 22px;border-radius:999px;font-weight:700;text-decoration:none;transition:background 0.18s,color 0.18s;">Sign Up</a> -->
+        <a href="<?php echo $base_path; ?>login.php" class="navbar-btn" style="background:transparent;color:var(--accent-dark);border:2px solid var(--accent-dark);padding:8px 22px;border-radius:999px;font-weight:700;text-decoration:none;transition:background 0.18s,color 0.18s;">Login</a>
+        <!-- <a href="<?php echo $base_path; ?>signup.php" class="navbar-btn" style="background:var(--accent-dark);color:#fff;padding:8px 22px;border-radius:999px;font-weight:700;text-decoration:none;transition:background 0.18s,color 0.18s;">Sign Up</a> -->
       </div>
     <?php endif; ?>
   </div>
@@ -111,36 +137,36 @@ $current_path = $_SERVER['SCRIPT_NAME'];
 
 <!-- Mobile Bottom Navigation -->
 <nav class="mobile-bottom-nav">
-  <a href="<?php echo $shop_base; ?>index.php" class="mobile-nav-item <?php echo (strpos($current_path, '/shop/index.php') !== false) ? 'active' : ''; ?>">
+  <a href="<?php echo $base_path; ?>index.php" class="mobile-nav-item <?php echo $is_home ? 'active' : ''; ?>">
     <i class="bi bi-house"></i>
     <span>Home</span>
   </a>
-  <a href="<?php echo $shop_base; ?>category/index.php" class="mobile-nav-item <?php echo (strpos($current_path, '/shop/category') !== false) ? 'active' : ''; ?>">
+  <a href="<?php echo $base_path; ?>category/index.php" class="mobile-nav-item <?php echo $is_category ? 'active' : ''; ?>">
     <i class="bi bi-grid"></i>
     <span>Categories</span>
   </a>
-  <a href="<?php echo $shop_base; ?>products/index.php" class="mobile-nav-item <?php echo (strpos($current_path, '/shop/products') !== false) ? 'active' : ''; ?>">
+  <a href="<?php echo $base_path; ?>products/index.php" class="mobile-nav-item <?php echo $is_products ? 'active' : ''; ?>">
     <i class="bi bi-box"></i>
     <span>Products</span>
   </a>
   <?php if (isset($_SESSION['user_id'])): ?>
-    <a href="<?php echo $shop_base; ?>cart/index.php" class="mobile-nav-item <?php echo (strpos($current_path, '/shop/cart') !== false) ? 'active' : ''; ?>">
+    <a href="<?php echo $base_path; ?>cart/index.php" class="mobile-nav-item <?php echo $is_cart ? 'active' : ''; ?>">
       <i class="bi bi-cart"></i>
       <span>Cart</span>
       <?php if ($cart_count > 0): ?>
         <span class="mobile-cart-badge"><?php echo $cart_count; ?></span>
       <?php endif; ?>
     </a>
-    <a href="<?php echo $shop_base; ?>profile/index.php" class="mobile-nav-item <?php echo (strpos($current_path, '/shop/profile') !== false) ? 'active' : ''; ?>">
+    <a href="<?php echo $base_path; ?>profile/index.php" class="mobile-nav-item <?php echo $is_profile ? 'active' : ''; ?>">
       <i class="bi bi-person"></i>
       <span>Profile</span>
     </a>
   <?php else: ?>
-    <a href="<?php echo $shop_base; ?>about/index.php" class="mobile-nav-item <?php echo (strpos($current_path, '/shop/about') !== false) ? 'active' : ''; ?>">
+    <a href="<?php echo $base_path; ?>about/index.php" class="mobile-nav-item <?php echo $is_about ? 'active' : ''; ?>">
       <i class="bi bi-info-circle"></i>
       <span>About</span>
     </a>
-    <a href="<?php echo $shop_base; ?>login.php" class="mobile-nav-item <?php echo (strpos($current_path, '/shop/login') !== false) ? 'active' : ''; ?>">
+    <a href="<?php echo $base_path; ?>login.php" class="mobile-nav-item <?php echo $is_login ? 'active' : ''; ?>">
       <i class="bi bi-person"></i>
       <span>Login</span>
     </a>
