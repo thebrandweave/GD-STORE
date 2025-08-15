@@ -1188,6 +1188,10 @@ try {
             position: relative;
             z-index: 0;
         }
+        .shop-category-section a {
+            text-decoration: none;
+            color: #232526;
+        }
         /* Ensure benefits overlay doesn't overlap the category section on desktop */
         @media (min-width: 901px) {
             .shop-category-section {
@@ -1413,12 +1417,20 @@ try {
         letter-spacing: 0.5px;
         margin-bottom: 8px;
     }
+    .product-category a {
+        text-decoration: none;
+        color: #232526;
+    }
     .product-name {
         font-size: 1.1rem;
         font-weight: 700;
         color: var(--secondary);
         margin-bottom: 12px;
         line-height: 1.4;
+    }
+    .product-name a {
+        text-decoration: none;
+        color: #232526;
     }
     .product-description {
         font-size: 0.9rem;
@@ -1427,7 +1439,7 @@ try {
         margin-bottom: 16px;
     }
     .product-info {
-        display: flex;
+        display: flex;  
         align-items: center;
         justify-content: space-between;
         margin-bottom: 12px;
@@ -1945,8 +1957,9 @@ try {
             ?>
                 <div class="shop-category-card">
                     <img src="<?php echo $img; ?>" alt="<?php echo htmlspecialchars($cat['name']); ?>" class="shop-category-img" />
-                    <div class="shop-category-name"><?php echo htmlspecialchars($cat['name']); ?></div>
-                    <!-- <a href="products/?category=<?php echo $cat['category_id']; ?>" class="shop-category-btn">Shop <?php echo htmlspecialchars($cat['name']); ?></a> -->
+                    <div class="shop-category-name">
+                    <a href="products/?category=<?php echo $cat['category_id']; ?>"><?php echo htmlspecialchars($cat['name']); ?></a>
+                    </div>
                 </div>
             <?php endforeach; ?>
             </div>
@@ -1979,8 +1992,6 @@ try {
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="<?php echo $img; ?>" class="product-image" alt="<?php echo htmlspecialchars($prod['name']); ?>" />
-                    <div class="product-badge"><?php echo htmlspecialchars($prod['category_name'] ?? 'Uncategorized'); ?></div>
-                    <div class="product-stock-badge <?php echo $stockClass; ?>"><?php echo $stockText; ?></div>
                     <div class="product-actions">
                         <button class="action-btn" title="Add to Cart">
                             <i class="bi bi-cart-plus"></i>
@@ -1991,8 +2002,12 @@ try {
                     </div>
                 </div>
                 <div class="product-content">
-                    <div class="product-category"><?php echo htmlspecialchars($prod['category_name'] ?? 'Uncategorized'); ?></div>
-                    <h3 class="product-name"><?php echo htmlspecialchars($prod['name']); ?></h3>
+                    <div class="product-category">
+                        <a href="products/?category=<?php echo $prod['category_id']; ?>"><?php echo htmlspecialchars($prod['category_name'] ?? 'Uncategorized'); ?></a>
+                    </div>
+                    <h3 class="product-name">
+                        <a href="products/details.php?id=<?= $product['product_id'] ?>"><?php echo htmlspecialchars($prod['name']); ?></a>
+                    </h3>
                     <?php if (!empty($prod['description'])): ?>
                         <div class="product-description"><?php echo htmlspecialchars(substr($prod['description'], 0, 80)) . (strlen($prod['description']) > 80 ? '...' : ''); ?></div>
                     <?php endif; ?>

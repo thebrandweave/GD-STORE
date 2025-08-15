@@ -384,28 +384,28 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
         }
         
         /* Responsive Grid for Large Screens */
         @media (min-width: 1600px) {
             .products-grid {
-                grid-template-columns: repeat(5, 1fr);
-                gap: 32px;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 40px;
             }
         }
         
         @media (min-width: 1920px) {
             .products-grid {
-                grid-template-columns: repeat(6, 1fr);
-                gap: 40px;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 48px;
             }
         }
         
         @media (min-width: 2560px) {
             .products-grid {
-                grid-template-columns: repeat(7, 1fr);
+                grid-template-columns: repeat(6, 1fr);
                 gap: 48px;
             }
         }
@@ -534,12 +534,20 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             letter-spacing: 0.5px;
             margin-bottom: 8px;
         }
+        .product-category a {
+            text-decoration: none;
+            color: #232526;
+        }
         .product-name {
             font-size: 1.1rem;
             font-weight: 700;
             color: var(--secondary);
             margin-bottom: 12px;
             line-height: 1.4;
+        }
+        .product-name a {
+            text-decoration: none;
+            color: #232526;
         }
         
         /* Responsive Product Typography for Large Screens */
@@ -591,11 +599,7 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             line-height: 1.4;
             margin-bottom: 16px;
         }
-        .product-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+
         .view-details-btn {
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
             color: #232526;
@@ -853,8 +857,7 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
                         <div class="product-card">
                             <div class="product-image-container">
                                 <img src="<?php echo $img; ?>" class="product-image" alt="<?php echo htmlspecialchars($product['name']); ?>" />
-                                <div class="product-badge"><?php echo htmlspecialchars($product['category_name'] ?? 'Uncategorized'); ?></div>
-                                <div class="product-stock-badge <?php echo $stockClass; ?>"><?php echo $stockText; ?></div>
+                                <!-- <div class="product-stock-badge <?php echo $stockClass; ?>"><?php echo $stockText; ?></div> -->
                                 <div class="product-actions">
                                     <form method="post" action="add_to_cart.php" style="display:inline;">
                                         <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
@@ -872,17 +875,19 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
                                 </div>
                             </div>
                             <div class="product-content">
-                                <div class="product-category"><?php echo htmlspecialchars($product['category_name'] ?? 'Uncategorized'); ?></div>
-                                <h3 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h3>
+                                <div class="product-category">
+                                    <a href="?category=<?php echo $product['category_id']; ?>"><?php echo htmlspecialchars($product['category_name'] ?? 'Uncategorized'); ?></a>
+                                </div>
+                                <h3 class="product-name">
+                                    <a href="details.php?id=<?= $product['product_id'] ?>"><?php echo htmlspecialchars($product['name']); ?></a>
+                                </h3>
                                 <?php if (!empty($product['description'])): ?>
                                     <div class="product-description"><?php echo htmlspecialchars(substr($product['description'], 0, 80)) . (strlen($product['description']) > 80 ? '...' : ''); ?></div>
                                 <?php endif; ?>
                                 <div class="product-info">
                                     <div class="product-price">₹<?php echo number_format($product['price'], 2); ?></div>
                                 </div>
-                                <div class="product-footer">
-                                    <a href="details.php?id=<?= $product['product_id'] ?>" class="view-details-btn">View Details</a>
-                                </div>
+
                             </div>
                         </div>
                     <?php endforeach; ?>
