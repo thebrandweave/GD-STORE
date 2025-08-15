@@ -146,6 +146,25 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             margin-bottom: 8px;
             letter-spacing: 1px;
         }
+        
+        /* Responsive Typography for Large Screens */
+        @media (min-width: 1600px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+        }
         .breadcrumb {
             color: #fff;
             font-size: 1.05rem;
@@ -156,11 +175,104 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             margin: 0 auto;
             padding: 40px 20px;
         }
+        
+        /* Responsive Spacing for Large Screens */
+        @media (min-width: 1600px) {
+            .main-container {
+                padding: 60px 40px;
+            }
+            .hero-content {
+                padding: 64px 0 48px 0;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .main-container {
+                padding: 80px 60px;
+            }
+            .hero-content {
+                padding: 80px 0 64px 0;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .main-container {
+                padding: 100px 80px;
+            }
+            .hero-content {
+                padding: 100px 0 80px 0;
+            }
+        }
+        
+        /* Container Fluid for Large Screens */
+        .container-fluid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        @media (min-width: 1600px) {
+            .container-fluid {
+                max-width: 1600px;
+                padding: 0 40px;
+            }
+            .main-container {
+                max-width: 1600px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .container-fluid {
+                max-width: 1800px;
+                padding: 0 60px;
+            }
+            .main-container {
+                max-width: 1800px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .container-fluid {
+                max-width: 2200px;
+                padding: 0 80px;
+            }
+            .main-container {
+                max-width: 2200px;
+            }
+        }
 
         .content-layout {
             display: grid;
             grid-template-columns: 320px 1fr;
             gap: 40px;
+        }
+        
+        /* Responsive Layout for Large Screens */
+        @media (min-width: 1600px) {
+            .content-layout {
+                gap: 60px;
+            }
+            .filters-sidebar {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .content-layout {
+                gap: 80px;
+            }
+            .filters-sidebar {
+                padding: 48px 36px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .content-layout {
+                gap: 100px;
+            }
+            .filters-sidebar {
+                padding: 56px 42px;
+            }
         }
         .filters-sidebar {
             background: #fff;
@@ -275,6 +387,28 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             grid-template-columns: repeat(4, 1fr);
             gap: 24px;
         }
+        
+        /* Responsive Grid for Large Screens */
+        @media (min-width: 1600px) {
+            .products-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 32px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .products-grid {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 40px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .products-grid {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 48px;
+            }
+        }
         .product-card {
             background: #fff;
             border-radius: 16px;
@@ -292,6 +426,25 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             height: 240px;
             overflow: hidden;
             background: #f8f9fa;
+        }
+        
+        /* Responsive Product Cards for Large Screens */
+        @media (min-width: 1600px) {
+            .product-image-container {
+                height: 280px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .product-image-container {
+                height: 320px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .product-image-container {
+                height: 360px;
+            }
         }
         .product-image {
             width: 100%;
@@ -388,6 +541,34 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             margin-bottom: 12px;
             line-height: 1.4;
         }
+        
+        /* Responsive Product Typography for Large Screens */
+        @media (min-width: 1600px) {
+            .product-name {
+                font-size: 1.2rem;
+            }
+            .product-price {
+                font-size: 1.4rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .product-name {
+                font-size: 1.3rem;
+            }
+            .product-price {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .product-name {
+                font-size: 1.4rem;
+            }
+            .product-price {
+                font-size: 1.6rem;
+            }
+        }
         .product-info {
             display: flex;
             align-items: center;
@@ -459,6 +640,8 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
                 grid-template-columns: repeat(3, 1fr);
             }
         }
+        
+        /* Responsive adjustments for existing breakpoints */
         @media (max-width: 900px) {
             .content-layout {
                 grid-template-columns: 1fr;

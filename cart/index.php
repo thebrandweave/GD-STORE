@@ -78,9 +78,65 @@ foreach ($result as $row) {
         }
         
         .cart-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 40px auto;
             padding: 0 20px;
+        }
+        
+        /* Responsive Spacing for Large Screens */
+        @media (min-width: 1600px) {
+            .cart-container {
+                margin: 60px auto;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .cart-container {
+                margin: 80px auto;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .cart-container {
+                margin: 100px auto;
+            }
+        }
+        
+        /* Container Fluid for Large Screens */
+        .container-fluid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        @media (min-width: 1600px) {
+            .container-fluid {
+                max-width: 1600px;
+                padding: 0 40px;
+            }
+            .cart-container {
+                max-width: 1600px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .container-fluid {
+                max-width: 1800px;
+                padding: 0 60px;
+            }
+            .cart-container {
+                max-width: 1800px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .container-fluid {
+                max-width: 2200px;
+                padding: 0 80px;
+            }
+            .cart-container {
+                max-width: 2200px;
+            }
         }
         
         .cart-header {
@@ -97,6 +153,25 @@ foreach ($result as $row) {
             font-weight: 800;
             color: var(--secondary);
             margin: 0;
+        }
+        
+        /* Responsive Typography for Large Screens */
+        @media (min-width: 1600px) {
+            .cart-title {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .cart-title {
+                font-size: 3.5rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .cart-title {
+                font-size: 4rem;
+            }
         }
         
         .cart-subtitle {
@@ -130,6 +205,34 @@ foreach ($result as $row) {
             gap: 40px;
         }
         
+        /* Responsive Cart Layout for Large Screens */
+        @media (min-width: 1600px) {
+            .cart-layout {
+                gap: 60px;
+            }
+            .cart-items {
+                padding: 40px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .cart-layout {
+                gap: 80px;
+            }
+            .cart-items {
+                padding: 48px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .cart-layout {
+                gap: 100px;
+            }
+            .cart-items {
+                padding: 56px;
+            }
+        }
+        
         .cart-items {
             background: #fff;
             border-radius: 16px;
@@ -149,6 +252,37 @@ foreach ($result as $row) {
             font-weight: 700;
             color: var(--secondary);
             font-size: 0.95rem;
+        }
+        
+        /* Responsive Cart Table for Large Screens */
+        @media (min-width: 1600px) {
+            .cart-table th {
+                padding: 20px 16px;
+                font-size: 1rem;
+            }
+            .cart-table td {
+                padding: 24px 16px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .cart-table th {
+                padding: 24px 20px;
+                font-size: 1.05rem;
+            }
+            .cart-table td {
+                padding: 28px 20px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .cart-table th {
+                padding: 28px 24px;
+                font-size: 1.1rem;
+            }
+            .cart-table td {
+                padding: 32px 24px;
+            }
         }
         
         .cart-table td {
@@ -175,6 +309,46 @@ foreach ($result as $row) {
             object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Responsive Product Elements for Large Screens */
+        @media (min-width: 1600px) {
+            .product-image {
+                width: 72px;
+                height: 72px;
+            }
+            .product-details h4 {
+                font-size: 1.2rem;
+            }
+            .price {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .product-image {
+                width: 80px;
+                height: 80px;
+            }
+            .product-details h4 {
+                font-size: 1.3rem;
+            }
+            .price {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .product-image {
+                width: 88px;
+                height: 88px;
+            }
+            .product-details h4 {
+                font-size: 1.4rem;
+            }
+            .price {
+                font-size: 1.4rem;
+            }
         }
         
         .product-details h4 {
@@ -207,6 +381,43 @@ foreach ($result as $row) {
             align-items: center;
             justify-content: center;
             transition: all 0.2s ease;
+        }
+        
+        /* Responsive Quantity Controls for Large Screens */
+        @media (min-width: 1600px) {
+            .quantity-btn {
+                width: 36px;
+                height: 36px;
+            }
+            .quantity-input {
+                width: 56px;
+                height: 36px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .quantity-btn {
+                width: 40px;
+                height: 40px;
+            }
+            .quantity-input {
+                width: 60px;
+                height: 40px;
+                font-size: 1.05rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .quantity-btn {
+                width: 44px;
+                height: 44px;
+            }
+            .quantity-input {
+                width: 64px;
+                height: 44px;
+                font-size: 1.1rem;
+            }
         }
         
         .quantity-btn:hover {
@@ -250,6 +461,34 @@ foreach ($result as $row) {
             height: fit-content;
             position: sticky;
             top: 20px;
+        }
+        
+        /* Responsive Order Summary for Large Screens */
+        @media (min-width: 1600px) {
+            .order-summary {
+                padding: 40px;
+            }
+            .summary-title {
+                font-size: 1.6rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .order-summary {
+                padding: 48px;
+            }
+            .summary-title {
+                font-size: 1.7rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .order-summary {
+                padding: 56px;
+            }
+            .summary-title {
+                font-size: 1.8rem;
+            }
         }
         
         .summary-title {

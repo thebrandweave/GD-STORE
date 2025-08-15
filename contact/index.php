@@ -38,9 +38,46 @@ require_once __DIR__ . '/../config/config.php';
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+        
+        /* Container Fluid for Large Screens */
+        .container-fluid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        @media (min-width: 1600px) {
+            .container-fluid {
+                max-width: 1600px;
+                padding: 0 40px;
+            }
+            .container {
+                max-width: 1600px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .container-fluid {
+                max-width: 1800px;
+                padding: 0 60px;
+            }
+            .container {
+                max-width: 1800px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .container-fluid {
+                max-width: 2200px;
+                padding: 0 80px;
+            }
+            .container {
+                max-width: 2200px;
+            }
         }
         
         /* Enhanced Page Header */
@@ -52,11 +89,61 @@ require_once __DIR__ . '/../config/config.php';
             border-bottom: 1px solid #f0f0f0;
         }
         
+        /* Responsive Spacing for Large Screens */
+        @media (min-width: 1600px) {
+            .page-header {
+                padding: 60px 0;
+                margin-bottom: 60px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .page-header {
+                padding: 80px 0;
+                margin-bottom: 80px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .page-header {
+                padding: 100px 0;
+                margin-bottom: 100px;
+            }
+        }
+        
         .page-title {
             font-size: 2.5rem;
             font-weight: 800;
             color: var(--secondary);
             margin-bottom: 16px;
+        }
+        
+        /* Responsive Typography for Large Screens */
+        @media (min-width: 1600px) {
+            .page-title {
+                font-size: 3rem;
+            }
+            .page-subtitle p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .page-title {
+                font-size: 3.5rem;
+            }
+            .page-subtitle p {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .page-title {
+                font-size: 4rem;
+            }
+            .page-subtitle p {
+                font-size: 1.4rem;
+            }
         }
         
         /* Breadcrumb Navigation */
@@ -103,10 +190,32 @@ require_once __DIR__ . '/../config/config.php';
         /* Contact Content */
         .contact-content {
             margin-bottom: 80px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin-left: auto;
             margin-right: auto;
             position: relative;
+        }
+        
+        /* Responsive Contact Content for Large Screens */
+        @media (min-width: 1600px) {
+            .contact-content {
+                max-width: 1600px;
+                margin-bottom: 100px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .contact-content {
+                max-width: 1800px;
+                margin-bottom: 120px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .contact-content {
+                max-width: 2200px;
+                margin-bottom: 140px;
+            }
         }
         
         /* Split Screen Diagonal Design */
@@ -120,6 +229,28 @@ require_once __DIR__ . '/../config/config.php';
             box-shadow: 0 20px 60px rgba(0,0,0,0.1);
         }
         
+        /* Responsive Layout for Large Screens */
+        @media (min-width: 1600px) {
+            .design1 {
+                min-height: 700px;
+                gap: 60px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .design1 {
+                min-height: 800px;
+                gap: 80px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .design1 {
+                min-height: 900px;
+                gap: 100px;
+            }
+        }
+        
         /* Contact Info Section (Left) */
         .contact-info {
             background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent) 100%);
@@ -131,12 +262,68 @@ require_once __DIR__ . '/../config/config.php';
             clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
         }
         
+        /* Responsive Padding for Large Screens */
+        @media (min-width: 1600px) {
+            .contact-info {
+                padding: 60px 50px;
+            }
+            .contact-form {
+                padding: 60px 50px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .contact-info {
+                padding: 80px 60px;
+            }
+            .contact-form {
+                padding: 80px 60px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .contact-info {
+                padding: 100px 70px;
+            }
+            .contact-form {
+                padding: 100px 70px;
+            }
+        }
+        
         .contact-info h2 {
             color: #fff;
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 40px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        /* Responsive Contact Info Typography for Large Screens */
+        @media (min-width: 1600px) {
+            .contact-info h2 {
+                font-size: 3rem;
+            }
+            .contact-form h3 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .contact-info h2 {
+                font-size: 3.5rem;
+            }
+            .contact-form h3 {
+                font-size: 2.6rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .contact-info h2 {
+                font-size: 4rem;
+            }
+            .contact-form h3 {
+                font-size: 3rem;
+            }
         }
         
         .info-item {
@@ -160,6 +347,49 @@ require_once __DIR__ . '/../config/config.php';
             border: 1px solid rgba(255,255,255,0.3);
             flex-shrink: 0;
             color: #fff;
+        }
+        
+        /* Responsive Info Items for Large Screens */
+        @media (min-width: 1600px) {
+            .info-item .icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+            .info-item h4 {
+                font-size: 1.3rem;
+            }
+            .info-item p {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .info-item .icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+            .info-item h4 {
+                font-size: 1.4rem;
+            }
+            .info-item p {
+                font-size: 1.15rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .info-item .icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2.2rem;
+            }
+            .info-item h4 {
+                font-size: 1.5rem;
+            }
+            .info-item p {
+                font-size: 1.2rem;
+            }
         }
         
         .info-item h4 {
@@ -216,6 +446,43 @@ require_once __DIR__ . '/../config/config.php';
             resize: none;
         }
         
+        /* Responsive Form Elements for Large Screens */
+        @media (min-width: 1600px) {
+            .contact-form input,
+            .contact-form textarea {
+                padding: 18px 24px;
+                font-size: 1.1rem;
+            }
+            .btn-submit {
+                padding: 18px 36px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .contact-form input,
+            .contact-form textarea {
+                padding: 20px 28px;
+                font-size: 1.15rem;
+            }
+            .btn-submit {
+                padding: 20px 40px;
+                font-size: 1.25rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .contact-form input,
+            .contact-form textarea {
+                padding: 24px 32px;
+                font-size: 1.2rem;
+            }
+            .btn-submit {
+                padding: 24px 44px;
+                font-size: 1.3rem;
+            }
+        }
+        
         .contact-form input:focus,
         .contact-form textarea:focus {
             outline: none;
@@ -226,6 +493,25 @@ require_once __DIR__ . '/../config/config.php';
         .contact-form textarea {
             min-height: 120px;
             line-height: 1.6;
+        }
+        
+        /* Responsive Textarea for Large Screens */
+        @media (min-width: 1600px) {
+            .contact-form textarea {
+                min-height: 140px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .contact-form textarea {
+                min-height: 160px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .contact-form textarea {
+                min-height: 180px;
+            }
         }
         
         .btn-submit {

@@ -75,7 +75,7 @@ try {
         }
         
         .hero {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 48px auto 0 auto;
             display: flex;
             align-items: center;
@@ -130,7 +130,7 @@ try {
             background: #fff;
         }
         .features-section {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 80px auto 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -167,7 +167,7 @@ try {
             font-size: 1rem;
         }
         .products-section {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 120px auto 0 auto;
             padding: 0 20px;
             margin-bottom: 80px;
@@ -193,7 +193,7 @@ try {
             grid-template-columns: repeat(4, 1fr);
             gap: 32px;
             margin-top: 24px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -424,6 +424,56 @@ try {
             .benefits-container { 
                 grid-template-columns: repeat(2, 1fr); 
                 gap: 20px;
+            }
+        }
+        
+        @media (min-width: 1600px) {
+            .products-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 40px;
+            }
+            .features-section {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 40px;
+            }
+            .hero-title {
+                font-size: 3rem;
+            }
+            .hero-desc {
+                font-size: 1.25rem;
+            }
+            .products-title,
+            .shop-category-title {
+                font-size: 2.2rem;
+            }
+            .products-subtitle,
+            .shop-category-subtitle {
+                font-size: 1.15rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .products-grid {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 48px;
+            }
+            .features-section {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 48px;
+            }
+            .hero-title {
+                font-size: 3.2rem;
+            }
+            .hero-desc {
+                font-size: 1.3rem;
+            }
+            .products-title,
+            .shop-category-title {
+                font-size: 2.4rem;
+            }
+            .products-subtitle,
+            .shop-category-subtitle {
+                font-size: 1.2rem;
             }
         }
         @media (max-width: 900px) {
@@ -1227,7 +1277,7 @@ try {
         }
     .shop-category-carousel-wrapper {
         position: relative;
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
         display: flex;
         align-items: center;
@@ -1589,7 +1639,7 @@ try {
         position: relative;
         margin-top: -60px;
         margin-bottom: 10px;
-        max-width: 1200px;
+        max-width: 1400px;
         width: 100%;
         padding: 0 16px;
         text-align: center;
@@ -1602,6 +1652,78 @@ try {
         margin-left: auto;
         margin-right: auto;
     }
+    
+    /* Container Fluid for Large Screens */
+    .container-fluid {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    @media (min-width: 1600px) {
+        .container-fluid {
+            max-width: 1600px;
+            padding: 0 40px;
+        }
+        .hero,
+        .features-section,
+        .products-section,
+        .benefits-section,
+        .shop-category-carousel-wrapper {
+            max-width: 1600px;
+        }
+        .products-grid {
+            max-width: 1600px;
+        }
+    }
+    
+    @media (min-width: 1920px) {
+        .container-fluid {
+            max-width: 1800px;
+            padding: 0 60px;
+        }
+        .hero,
+        .features-section,
+        .products-section,
+        .benefits-section,
+        .shop-category-carousel-wrapper {
+            max-width: 1800px;
+        }
+        .products-grid {
+            max-width: 1800px;
+        }
+    }
+    
+        @media (min-width: 2560px) {
+            .container-fluid {
+                max-width: 2200px;
+                padding: 0 80px;
+            }
+            .hero,
+            .features-section,
+            .products-section,
+            .benefits-section,
+            .shop-category-carousel-wrapper {
+                max-width: 2200px;
+            }
+            .products-grid {
+                max-width: 2200px;
+            }
+            .hero {
+                margin: 64px auto 0 auto;
+                gap: 64px;
+            }
+            .features-section {
+                margin: 120px auto 0 auto;
+                gap: 48px;
+            }
+            .products-section {
+                margin: 160px auto 0 auto;
+            }
+            .shop-category-section {
+                margin: 140px auto 0 auto;
+            }
+        }
     
     /* Benefits Section - Responsive Design */
     
@@ -1824,7 +1946,7 @@ try {
                 <div class="shop-category-card">
                     <img src="<?php echo $img; ?>" alt="<?php echo htmlspecialchars($cat['name']); ?>" class="shop-category-img" />
                     <div class="shop-category-name"><?php echo htmlspecialchars($cat['name']); ?></div>
-                    <a href="products/?category=<?php echo $cat['category_id']; ?>" class="shop-category-btn">Shop <?php echo htmlspecialchars($cat['name']); ?></a>
+                    <!-- <a href="products/?category=<?php echo $cat['category_id']; ?>" class="shop-category-btn">Shop <?php echo htmlspecialchars($cat['name']); ?></a> -->
                 </div>
             <?php endforeach; ?>
             </div>
@@ -1877,9 +1999,9 @@ try {
                     <div class="product-info">
                         <div class="product-price">₹<?php echo number_format($prod['price'], 2); ?></div>
                     </div>
-                    <div class="product-footer">
+                    <!-- <div class="product-footer">
                         <button class="view-details-btn">View Details</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         <?php endforeach; ?>

@@ -37,14 +37,92 @@ $images = $stmt->fetchAll(PDO::FETCH_COLUMN);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         .product-details-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 40px auto 60px auto;
             padding: 0 20px;
+        }
+        
+        /* Responsive Spacing for Large Screens */
+        @media (min-width: 1600px) {
+            .product-details-container {
+                margin: 60px auto 80px auto;
+                padding: 0 40px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .product-details-container {
+                margin: 80px auto 100px auto;
+                padding: 0 60px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .product-details-container {
+                margin: 100px auto 120px auto;
+                padding: 0 80px;
+            }
+        }
+        
+        /* Container Fluid for Large Screens */
+        .container-fluid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        @media (min-width: 1600px) {
+            .container-fluid {
+                max-width: 1600px;
+                padding: 0 40px;
+            }
+            .product-details-container {
+                max-width: 1600px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .container-fluid {
+                max-width: 1800px;
+                padding: 0 60px;
+            }
+            .product-details-container {
+                max-width: 1800px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .container-fluid {
+                max-width: 2200px;
+                padding: 0 80px;
+            }
+            .product-details-container {
+                max-width: 2200px;
+            }
         }
         .product-details-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
+        }
+        
+        /* Responsive Layout for Large Screens */
+        @media (min-width: 1600px) {
+            .product-details-layout {
+                gap: 80px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .product-details-layout {
+                gap: 100px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .product-details-layout {
+                gap: 120px;
+            }
         }
         .product-gallery {
             position: relative;
@@ -78,6 +156,25 @@ $images = $stmt->fetchAll(PDO::FETCH_COLUMN);
             background: #f8f9fa;
             cursor: zoom-in;
             transition: transform 0.3s ease;
+        }
+        
+        /* Responsive Image Sizing for Large Screens */
+        @media (min-width: 1600px) {
+            .main-image {
+                height: 500px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .main-image {
+                height: 600px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .main-image {
+                height: 700px;
+            }
         }
         .main-image.zoomed {
             transform: scale(1.5);
@@ -150,6 +247,34 @@ $images = $stmt->fetchAll(PDO::FETCH_COLUMN);
             font-weight: 800;
             color: var(--secondary);
             line-height: 1.2;
+        }
+        
+        /* Responsive Typography for Large Screens */
+        @media (min-width: 1600px) {
+            .product-title {
+                font-size: 2.6rem;
+            }
+            .current-price {
+                font-size: 2.4rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .product-title {
+                font-size: 3rem;
+            }
+            .current-price {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .product-title {
+                font-size: 3.5rem;
+            }
+            .current-price {
+                font-size: 3.2rem;
+            }
         }
         .price-section {
             display: flex;

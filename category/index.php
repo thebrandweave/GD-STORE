@@ -39,9 +39,46 @@ $categories = $conn->query('SELECT * FROM categories ORDER BY name')->fetchAll(P
             min-height: 100vh;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 16px;
+        }
+        
+        /* Container Fluid for Large Screens */
+        .container-fluid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        @media (min-width: 1600px) {
+            .container-fluid {
+                max-width: 1600px;
+                padding: 0 40px;
+            }
+            .container {
+                max-width: 1600px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .container-fluid {
+                max-width: 1800px;
+                padding: 0 60px;
+            }
+            .container {
+                max-width: 1800px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .container-fluid {
+                max-width: 2200px;
+                padding: 0 80px;
+            }
+            .container {
+                max-width: 2200px;
+            }
         }
         .page-header {
             background: #fff;
@@ -49,6 +86,28 @@ $categories = $conn->query('SELECT * FROM categories ORDER BY name')->fetchAll(P
             text-align: center;
             margin-bottom: 40px;
             border-bottom: 1px solid #f0f0f0;
+        }
+        
+        /* Responsive Spacing for Large Screens */
+        @media (min-width: 1600px) {
+            .page-header {
+                padding: 60px 0;
+                margin-bottom: 60px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .page-header {
+                padding: 80px 0;
+                margin-bottom: 80px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .page-header {
+                padding: 100px 0;
+                margin-bottom: 100px;
+            }
         }
         .page-title {
             font-size: 2.5rem;
@@ -103,6 +162,28 @@ $categories = $conn->query('SELECT * FROM categories ORDER BY name')->fetchAll(P
             gap: 32px;
             margin-bottom: 40px;
         }
+        
+        /* Responsive Grid for Large Screens */
+        @media (min-width: 1600px) {
+            .categories-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 40px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .categories-grid {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 48px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .categories-grid {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 56px;
+            }
+        }
         .category-card {
             background: #fff;
             border-radius: var(--radius);
@@ -113,6 +194,25 @@ $categories = $conn->query('SELECT * FROM categories ORDER BY name')->fetchAll(P
             align-items: center;
             transition: box-shadow 0.2s, transform 0.2s;
             border: 1.5px solid rgba(255,255,255,0.08);
+        }
+        
+        /* Responsive Card Padding for Large Screens */
+        @media (min-width: 1600px) {
+            .category-card {
+                padding: 40px 24px 32px 24px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .category-card {
+                padding: 48px 28px 36px 28px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .category-card {
+                padding: 56px 32px 40px 32px;
+            }
         }
         .category-card:hover {
             box-shadow: 0 12px 40px 0 rgba(255,214,0,0.13), 0 4px 24px rgba(0,0,0,0.08);
@@ -126,6 +226,28 @@ $categories = $conn->query('SELECT * FROM categories ORDER BY name')->fetchAll(P
             margin-bottom: 16px;
             background: #fff;
             box-shadow: 0 2px 8px rgba(255,214,0,0.10);
+        }
+        
+        /* Responsive Image Sizing for Large Screens */
+        @media (min-width: 1600px) {
+            .category-img {
+                width: 140px;
+                height: 140px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .category-img {
+                width: 160px;
+                height: 160px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .category-img {
+                width: 180px;
+                height: 180px;
+            }
         }
         .category-name {
             font-size: 1.18rem;
@@ -156,6 +278,55 @@ $categories = $conn->query('SELECT * FROM categories ORDER BY name')->fetchAll(P
             .categories-grid { gap: 18px; }
             .category-card { padding: 12px 4px 8px 4px; }
             .category-img { width: 80px; height: 80px; }
+        }
+        
+        /* Responsive Typography for Large Screens */
+        @media (min-width: 1600px) {
+            .page-title {
+                font-size: 3rem;
+            }
+            .page-subtitle p {
+                font-size: 1.2rem;
+            }
+            .category-name {
+                font-size: 1.3rem;
+            }
+            .category-btn {
+                font-size: 1.1rem;
+                padding: 12px 32px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .page-title {
+                font-size: 3.5rem;
+            }
+            .page-subtitle p {
+                font-size: 1.3rem;
+            }
+            .category-name {
+                font-size: 1.4rem;
+            }
+            .category-btn {
+                font-size: 1.15rem;
+                padding: 14px 36px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .page-title {
+                font-size: 4rem;
+            }
+            .page-subtitle p {
+                font-size: 1.4rem;
+            }
+            .category-name {
+                font-size: 1.5rem;
+            }
+            .category-btn {
+                font-size: 1.2rem;
+                padding: 16px 40px;
+            }
         }
         
     </style>

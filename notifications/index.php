@@ -103,10 +103,75 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mark_read'])) {
             padding: 40px 0;
             width: 100vw;
         }
+        
+        /* Responsive Spacing for Large Screens */
+        @media (min-width: 1600px) {
+            .main-content {
+                padding: 60px 0;
+            }
+            .notifications-container {
+                margin: 60px auto;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .main-content {
+                padding: 80px 0;
+            }
+            .notifications-container {
+                margin: 80px auto;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .main-content {
+                padding: 100px 0;
+            }
+            .notifications-container {
+                margin: 100px auto;
+            }
+        }
         .notifications-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 40px auto;
             padding: 0 20px;
+        }
+        
+        /* Container Fluid for Large Screens */
+        .container-fluid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        @media (min-width: 1600px) {
+            .container-fluid {
+                max-width: 1600px;
+                padding: 0 40px;
+            }
+            .notifications-container {
+                max-width: 1600px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .container-fluid {
+                max-width: 1800px;
+                padding: 0 60px;
+            }
+            .notifications-container {
+                max-width: 1800px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .container-fluid {
+                max-width: 2200px;
+                padding: 0 80px;
+            }
+            .notifications-container {
+                max-width: 2200px;
+            }
         }
         .notifications-header {
             display: flex;
@@ -121,6 +186,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mark_read'])) {
             font-weight: 800;
             color: var(--secondary);
             margin: 0;
+        }
+        
+        /* Responsive Typography for Large Screens */
+        @media (min-width: 1600px) {
+            .notifications-title {
+                font-size: 3rem;
+            }
+            .notifications-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .notifications-title {
+                font-size: 3.5rem;
+            }
+            .notifications-subtitle {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .notifications-title {
+                font-size: 4rem;
+            }
+            .notifications-subtitle {
+                font-size: 1.4rem;
+            }
         }
         .notifications-subtitle {
             font-size: 1.1rem;
@@ -158,6 +251,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mark_read'])) {
             border: 1px solid #f0f0f0;
             background: #fff;
         }
+        
+        /* Responsive Notification Items for Large Screens */
+        @media (min-width: 1600px) {
+            .notification-item {
+                padding: 24px;
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .notification-item {
+                padding: 28px;
+                gap: 24px;
+                margin-bottom: 24px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .notification-item {
+                padding: 32px;
+                gap: 28px;
+                margin-bottom: 28px;
+            }
+        }
         .notification-item:hover {
             box-shadow: 0 4px 16px rgba(0,0,0,0.08);
             transform: translateY(-2px);
@@ -178,6 +296,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mark_read'])) {
             color: #fff;
             flex-shrink: 0;
         }
+        
+        /* Responsive Notification Icons for Large Screens */
+        @media (min-width: 1600px) {
+            .notification-icon {
+                width: 56px;
+                height: 56px;
+                font-size: 1.4rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .notification-icon {
+                width: 64px;
+                height: 64px;
+                font-size: 1.6rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .notification-icon {
+                width: 72px;
+                height: 72px;
+                font-size: 1.8rem;
+            }
+        }
         .notification-icon.info {
             background: linear-gradient(135deg, #2196f3, #1976d2);
         }
@@ -197,6 +340,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mark_read'])) {
             font-weight: 700;
             font-size: 1.1rem;
             color: var(--secondary);
+        }
+        
+        /* Responsive Notification Content Typography for Large Screens */
+        @media (min-width: 1600px) {
+            .notification-title {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .notification-title {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .notification-title {
+                font-size: 1.4rem;
+            }
+        }
             margin-bottom: 8px;
         }
         .notification-message {

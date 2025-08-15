@@ -43,11 +43,61 @@ require_once __DIR__ . '/../config/config.php';
             margin-bottom: 40px;
             border-bottom: 1px solid #f0f0f0;
         }
+        
+        /* Responsive Spacing for Large Screens */
+        @media (min-width: 1600px) {
+            .page-header {
+                padding: 60px 0;
+                margin-bottom: 60px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .page-header {
+                padding: 80px 0;
+                margin-bottom: 80px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .page-header {
+                padding: 100px 0;
+                margin-bottom: 100px;
+            }
+        }
         .page-title {
             font-size: 2.5rem;
             font-weight: 800;
             color: var(--secondary);
             margin-bottom: 16px;
+        }
+        
+        /* Responsive Typography for Large Screens */
+        @media (min-width: 1600px) {
+            .page-title {
+                font-size: 3rem;
+            }
+            .page-subtitle p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .page-title {
+                font-size: 3.5rem;
+            }
+            .page-subtitle p {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .page-title {
+                font-size: 4rem;
+            }
+            .page-subtitle p {
+                font-size: 1.4rem;
+            }
         }
         .page-subtitle {
             text-align: center;
@@ -91,12 +141,68 @@ require_once __DIR__ . '/../config/config.php';
         
         /* Main Content */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 16px;
         }
+        
+        /* Container Fluid for Large Screens */
+        .container-fluid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        @media (min-width: 1600px) {
+            .container-fluid {
+                max-width: 1600px;
+                padding: 0 40px;
+            }
+            .container {
+                max-width: 1600px;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .container-fluid {
+                max-width: 1800px;
+                padding: 0 60px;
+            }
+            .container {
+                max-width: 1800px;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .container-fluid {
+                max-width: 2200px;
+                padding: 0 80px;
+            }
+            .container {
+                max-width: 2200px;
+            }
+        }
         .main-content {
             padding: 40px 0;
+        }
+        
+        /* Responsive Main Content for Large Screens */
+        @media (min-width: 1600px) {
+            .main-content {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .main-content {
+                padding: 80px 0;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            .main-content {
+                padding: 100px 0;
+            }
         }
         .about-section {
             padding: 40px;
