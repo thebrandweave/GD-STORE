@@ -131,11 +131,13 @@ try {
         }
         .features-section {
             max-width: 1200px;
-            margin: 64px auto 0 auto;
+            margin: 80px auto 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 32px;
             padding: 0 20px;
+            position: relative;
+            z-index: 0;
         }
         .feature-card {
             background: #fff;
@@ -166,9 +168,11 @@ try {
         }
         .products-section {
             max-width: 1200px;
-            margin: 100px auto 0 auto;
+            margin: 120px auto 0 auto;
             padding: 0 20px;
             margin-bottom: 80px;
+            position: relative;
+            z-index: 0;
         }
         .products-title {
             font-size: 2rem;
@@ -471,22 +475,7 @@ try {
                 padding: 12px 28px;
                 font-size: 1rem;
             }
-            .benefits-merged {
-                display: none;
-            }
-            .benefits-mobile {
-                display: block;
-            }
-            .benefits-section {
-                position: relative;
-                top: auto;
-                transform: none;
-                margin-top: 40px;
-                padding: 0 20px;
-            }
-            .benefits-outer-box {
-                padding: 24px 20px;
-            }
+
             .benefits-container {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 20px;
@@ -524,7 +513,7 @@ try {
                 width: 280px;
             }
             .features-section {
-                margin: 48px auto 0 auto;
+                margin: 60px auto 0 auto;
                 gap: 20px;
             }
             .feature-card {
@@ -537,7 +526,7 @@ try {
                 font-size: 1.1rem;
             }
             .products-section {
-                margin: 80px auto 0 auto;
+                margin: 100px auto 0 auto;
             }
             .products-title {
                 font-size: 1.6rem;
@@ -622,11 +611,9 @@ try {
                 display: block;
             }
             .benefits-section {
-                margin-top: 30px;
+                margin-top: 50px;
             }
-            .benefits-outer-box {
-                padding: 20px 16px;
-            }
+
             .benefits-container {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 16px;
@@ -669,6 +656,7 @@ try {
             .view-all-products-btn {
                 padding: 14px 32px;
                 font-size: 1rem;
+                margin-bottom: 25px;
             }
         }
         @media (max-width: 600px) {
@@ -783,11 +771,9 @@ try {
                 height: 6px;
             }
             .benefits-section {
-                margin-top: 24px;
+                margin-top: 40px;
             }
-            .benefits-outer-box {
-                padding: 16px 12px;
-            }
+
             .benefits-container {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -845,7 +831,7 @@ try {
                 width: 200px;
             }
             .features-section {
-                margin: 32px auto 0 auto;
+                margin: 40px auto 0 auto;
                 gap: 12px;
             }
             .feature-card {
@@ -861,7 +847,7 @@ try {
                 font-size: 0.8rem;
             }
             .products-section {
-                margin: 48px auto 0 auto;
+                margin: 60px auto 0 auto;
             }
             .products-title {
                 font-size: 1.2rem;
@@ -937,11 +923,9 @@ try {
                 height: 5px;
             }
             .benefits-section {
-                margin-top: 20px;
+                margin-top: 30px;
             }
-            .benefits-outer-box {
-                padding: 12px 8px;
-            }
+
             .benefits-container {
                 gap: 16px;
             }
@@ -1000,6 +984,7 @@ try {
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 10;
         }
         .fullimg-hero-slide {
             position: absolute;
@@ -1147,9 +1132,17 @@ try {
         }
         /* Shop by Category Section */
         .shop-category-section {
-            margin: 100px auto 0 auto;
-            padding: 40px 20px 0 20px;
+            /* margin: 50px auto 0 auto;
+            padding: 10px 0; */
             text-align: center;
+            position: relative;
+            z-index: 0;
+        }
+        /* Ensure benefits overlay doesn't overlap the category section on desktop */
+        @media (min-width: 901px) {
+            .shop-category-section {
+                margin: 100px auto 0 auto;
+            }
         }
         .shop-category-title {
             font-size: 2rem;
@@ -1239,6 +1232,7 @@ try {
         display: flex;
         align-items: center;
         padding: 0 16px;
+        z-index: 0;
     }
     .shop-category-carousel {
         display: flex;
@@ -1592,53 +1586,39 @@ try {
     }
     /* Benefits Section */
     .benefits-section {
-        position: absolute;
-        top: 80%;
-        left: 50%;
-        transform: translateX(-50%);
+        position: relative;
+        margin-top: -60px;
+        margin-bottom: 10px;
         max-width: 1200px;
         width: 100%;
         padding: 0 16px;
         text-align: center;
-        z-index: 10;
+        z-index: 99999 !important;
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        margin-left: auto;
+        margin-right: auto;
     }
     
-    /* Benefits Section - Merged with Hero (PC View) */
-    .benefits-merged {
-        position: absolute;
-        top: 80%;
-        left: 50%;
-        transform: translateX(-50%);
-        max-width: 1200px;
-        width: 100%;
-        padding: 0 16px;
-        text-align: center;
-        z-index: 10;
-        display: block;
+    /* Benefits Section - Responsive Design */
+    
+    /* Benefits Section - Mobile Responsive */
+    @media (max-width: 900px) {
+        .benefits-section {
+            margin-top: 0px;
+            margin-bottom: 40px;
+            background: rgb(0, 0, 0);
+            border-radius: 0;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
     }
     
-    /* Benefits Section - Separate for Mobile */
-    .benefits-mobile {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-        margin-top: 40px;
-        padding: 0 20px;
-        display: none;
-        background: rgb(0, 0, 0);
-        border-radius: 0;
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
-        padding: 36px 32px 32px 32px;
-        margin-top: 0;
-        margin-bottom: 0;
-        max-width: 1200px;
-        width: 100%;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .benefits-mobile::before {
+    .benefits-section::before {
         content: '';
         position: absolute;
         top: 0;
@@ -1647,6 +1627,13 @@ try {
         bottom: 0;
         background: linear-gradient(135deg, rgba(255, 214, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
         pointer-events: none;
+        border-radius: 16px;
+    }
+    
+    @media (max-width: 900px) {
+        .benefits-section::before {
+            border-radius: 0;
+        }
     }
     
     .benefits-container {
@@ -1654,6 +1641,9 @@ try {
         grid-template-columns: repeat(4, 1fr);
         gap: 0;
         background: none;
+        position: relative;
+        z-index: 1;
+        padding: 24px 16px;
     }
     .benefit-item {
         display: flex;
@@ -1693,24 +1683,21 @@ try {
         }
     }
     @media (max-width: 900px) {
-        .benefits-merged {
-            display: none;
-        }
-        .benefits-mobile {
-            display: block;
-        }
         .benefits-container { 
             grid-template-columns: repeat(2, 1fr); 
             gap: 20px;
+            padding: 36px 32px 32px 32px;
         }
         .benefit-item {
             padding: 0 12px;
         }
     }
+
     @media (max-width: 600px) {
         .benefits-container { 
             grid-template-columns: 1fr; 
             gap: 24px;
+            padding: 24px 20px;
         }
         .benefit-item {
             padding: 0 16px;
@@ -1718,11 +1705,9 @@ try {
     }
     
     @media (max-width: 360px) {
-        .benefits-mobile {
-            padding: 20px 12px;
-        }
         .benefits-container {
             gap: 20px;
+            padding: 20px 12px;
         }
         .benefit-item {
             padding: 0 10px;
@@ -1735,36 +1720,7 @@ try {
             font-size: 0.7rem;
         }
     }
-    /* Benefits Section Outer Box - Legacy styles for mobile */
-    .benefits-outer-box {
-        background: rgb(0, 0, 0);
-        border-radius: 0;
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
-        padding: 36px 32px 32px 32px;
-        margin-top: 0;
-        margin-bottom: 0;
-        max-width: 1200px;
-        width: 100%;
-        position: relative;
-        overflow: hidden;
-        display: none;
-    }
-    
-    .benefits-outer-box::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(255, 214, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
-        pointer-events: none;
-    }
-    
-    .benefits-container {
-        position: relative;
-        z-index: 1;
-    }
+
         
     .view-all-products-btn {
         display: inline-block;
@@ -1823,39 +1779,10 @@ try {
             <div class="fullimg-hero-dot" data-index="3"></div>
         </div>
         
-        <!-- Benefits Section - Merged with Hero for PC View -->
-        <section class="benefits-section benefits-merged">
-            <div class="benefits-container">
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="bi bi-headset"></i>
-                    </div>
-                    <h3 class="benefit-title">Customer Support</h3>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="bi bi-star-fill"></i>
-                    </div>
-                    <h3 class="benefit-title">Best Seller</h3>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="bi bi-award"></i>
-                    </div>
-                    <h3 class="benefit-title">Premium Quality</h3>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="bi bi-shield-check"></i>
-                    </div>
-                    <h3 class="benefit-title">Safe & Secure Checkout</h3>
-                </div>
-            </div>
-        </section>
     </div>
     
-    <!-- Benefits Section - Separate for Mobile View -->
-    <section class="benefits-section benefits-mobile">
+    <!-- Benefits Section -->
+    <section class="benefits-section">
         <div class="benefits-container">
             <div class="benefit-item">
                 <div class="benefit-icon">
@@ -1883,6 +1810,8 @@ try {
             </div>
         </div>
     </section>
+    
+
     <!-- Shop by Category Section -->
     <section class="shop-category-section">
         <div class="shop-category-title"><span class="gold">Shop by Category</span></div>
