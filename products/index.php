@@ -288,6 +288,7 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             margin-bottom: 32px;
         }
         .filter-title {
+            padding-top: 20px;
             font-size: 1.2rem;
             font-weight: 700;
             color: var(--secondary);
@@ -416,6 +417,10 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             box-shadow: 0 4px 16px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
             position: relative;
+            width: 100%;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
         }
         .product-card:hover {
             transform: translateY(-8px);
@@ -423,33 +428,37 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
         }
         .product-image-container {
             position: relative;
-            height: 240px;
+            height: 200px;
+            width: 100%;
             overflow: hidden;
             background: #f8f9fa;
+            flex-shrink: 0;
+            aspect-ratio: 1 / 1;
         }
         
         /* Responsive Product Cards for Large Screens */
         @media (min-width: 1600px) {
             .product-image-container {
-                height: 280px;
+                height: 220px;
             }
         }
         
         @media (min-width: 1920px) {
             .product-image-container {
-                height: 320px;
+                height: 240px;
             }
         }
         
         @media (min-width: 2560px) {
             .product-image-container {
-                height: 360px;
+                height: 260px;
             }
         }
         .product-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             transition: transform 0.5s ease;
         }
         .product-card:hover .product-image {
@@ -524,30 +533,44 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             transform: scale(1.1);
         }
         .product-content {
-            padding: 20px;
+            padding: 16px 0;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0px;
         }
         .product-category {
             color: var(--accent-dark);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 8px;
+            flex-shrink: 0;
         }
         .product-category a {
             text-decoration: none;
             color: #232526;
         }
         .product-name {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
             color: var(--secondary);
-            margin-bottom: 12px;
-            line-height: 1.4;
+            line-height: 1.3;
+            text-align: left;
+            height: 1.6em;
+            flex-shrink: 0;
+            word-wrap: break-word;
         }
         .product-name a {
             text-decoration: none;
             color: #232526;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
         }
         
         /* Responsive Product Typography for Large Screens */
@@ -581,10 +604,11 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 12px;
+            margin-top: auto;
+            flex-shrink: 0;
         }
         .product-price {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: var(--secondary);
         }
@@ -594,10 +618,17 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             font-weight: 500;
         }
         .product-description {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #666;
-            line-height: 1.4;
-            margin-bottom: 16px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 1.6em;
+            flex: 1;
+            min-height: 0;
         }
 
         .view-details-btn {
@@ -789,14 +820,14 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
                         </h3>
                         <ul class="category-list">
                             <li class="category-item">
-                                <a href="?" class="category-link <?php if ($category_id == 0) echo 'active'; ?>">
+                                <a href="?<?php if ($sort_by != 'newest') echo 'sort=' . $sort_by; ?>" class="category-link <?php if ($category_id == 0) echo 'active'; ?>">
                                     <span>All Categories</span>
                                     <span class="category-count"><?php echo $totalProductsCount; ?></span>
                                 </a>
                             </li>
                             <?php foreach ($categories as $cat): ?>
                                 <li class="category-item">
-                                    <a href="?category=<?php echo $cat['category_id']; ?>" class="category-link <?php if ($category_id == $cat['category_id']) echo 'active'; ?>">
+                                    <a href="?category=<?php echo $cat['category_id']; ?><?php if ($sort_by != 'newest') echo '&sort=' . $sort_by; ?>" class="category-link <?php if ($category_id == $cat['category_id']) echo 'active'; ?>">
                                         <span><?php echo htmlspecialchars($cat['name']); ?></span>
                                         <span class="category-count"><?php echo $categoryCounts[$cat['category_id']] ?? 0; ?></span>
                                     </a>
@@ -812,7 +843,7 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
                             <i class="bi bi-sort-down"></i>
                             Sort By
                         </h3>
-                        <select name="sort" class="sort-select">
+                        <select name="sort" class="sort-select" onchange="this.form.submit()">
                             <option value="newest" <?php if ($sort_by == 'newest') echo 'selected'; ?>>Newest First</option>
                             <option value="price_low" <?php if ($sort_by == 'price_low') echo 'selected'; ?>>Price: Low to High</option>
                             <option value="price_high" <?php if ($sort_by == 'price_high') echo 'selected'; ?>>Price: High to Low</option>
@@ -820,9 +851,7 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
                         </select>
                     </div>
 
-                    <!-- <button type="submit" class="apply-filters">
-                        <i class="bi bi-funnel"></i> Apply Filters
-                    </button> -->
+
                 </form>
             </aside>
 
@@ -876,13 +905,28 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
                             </div>
                             <div class="product-content">
                                 <div class="product-category">
-                                    <a href="?category=<?php echo $product['category_id']; ?>"><?php echo htmlspecialchars($product['category_name'] ?? 'Uncategorized'); ?></a>
+                                    <a href="?category=<?php echo $product['category_id']; ?><?php if ($sort_by != 'newest') echo '&sort=' . $sort_by; ?>"><?php echo htmlspecialchars($product['category_name'] ?? 'Uncategorized'); ?></a>
                                 </div>
                                 <h3 class="product-name">
                                     <a href="details.php?id=<?= $product['product_id'] ?>"><?php echo htmlspecialchars($product['name']); ?></a>
                                 </h3>
                                 <?php if (!empty($product['description'])): ?>
-                                    <div class="product-description"><?php echo htmlspecialchars(substr($product['description'], 0, 80)) . (strlen($product['description']) > 80 ? '...' : ''); ?></div>
+                                    <?php
+                                    $description = htmlspecialchars($product['description']);
+                                    $maxChars = 80; // Characters for approximately 2 lines
+                                    
+                                    if (strlen($description) > $maxChars) {
+                                        $truncated = substr($description, 0, $maxChars);
+                                        // Find the last space to avoid cutting words
+                                        $lastSpace = strrpos($truncated, ' ');
+                                        if ($lastSpace !== false) {
+                                            $truncated = substr($truncated, 0, $lastSpace);
+                                        }
+                                        echo '<div class="product-description">' . $truncated . '...</div>';
+                                    } else {
+                                        echo '<div class="product-description">' . $description . '</div>';
+                                    }
+                                    ?>
                                 <?php endif; ?>
                                 <div class="product-info">
                                     <div class="product-price">₹<?php echo number_format($product['price'], 2); ?></div>
