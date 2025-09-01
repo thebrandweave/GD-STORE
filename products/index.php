@@ -704,6 +704,12 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
+            .product-card {
+                height: 420px;
+            }
+            .product-description {
+                min-height: 1em;
+            }
             .hero-title {
                 font-size: 2.5rem;
             }
