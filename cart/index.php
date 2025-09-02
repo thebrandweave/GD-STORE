@@ -1155,6 +1155,7 @@ foreach ($result as $row) {
             <h1 class="cart-title">Your Cart</h1>
             <p class="cart-subtitle">There are <?= $itemCount ?> products in your cart</p>
             <p class="cart-subtitle" id="selection-status" style="margin-top: 4px; font-size: 0.9rem; color: #888;">Select items to proceed to checkout</p>
+
         </div>
         <?php if (!empty($cartItems)): ?>
             <button class="clear-cart-btn" onclick="clearCart()">
@@ -1181,6 +1182,10 @@ foreach ($result as $row) {
                 Please select at least one item to proceed to checkout.
             </div>
         <?php endif; ?>
+        
+
+        
+
         
         <?php if (isset($_GET['success']) && $_GET['success'] === 'order_placed'): ?>
             <div style="background: #d4edda; color: #155724; padding: 12px 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #c3e6cb;">
@@ -1281,6 +1286,7 @@ foreach ($result as $row) {
                 <i class="bi bi-arrow-clockwise"></i>
                 Update Cart
             </button>
+
         </div>
     <?php endif; ?>
 </div>
@@ -1539,6 +1545,8 @@ document.getElementById('confirmation-modal').addEventListener('click', function
 document.addEventListener('DOMContentLoaded', function() {
     updateOrderSummary();
     
+
+    
     // Attach event listeners to all product checkboxes
     const productCheckboxes = document.querySelectorAll('.product-checkbox');
     productCheckboxes.forEach(checkbox => {
@@ -1557,6 +1565,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+
+
+
+
 
 function updateOrderSummary() {
     const selectedCheckboxes = document.querySelectorAll('.product-checkbox:checked');
@@ -1581,10 +1595,8 @@ function updateOrderSummary() {
     const checkoutBtn = document.getElementById('checkout-btn');
     checkoutBtn.disabled = totalItems === 0;
     
-    // Update selected items input
+    // Update selected items input (only for display purposes, not for form submission)
     const selectedItems = Array.from(selectedCheckboxes).map(checkbox => checkbox.dataset.cartItemId);
-    document.getElementById('selected-items-input').value = JSON.stringify(selectedItems);
-    console.log('Selected items for checkout:', selectedItems);
     
     // Update select all checkbox state
     const selectAllCheckbox = document.getElementById('select-all-checkbox');
@@ -1886,9 +1898,6 @@ function confirmCheckout() {
     // Ensure selected items are properly set in the form
     const selectedItems = Array.from(selectedCheckboxes).map(checkbox => checkbox.dataset.cartItemId);
     document.getElementById('selected-items-input').value = JSON.stringify(selectedItems);
-    console.log('Selected items set in form:', selectedItems);
-    
-
     
     const totalItems = selectedCheckboxes.length;
     let totalAmount = 0;
@@ -1901,34 +1910,16 @@ function confirmCheckout() {
         totalQuantity += quantity;
     });
     
-    console.log('Total amount:', totalAmount, 'Total quantity:', totalQuantity);
-    
     const modalMessage = `You're about to place an order for ${totalQuantity} item(s) from ${totalItems} product(s). Please review the details below before proceeding.`;
     
     const orderDetails = {
         itemsCount: totalQuantity,
         totalAmount: totalAmount
     };
-    
-    console.log('Calling showConfirmationModal');
-    // Show confirmation modal first, then success modal
+    // Show confirmation modal and submit form immediately after confirmation
     showConfirmationModal(modalMessage, () => {
-        console.log('Confirmation callback executed');
-        // Wait a bit before showing success modal
-        setTimeout(() => {
-            showSuccessModal(totalQuantity, totalAmount, () => {
-                console.log('Success callback executed, submitting form');
-                // Double-check selected items before submitting
-                const finalSelectedItems = Array.from(document.querySelectorAll('.product-checkbox:checked')).map(checkbox => checkbox.dataset.cartItemId);
-                document.getElementById('selected-items-input').value = JSON.stringify(finalSelectedItems);
-                console.log('Final selected items before submit:', finalSelectedItems);
-                
-                // Small delay to ensure form data is set
-                setTimeout(() => {
-                    document.getElementById('checkout-form').submit();
-                }, 100);
-            });
-        }, 500);
+        // Submit the form immediately after confirmation
+        document.getElementById('checkout-form').submit();
     }, 'confirm', orderDetails);
 }
  
