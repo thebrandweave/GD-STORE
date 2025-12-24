@@ -3,17 +3,17 @@
 class Database
 {
     // Live database configuration
-    // private $host = "localhost";
-    // private $db_name = "u229215627_sp_goldenDream";
-    // private $username = "u229215627_sp_goldenDream";
-    // private $password = "GoldenDream@025";
-    // public $conn;
-
-    public $host = "localhost";
-    public $db_name = "u229215627_sp_goldenDream";
-    public $username = "root";
-    public $password = "";
+    private $host = "localhost";
+    private $db_name = "u232955123_gdShop";
+    private $username = "u232955123_gdShop";
+    private $password = "Brandweave@25";
     public $conn;
+
+    // public $host = "localhost";
+    // public $db_name = "u229215627_sp_goldenDream";
+    // public $username = "root";
+    // public $password = "";
+    // public $conn;
 
     // Database configurations
     // public static $main_db = "u229215627_goldenDreamSQL"; 
