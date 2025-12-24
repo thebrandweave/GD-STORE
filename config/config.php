@@ -17,7 +17,7 @@ class Database
 
     // Database configurations
     // public static $main_db = "u229215627_goldenDreamSQL"; 
-    public static $shop_db = "u229215627_sp_goldenDream"; 
+    public static $shop_db = "u232955123_gdShop"; 
 
     
     // Base URL configuration for live environment
