@@ -3,15 +3,25 @@
 class Database
 {
     // Localhost database configuration
+    // private $host = "localhost";
+    // private $db_name = "gstore";   
+    // private $username = "root";
+    // private $password = "";
+
+
+    //Live
     private $host = "localhost";
-    private $db_name = "gstore";   
-    private $username = "root";
-    private $password = "";
-    
+    private $db_name = "u232955123_gdShop";
+    private $username = "u232955123_gdShop";
+    private $password = "Brandweave@25";
     public $conn;
+    
+
 
     // Base URL for local development
-    public static $baseUrl = "http://localhost/gstore/";
+    // public static $baseUrl = "http://localhost/gstore/";
+        public static $baseUrl = "https://shop.goldendream.in/";
+
 
     public function getConnection()
     {
