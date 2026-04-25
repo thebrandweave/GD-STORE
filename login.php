@@ -37,7 +37,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
           
 $_SESSION = array(); 
-session_regenerate_id(true);
+if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+        );
+    }
+
+    // 3. Completely destroy the old session and start a fresh one
+    session_destroy(); 
+    session_start();
+    session_regenerate_id(true);
 // ... (rest of your assignments)   
 
 
