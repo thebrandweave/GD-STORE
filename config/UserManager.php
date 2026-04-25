@@ -12,43 +12,54 @@ class UserManager {
     /**
      * Authenticate shop user by email or phone
      */
-  public function authenticateShopUser($identifier, $password) {
-    // 🔥 Force exact match + limit
-    $stmt = $this->conn->prepare(
-        'SELECT CustomerID, CustomerUniqueID, Name, Contact, Email, PasswordHash, Address 
-         FROM shop_users 
-         WHERE (Email = ? OR Contact = ?) 
-         LIMIT 1'
-    );
-
-    $stmt->execute([$identifier, $identifier]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // 🔥 Debug (remove later)
-    // var_dump($user); exit;
-
-    if ($user && password_verify($password, $user['PasswordHash'])) {
-        return [
-            'success' => true,
-            'user' => $user
-        ];
+    private function normalizeEmail($email) {
+        return strtolower(trim($email));
     }
 
-    return [
-        'success' => false,
-        'message' => 'Invalid email/phone or password'
-    ];
-}
+    private function normalizeContact($contact) {
+        return preg_replace('/\D+/', '', trim($contact));
+    }
+
+    public function authenticateShopUser($identifier, $password) {
+        $identifier = trim($identifier);
+        $normalizedEmail = strtolower($identifier);
+        $normalizedContact = preg_replace('/\D+/', '', $identifier);
+
+        $stmt = $this->conn->prepare(
+            'SELECT CustomerID, CustomerUniqueID, Name, Contact, Email, PasswordHash, Address
+             FROM shop_users
+             WHERE LOWER(Email) = ? OR REPLACE(REPLACE(REPLACE(REPLACE(Contact, " ", ""), "-", ""), "(", ""), ")", "") = ?
+             ORDER BY CustomerID DESC'
+        );
+
+        $stmt->execute([$normalizedEmail, $normalizedContact]);
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($users as $user) {
+            if (password_verify($password, $user['PasswordHash'])) {
+                return [
+                    'success' => true,
+                    'user' => $user
+                ];
+            }
+        }
+
+        return [
+            'success' => false,
+            'message' => 'Invalid email/phone or password'
+        ];
+    }
     
     /**
      * Check if email exists in shop_db
      */
     public function emailExistsInShopDb($email, $excludeUserId = null) {
+        $email = $this->normalizeEmail($email);
         if ($excludeUserId) {
-            $stmt = $this->conn->prepare('SELECT COUNT(*) FROM shop_users WHERE Email = ? AND CustomerID != ?');
+            $stmt = $this->conn->prepare('SELECT COUNT(*) FROM shop_users WHERE LOWER(Email) = ? AND CustomerID != ?');
             $stmt->execute([$email, $excludeUserId]);
         } else {
-            $stmt = $this->conn->prepare('SELECT COUNT(*) FROM shop_users WHERE Email = ?');
+            $stmt = $this->conn->prepare('SELECT COUNT(*) FROM shop_users WHERE LOWER(Email) = ?');
             $stmt->execute([$email]);
         }
         return $stmt->fetchColumn() > 0;
@@ -58,11 +69,12 @@ class UserManager {
      * Check if contact exists in shop_db
      */
     public function contactExistsInShopDb($contact, $excludeUserId = null) {
+        $contact = $this->normalizeContact($contact);
         if ($excludeUserId) {
-            $stmt = $this->conn->prepare('SELECT COUNT(*) FROM shop_users WHERE Contact = ? AND CustomerID != ?');
+            $stmt = $this->conn->prepare('SELECT COUNT(*) FROM shop_users WHERE REPLACE(REPLACE(REPLACE(REPLACE(Contact, " ", ""), "-", ""), "(", ""), ")", "") = ? AND CustomerID != ?');
             $stmt->execute([$contact, $excludeUserId]);
         } else {
-            $stmt = $this->conn->prepare('SELECT COUNT(*) FROM shop_users WHERE Contact = ?');
+            $stmt = $this->conn->prepare('SELECT COUNT(*) FROM shop_users WHERE REPLACE(REPLACE(REPLACE(REPLACE(Contact, " ", ""), "-", ""), "(", ""), ")", "") = ?');
             $stmt->execute([$contact]);
         }
         return $stmt->fetchColumn() > 0;
@@ -73,6 +85,8 @@ class UserManager {
      */
     public function createShopUser($name, $email, $contact, $password, $address = '') {
         $customerUniqueID = 'SHOP_' . uniqid() . '_' . time();
+        $email = $this->normalizeEmail($email);
+        $contact = $this->normalizeContact($contact);
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $this->conn->prepare('INSERT INTO shop_users (CustomerUniqueID, Name, Contact, Email, PasswordHash, Address) VALUES (?, ?, ?, ?, ?, ?)');
         if ($stmt->execute([$customerUniqueID, $name, $contact, $email, $passwordHash, $address])) {
@@ -105,13 +119,20 @@ class UserManager {
      * Update shop user profile
      */
     public function updateShopUser($userId, $name, $email, $contact, $address = '') {
+        $email = $this->normalizeEmail($email);
+        $contact = $this->normalizeContact($contact);
         $stmt = $this->conn->prepare('SELECT CustomerID FROM shop_users WHERE CustomerID = ?');
         $stmt->execute([$userId]);
         if (!$stmt->fetch()) {
             return false;
         }
-        $stmt = $this->conn->prepare('SELECT CustomerID FROM shop_users WHERE Email = ? AND CustomerID != ?');
+        $stmt = $this->conn->prepare('SELECT CustomerID FROM shop_users WHERE LOWER(Email) = ? AND CustomerID != ?');
         $stmt->execute([$email, $userId]);
+        if ($stmt->fetch()) {
+            return false;
+        }
+        $stmt = $this->conn->prepare('SELECT CustomerID FROM shop_users WHERE REPLACE(REPLACE(REPLACE(REPLACE(Contact, " ", ""), "-", ""), "(", ""), ")", "") = ? AND CustomerID != ?');
+        $stmt->execute([$contact, $userId]);
         if ($stmt->fetch()) {
             return false;
         }

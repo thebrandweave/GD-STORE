@@ -8,7 +8,10 @@ CREATE TABLE IF NOT EXISTS shop_users (
     Contact VARCHAR(50),
     Email VARCHAR(255),
     PasswordHash VARCHAR(255) DEFAULT '$2y$10$f8RpDnV887jmqZKOTEm/oesy7nKRboD8HxH5yQMF0xdLO0aTGLnZm',
-    Address TEXT
+    Address TEXT,
+    UNIQUE KEY uq_shop_users_customer_unique_id (CustomerUniqueID),
+    UNIQUE KEY uq_shop_users_contact (Contact),
+    UNIQUE KEY uq_shop_users_email (Email)
 );
 
 -- =========================================

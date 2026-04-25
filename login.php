@@ -7,12 +7,6 @@ header("Pragma: no-cache");
 header("Expires: 0");
 
 
-if (isset($_SESSION['user_id'])) {
-    session_unset();       // clear old session
-    session_destroy();     // destroy it
-    session_start();       // start fresh session
-}
-
 require_once 'config/config.php';
 require_once 'config/UserManager.php';
 require_once 'vendor/firebase/php-jwt/src/JWT.php';
@@ -34,28 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Only authenticate shop user by email or phone
             $shopResult = $userManager->authenticateShopUser($identifier, $password);
             if ($shopResult['success']) {
-
-    session_unset();
-    session_destroy();
-    session_start();
-    session_regenerate_id(true);
-
-          
-$_SESSION = array(); 
-if (ini_get("session.use_cookies")) {
-        $params = session_get_cookie_params();
-        setcookie(session_name(), '', time() - 42000,
-            $params["path"], $params["domain"],
-            $params["secure"], $params["httponly"]
-        );
-    }
-
-    // 3. Completely destroy the old session and start a fresh one
-    session_destroy(); 
-    session_start();
-    session_regenerate_id(true);
-// ... (rest of your assignments)   
-
+                // Reset all previous session values and issue a fresh session id
+                $_SESSION = [];
+                session_regenerate_id(true);
 
                 // Shop user found and authenticated
                 $user = $shopResult['user'];

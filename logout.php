@@ -8,7 +8,13 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Clear your custom JWT cookie as well
-setcookie('goldendream_jwt', '', time() - 3600, '/');
+setcookie('goldendream_jwt', '', [
+    'expires' => time() - 3600,
+    'path' => '/',
+    'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on',
+    'httponly' => true,
+    'samesite' => 'Strict',
+]);
 
 header("Location: login.php");
 exit();
