@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+// 🔥 Prevent browser caching (important)
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+
 if (isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit();
@@ -27,6 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $shopResult = $userManager->authenticateShopUser($identifier, $password);
             
             if ($shopResult['success']) {
+
+            $_SESSION = [];
+session_unset();
+session_destroy();
+
+// 🔥 STEP 2: Start fresh session
+session_start();
+session_regenerate_id(true);
                 // Shop user found and authenticated
                 $user = $shopResult['user'];
                 $_SESSION['user_id'] = $user['CustomerID'];
