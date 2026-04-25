@@ -12,23 +12,33 @@ class UserManager {
     /**
      * Authenticate shop user by email or phone
      */
-    public function authenticateShopUser($identifier, $password) {
-        $stmt = $this->conn->prepare('SELECT CustomerID, CustomerUniqueID, Name, Contact, Email, PasswordHash, Address FROM shop_users WHERE Email = ? OR Contact = ?');
-        $stmt->execute([$identifier, $identifier]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        if ($user && password_verify($password, $user['PasswordHash'])) {
-            return [
-                'success' => true,
-                'user' => $user
-            ];
-        }
-        
+  public function authenticateShopUser($identifier, $password) {
+    // 🔥 Force exact match + limit
+    $stmt = $this->conn->prepare(
+        'SELECT CustomerID, CustomerUniqueID, Name, Contact, Email, PasswordHash, Address 
+         FROM shop_users 
+         WHERE (Email = ? OR Contact = ?) 
+         LIMIT 1'
+    );
+
+    $stmt->execute([$identifier, $identifier]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // 🔥 Debug (remove later)
+    // var_dump($user); exit;
+
+    if ($user && password_verify($password, $user['PasswordHash'])) {
         return [
-            'success' => false,
-            'message' => 'Invalid email/phone or password'
+            'success' => true,
+            'user' => $user
         ];
     }
+
+    return [
+        'success' => false,
+        'message' => 'Invalid email/phone or password'
+    ];
+}
     
     /**
      * Check if email exists in shop_db
