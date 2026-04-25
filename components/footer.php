@@ -194,7 +194,7 @@ if (!empty($project_folder)) {
       <div class="footer-block">
         <h5 class="block-title">Electronics</h5>
         <ul class="footer-nav">
-          <li><a href="#">Smart LED TVs</a></li>
+          <li><a href="/products">Smart LED TVs</a></li>
           <li><a href="#">Air Conditioners</a></li>
           <li><a href="#">Refrigerators</a></li>
           <li><a href="#">Washing Machines</a></li>

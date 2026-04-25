@@ -373,7 +373,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 <div class="input-icon">
                     <i class="bi bi-person"></i>
-                    <input type="text" name="identifier" placeholder="Customer Unique ID, Email, or Phone" required autofocus>
+                    <input type="text" name="identifier" placeholder=" Enter Your Email Address" required autofocus>
                 </div>
                 <div class="input-icon">
                     <i class="bi bi-lock"></i>
