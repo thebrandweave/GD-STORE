@@ -27,7 +27,7 @@ if (strpos($current_uri_path, $base_path) === 0) {
 $relative_path = trim($relative_path, '/');
 
 // Determine active sections (ensure Home doesn't match nested index.php like products/index.php)
-$is_home = ($relative_path === '' || $relative_path === 'index.php');
+$is_home = ($relative_path === '' || $relative_path === '');
 $is_category = (strpos($relative_path, 'category') === 0);
 $is_products = (strpos($relative_path, 'products') === 0);
 $is_about = (strpos($relative_path, 'about') === 0);
