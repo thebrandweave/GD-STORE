@@ -2,29 +2,26 @@
 
 class Database
 {
-    // Localhost database configuration
-    // private $host = "localhost";
-    // private $db_name = "gstore";   
-    // private $username = "root";
-    // private $password = "";
-
-
-    //Live
+    // Live database configuration
     private $host = "localhost";
     private $db_name = "u232955123_gdShop";
     private $username = "u232955123_gdShop";
     private $password = "Brandweave@25";
     public $conn;
 
+    // public $host = "localhost";
+    // public $db_name = "u229215627_sp_goldenDream";
+    // public $username = "root";
+    // public $password = "";
+    // public $conn;
 
-        public static $shop_db = "u232955123_gdShop"; 
+    // Database configurations
+    // public static $main_db = "u229215627_goldenDreamSQL"; 
+    public static $shop_db = "u232955123_gdShop"; 
+
     
-
-
-    // Base URL for local development
-    // public static $baseUrl = "http://localhost/gstore/";
-        public static $baseUrl = "https://shop.goldendream.in/";
-
+    // Base URL configuration for live environment
+    public static $baseUrl = "https://shop.goldendream.in/";
 
     public function getConnection()
     {
@@ -36,14 +33,13 @@ class Database
                 $this->username,
                 $this->password
             );
-            // Enable error reporting for PDO
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            // Log the error locally
+            // Log the error for debugging
             error_log("Database connection failed: " . $e->getMessage());
             
-            // Check if error.php exists before redirecting to avoid 404 errors
-            echo "Database connection error. Please ensure your MySQL service is running and the database '{$this->db_name}' exists.";
+            // Redirect to local error page
+            header("Location: " . self::$baseUrl . "error.php");
             exit();
         }
 
@@ -51,30 +47,23 @@ class Database
     }
 }
 
-// --- JWT Configuration ---
-
+// JWT secret key for token generation and verification
 if (!defined('JWT_SECRET')) {
     define('JWT_SECRET', 'goldendream_super_secret_key_2024!@#');
 }
-
+// JWT encryption key (32 bytes for AES-256, derived from passphrase)
 if (!defined('JWT_ENCRYPT_KEY')) {
     define('JWT_ENCRYPT_KEY', hash('sha256', 'goldendream_super_passphrase_2024', true)); 
 }
-
-// Encryption Helpers
+// Helper functions for encrypting and decrypting JWTs
 if (!function_exists('encrypt_jwt')) {
     function encrypt_jwt($jwt) {
         $iv = openssl_random_pseudo_bytes(16);
         $ciphertext = openssl_encrypt($jwt, 'AES-256-CBC', JWT_ENCRYPT_KEY, 0, $iv);
         return base64_encode($iv . $ciphertext);
     }
-}
-
-if (!function_exists('decrypt_jwt')) {
     function decrypt_jwt($encrypted) {
         $data = base64_decode($encrypted);
-        if (!$data) return false;
-        
         $iv = substr($data, 0, 16);
         $ciphertext = substr($data, 16);
         return openssl_decrypt($ciphertext, 'AES-256-CBC', JWT_ENCRYPT_KEY, 0, $iv);
