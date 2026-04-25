@@ -9,7 +9,7 @@ $project_folder = $path_parts[0] ?? '';
 
 // Build the base path dynamically
 if (!empty($project_folder)) {
-    $base_path = '/' . $project_folder . '/';
+    $base_path = '/';
 } else {
     // Fallback for root deployment
     $base_path = '/';
@@ -66,7 +66,7 @@ $is_login = (strpos($relative_path, 'login') === 0);
   
   <!-- Desktop Navigation -->
   <ul class="navbar-links desktop-nav">
-    <li><a href="/" class="<?php echo $is_home ? 'active' : ''; ?>">Home</a></li>
+    <li><a href="<?php echo $base_path; ?>" class="<?php echo $is_home ? 'active' : ''; ?>">Home</a></li>
     <li><a href="<?php echo $base_path; ?>category/index.php" class="<?php echo $is_category ? 'active' : ''; ?>">Categories</a></li>
     <li><a href="<?php echo $base_path; ?>products/index.php" class="<?php echo $is_products ? 'active' : ''; ?>">Products</a></li>
     <li><a href="<?php echo $base_path; ?>about/index.php" class="<?php echo $is_about ? 'active' : ''; ?>">About</a></li>
