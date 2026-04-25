@@ -209,7 +209,7 @@ require_once __DIR__ . '/../config/config.php';
         <div class="container">
             <h1>Our Story</h1>
             <div class="breadcrumb">
-                <a href="../index.php">Home</a>
+                <a href="../">Home</a>
                 <span>/</span>
                 <span class="active">About Us</span>
             </div>
