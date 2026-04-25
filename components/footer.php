@@ -66,7 +66,7 @@ if (!empty($project_folder)) {
 }
 
 .brand-logo {
-    max-width: 91px;
+    max-width: 85px;
     filter: brightness(0) invert(1); /* Forces logo to white if it's dark */
     margin-bottom: 20px;
 }
