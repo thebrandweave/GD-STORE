@@ -39,7 +39,7 @@ class Database
             error_log("Database connection failed: " . $e->getMessage());
             
             // Redirect to local error page
-            header("Location: " . self::$baseUrl . "index.php");
+            header("Location: " . self::$baseUrl . "error.php");
             exit();
         }
 
