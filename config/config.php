@@ -15,6 +15,9 @@ class Database
     private $username = "u232955123_gdShop";
     private $password = "Brandweave@25";
     public $conn;
+
+
+        public static $shop_db = "u232955123_gdShop"; 
     
 
 
