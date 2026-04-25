@@ -139,7 +139,7 @@ $categories = $conn->query('SELECT * FROM categories ORDER BY name')->fetchAll(P
 
         /* Make every 4th item wide */
         .bento-item:nth-child(6n+4) {
-            grid-column: span 2;
+            grid-column: span 1;
         }
 
         /* RESPONSIVE */
