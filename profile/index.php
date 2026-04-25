@@ -15,13 +15,13 @@ require_once '../config/config.php';
 require_once '../config/UserManager.php';
 
 $userManager = new UserManager();
-$error = '';
-$success = '';
+
 
 // Get current user data
 $user = $userManager->getUserById($_SESSION['user_id']);
 
 if (!$user) {
+    $_SESSION = array();
     session_destroy();
     header('Location: ../login.php');
     exit();

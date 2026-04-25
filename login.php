@@ -36,11 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($shopResult['success']) {
 
           
-// 🔥 Reset session safely (no destroy needed)
-session_unset();       // remove all session variables
-session_destroy();     // destroy session completely
-session_start();       // start fresh session
+$_SESSION = array(); 
 session_regenerate_id(true);
+// ... (rest of your assignments)   
 
 
                 // Shop user found and authenticated
