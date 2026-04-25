@@ -7,7 +7,7 @@ header("Pragma: no-cache");
 header("Expires: 0");
 
 
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['user_id']) && $_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.php');
     exit();
 }
@@ -61,6 +61,7 @@ session_regenerate_id(true);
                 $jwt = JWT::encode($payload, JWT_SECRET, 'HS256');
                 $encrypted_jwt = encrypt_jwt($jwt);
                 // Set JWT as secure, HttpOnly cookie
+                setcookie('goldendream_jwt', '', time() - 3600, '/');
                 setcookie('goldendream_jwt', $encrypted_jwt, [
                     'expires' => time() + 3600,
                     'path' => '/',

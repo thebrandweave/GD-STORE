@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
 
 
 if (!isset($_SESSION['user_id'])) {
@@ -91,6 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+echo $_SESSION['user_id'];
+exit;
 ?>
 <!DOCTYPE html>
 <html lang="en">
