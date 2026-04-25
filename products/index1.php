@@ -399,8 +399,8 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
         
         @media (min-width: 1920px) {
             .products-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 28px;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 48px;
             }
         }
         
@@ -412,13 +412,13 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
         }
         .product-card {
             background: #fff;
-            border-radius: 0px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 4px 16px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
             position: relative;
             width: 100%;
-    
+            height: 450px;
             display: flex;
             flex-direction: column;
         }
@@ -533,12 +533,11 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             transform: scale(1.1);
         }
         .product-content {
-            padding: 16px 10px;
+            padding: 16px 0;
             display: flex;
             flex-direction: column;
             flex: 1;
             min-height: 0px;
-            text-align:left;
         }
         .product-category {
             color: var(--accent-dark);
@@ -577,7 +576,7 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
         /* Responsive Product Typography for Large Screens */
         @media (min-width: 1600px) {
             .product-name {
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
             .product-price {
                 font-size: 1.4rem;
@@ -605,7 +604,7 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            /* margin-top: auto; */
+            margin-top: auto;
             flex-shrink: 0;
         }
         .product-price {
@@ -730,7 +729,7 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
         .page-title {
             font-size: 2.5rem;
             font-weight: 800;
-            color: var(--accent-dark);
+            color: var(--secondary);
             margin-bottom: 16px;
         }
         
@@ -890,39 +889,57 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
                             $stockText = 'Limited';
                         }
                         ?>
-                   <div class="product-card">
-    <div class="product-image-container">
-        <a href="details.php?id=<?= $product['product_id'] ?>">
-            <img src="<?php echo $img; ?>" class="product-image" alt="<?php echo htmlspecialchars($product['name']); ?>" />
-        </a>
-        
-        <div class="product-actions">
-            <form method="post" action="add_to_cart.php" style="display:inline;">
-                <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
-                <input type="hidden" name="quantity" value="1">
-                <button type="submit" class="action-btn" title="Add to Cart">
-                    <i class="bi bi-cart-plus"></i>
-                </button>
-            </form>
-            <button class="action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
-            <button class="action-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
-        </div>
-    </div>
+                        <div class="product-card">
+                            <div class="product-image-container">
+                                <img src="<?php echo $img; ?>" class="product-image" alt="<?php echo htmlspecialchars($product['name']); ?>" />
+                                <!-- <div class="product-stock-badge <?php echo $stockClass; ?>"><?php echo $stockText; ?></div> -->
+                                <div class="product-actions">
+                                    <form method="post" action="add_to_cart.php" style="display:inline;">
+                                        <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
+                                        <input type="hidden" name="quantity" value="1">
+                                        <button type="submit" class="action-btn" title="Add to Cart">
+                                            <i class="bi bi-cart-plus"></i>
+                                        </button>
+                                    </form>
+                                    <button class="action-btn" title="Quick View">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="action-btn" title="Add to Wishlist">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-category">
+                                    <a href="?category=<?php echo $product['category_id']; ?><?php if ($sort_by != 'newest') echo '&sort=' . $sort_by; ?>"><?php echo htmlspecialchars($product['category_name'] ?? 'Uncategorized'); ?></a>
+                                </div>
+                                <h3 class="product-name">
+                                    <a href="details.php?id=<?= $product['product_id'] ?>"><?php echo htmlspecialchars($product['name']); ?></a>
+                                </h3>
+                                <?php if (!empty($product['description'])): ?>
+                                    <?php
+                                    $description = htmlspecialchars($product['description']);
+                                    $maxChars = 80; // Characters for approximately 2 lines
+                                    
+                                    if (strlen($description) > $maxChars) {
+                                        $truncated = substr($description, 0, $maxChars);
+                                        // Find the last space to avoid cutting words
+                                        $lastSpace = strrpos($truncated, ' ');
+                                        if ($lastSpace !== false) {
+                                            $truncated = substr($truncated, 0, $lastSpace);
+                                        }
+                                        echo '<div class="product-description">' . $truncated . '...</div>';
+                                    } else {
+                                        echo '<div class="product-description">' . $description . '</div>';
+                                    }
+                                    ?>
+                                <?php endif; ?>
+                                <div class="product-info">
+                                    <div class="product-price">₹<?php echo number_format($product['price'], 2); ?></div>
+                                </div>
 
-    <div class="product-content">
-        <div class="product-category">
-            <a href="?category=<?php echo $product['category_id']; ?>"><?php echo htmlspecialchars($product['category_name'] ?? 'Uncategorized'); ?></a>
-        </div>
-        
-        <h3 class="product-name">
-            <a href="details.php?id=<?= $product['product_id'] ?>"><?php echo htmlspecialchars($product['name']); ?></a>
-        </h3>
-
-        <div class="product-info">
-            <div class="product-price">₹<?php echo number_format($product['price'], 2); ?></div>
-        </div>
-    </div>
-</div>
+                            </div>
+                        </div>
                     <?php endforeach; ?>
                     <?php if (empty($products)): ?>
                         <div class="empty-state" style="grid-column: 1 / -1;">

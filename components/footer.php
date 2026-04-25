@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <?php
 // Dynamically determine the base path for the project
 $script_name = $_SERVER['SCRIPT_NAME'];
@@ -15,81 +16,226 @@ if (!empty($project_folder)) {
     $base_path = '/';
 }
 ?>
-<section class="newsletter-section">
-    <div class="newsletter-overlay"></div>
-    <div class="newsletter-container">
-        <div class="newsletter-content">
-        <h2 class="newsletter-title">Sign up for updates</h2>
-        <p class="newsletter-subtitle">Sign up for early sale access, new in, promotions and more</p>
-        <form class="newsletter-form">
-            <input type="email" placeholder="Enter your e-mail" class="newsletter-input" required>
-            <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
-        </form>
-        </div>
-    </div>
-</section>
-<footer class="shop-footer">
+
+  <style>
+ body, html {
+        font-family: 'Montserrat', sans-serif;
+    }
+ 
+
+
+    .tile {
+      background-color: white;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    /* Make images fully contained inside tiles */
+    .tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .store-footer-modern {
+    background-color: #000000; /* Sleek dark background */
+    color: #e0e0e0;
+    padding: 60px 0 20px 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-main-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 40px;
+    padding-bottom: 50px;
+}
+
+.brand-logo {
+    max-width: 91px;
+    filter: brightness(0) invert(1); /* Forces logo to white if it's dark */
+    margin-bottom: 20px;
+}
+
+.brand-bio {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #a0a0a0;
+}
+
+.block-title {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.block-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 30px;
+    height: 2px;
+    background-color: #ffc929; /* Using your requested yellow accent color */
+}
+
+.footer-nav {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-nav li {
+    margin-bottom: 12px;
+}
+
+.footer-nav a {
+    color: #a0a0a0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: #ffc929;
+}
+
+.store-address {
+    font-style: normal;
+    color: #a0a0a0;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.social-wrapper a {
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-right: 15px;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.social-wrapper a:hover {
+    color: #ffc929;
+    transform: translateY(-3px);
+}
+
+.footer-bottom-bar {
+    border-top: 1px solid #333;
+    padding-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accent-text {
+    color: #ffc929;
+    font-weight: 600;
+}
+
+.dev-logo-small {
+    height: 25px;
+    margin-left: 10px;
+    vertical-align: middle;
+    opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .footer-main-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-main-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-bottom-bar {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
+  </style>
+
+
+<footer class="store-footer-modern">
   <div class="footer-container">
-    <div class="footer-content">
-      <div class="footer-section footer-brand">
-        <div class="footer-logo">
-          <img src="<?php echo $base_path; ?>assets/image/gd-store-logo2.png" alt="GD Store" class="footer-logo-image">
+    <div class="footer-main-grid">
+      
+      <div class="footer-block brand-summary">
+        <div class="footer-logo-wrap">
+          <img src="<?php echo $base_path; ?>assets/image/gdlogo.png" alt="GD Store" class="brand-logo">
         </div>
-        <p class="footer-description">Premium gold and diamond jewelry for every occasion. We offer the finest collection of traditional and modern jewelry designs, crafted with excellence and delivered with trust.</p>
-        <div class="company-info">
-          <div class="info-item">
-            <i class="bi bi-award"></i>
-            <span>Trusted</span>
-          </div>
-          <div class="info-item">
-            <i class="bi bi-gem"></i>
-            <span>Certified Quality</span>
-          </div>
-          <div class="info-item">
-            <i class="bi bi-shield-check"></i>
-            <span>Secure Shopping</span>
-          </div>
+        <p class="brand-bio">
+          Upgrade your lifestyle with the latest in smart electronics and handcrafted furniture. From high-performance appliances to elegant home decor, we bring quality to every corner of your home.
+        </p>
+        <div class="feature-strip">
+          <div class="strip-item"><i class="bi bi-patch-check"></i> 100% Genuine</div>
+          <div class="strip-item"><i class="bi bi-truck"></i> Expert Delivery</div>
         </div>
       </div>
       
-      <div class="footer-section">
-        <h4 class="footer-heading">Quick Links</h4>
-        <ul class="footer-links">
-          <li><a href="<?php echo $base_path; ?>index.php">Home</a></li>
-          <li><a href="<?php echo $base_path; ?>category/index.php">Categories</a></li>
-          <li><a href="<?php echo $base_path; ?>products/index.php">Products</a></li>
-          <li><a href="<?php echo $base_path; ?>about/index.php">About</a></li>
-          <li><a href="<?php echo $base_path; ?>contact/index.php">Contact</a></li>
+      <div class="footer-block">
+        <h5 class="block-title">Electronics</h5>
+        <ul class="footer-nav">
+          <li><a href="#">Smart LED TVs</a></li>
+          <li><a href="#">Air Conditioners</a></li>
+          <li><a href="#">Refrigerators</a></li>
+          <li><a href="#">Washing Machines</a></li>
+          <li><a href="#">Kitchen Appliances</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h5 class="block-title">Furniture</h5>
+        <ul class="footer-nav">
+          <li><a href="#">Sofa Sets</a></li>
+          <li><a href="#">Dining Tables</a></li>
+          <li><a href="#">Bedroom Sets</a></li>
+          <li><a href="#">Office Desks</a></li>
+          <li><a href="#">Home Decor</a></li>
         </ul>
       </div>
       
-      <div class="footer-section">
-        <h4 class="footer-heading">Contact Info</h4>
-        <div class="contact-item">
-          <i class="bi bi-geo-alt"></i>
-          <span>2-108/C-7, Ground Floor, Sri Mantame Complex, Near Soorya Infotech Park, Kurnadu Post, Mudipu Road, Bantwal- 574153</span>
-        </div>
-        <div class="contact-item">
-          <i class="bi bi-envelope"></i>
-          <span>goldendream175@gmail.com</span>
+      <div class="footer-block">
+        <h5 class="block-title">Visit Our Store</h5>
+        <address class="store-address">
+          2-108/C-7, Ground Floor, Sri Mantame Complex,<br>
+          Near Soorya Infotech Park, Mudipu Road,<br>
+          Bantwal - 574153
+        </address>
+        <div class="social-wrapper">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
         </div>
       </div>
       
-      <div class="footer-section">
-        <h4 class="footer-heading">Follow Us</h4>
-        <div class="social-links">
-          <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="social-link"><i class="bi bi-whatsapp"></i></a>
-          <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
-        </div>
-      </div>
     </div>
     
-    <div class="footer-bottom">
-      <p class="copyright">Golden Dream © <?php echo date('Y'); ?>. All Rights Reserved.</p>
-      <div class="developed-by">
-        <span>Developed by</span>
-        <img src="<?php echo $base_path; ?>assets/image/developer_logo.png" alt="Developer Logo" class="developer-logo">
+    <div class="footer-bottom-bar">
+      <div class="copyright-text">
+        &copy; <?php echo date('Y'); ?> <span class="accent-text">GD Store</span>. All Rights Reserved.
+      </div>
+      <div class="developer-credit">
+        <span>Powered by</span>
+        <img src="<?php echo $base_path; ?>assets/image/developer_logo.png" alt="Developer" class="dev-logo-small">
       </div>
     </div>
   </div>
@@ -99,10 +245,11 @@ if (!empty($project_folder)) {
 
 <style>
 .newsletter-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background:  url('assets/image/parallex.jpeg');
     background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+
+    /* background-position: center; */
+    /* background-attachment: fixed; */
     padding: 80px 0;
     text-align: center;
     position: relative;
@@ -124,7 +271,8 @@ if (!empty($project_folder)) {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    /* background: rgba(210, 175, 50, 0.3); */
+    /* filter:invert(1); */
     z-index: 1;
 }
 
@@ -156,6 +304,7 @@ if (!empty($project_folder)) {
     margin-bottom: 18px;
     line-height: 1.15;
     letter-spacing: 0.01em;
+   
 }
 
 .newsletter-title .accent {

@@ -77,7 +77,7 @@ $images = $stmt->fetchAll(PDO::FETCH_COLUMN);
                 padding: 0 40px;
             }
             .product-details-container {
-                max-width: 1600px;
+                max-width: 1200px;
             }
         }
         
@@ -87,7 +87,7 @@ $images = $stmt->fetchAll(PDO::FETCH_COLUMN);
                 padding: 0 60px;
             }
             .product-details-container {
-                max-width: 1800px;
+                max-width: 1500px;
             }
         }
         

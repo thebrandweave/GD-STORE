@@ -19,353 +19,185 @@ $categories = $conn->query('SELECT * FROM categories ORDER BY name')->fetchAll(P
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
+  <style>
         :root {
-            --primary: #f7f7fa;
-            --secondary: #232526;
+            --primary: #f5f7fb;
+            --secondary: #1e1e2f;
             --accent: #ffd600;
-            --accent-dark: #ffb300;
-            --card-bg: #fff;
-            --radius: 22px;
-            --shadow: 0 8px 32px 0 rgba(0,0,0,0.08);
-            --font-main: 'Montserrat', Arial, sans-serif;
+            --card-bg: #ffffff;
+            --radius: 24px;
+            --shadow: 0 10px 40px rgba(0,0,0,0.04);
         }
-        body, html {
-            background: var(--primary);
+
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Montserrat', sans-serif;
             color: var(--secondary);
-            font-family: var(--font-main);
             margin: 0;
-            padding: 0;
-            min-height: 100vh;
         }
+
         .container {
-            max-width: 1400px;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 0 16px;
+            padding: 40px 20px;
         }
-        
-        /* Container Fluid for Large Screens */
-        .container-fluid {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        @media (min-width: 1600px) {
-            .container-fluid {
-                max-width: 1600px;
-                padding: 0 40px;
-            }
-            .container {
-                max-width: 1600px;
-            }
-        }
-        
-        @media (min-width: 1920px) {
-            .container-fluid {
-                max-width: 1800px;
-                padding: 0 60px;
-            }
-            .container {
-                max-width: 1800px;
-            }
-        }
-        
-        @media (min-width: 2560px) {
-            .container-fluid {
-                max-width: 2200px;
-                padding: 0 80px;
-            }
-            .container {
-                max-width: 2200px;
-            }
-        }
+
         .page-header {
-            background: #fff;
-            padding: 40px 0;
-            text-align: center;
             margin-bottom: 40px;
-            border-bottom: 1px solid #f0f0f0;
         }
-        
-        /* Responsive Spacing for Large Screens */
-        @media (min-width: 1600px) {
-            .page-header {
-                padding: 60px 0;
-                margin-bottom: 60px;
-            }
-        }
-        
-        @media (min-width: 1920px) {
-            .page-header {
-                padding: 80px 0;
-                margin-bottom: 80px;
-            }
-        }
-        
-        @media (min-width: 2560px) {
-            .page-header {
-                padding: 100px 0;
-                margin-bottom: 100px;
-            }
-        }
+
         .page-title {
             font-size: 2.5rem;
             font-weight: 800;
-            color: var(--secondary);
-            margin-bottom: 16px;
+            letter-spacing: -1px;
         }
-        
-        /* Breadcrumb Navigation */
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            color: #666;
-        }
-        .breadcrumb a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-        .breadcrumb a:hover {
-            color: var(--accent);
-        }
-        .breadcrumb .separator {
-            color: #ccc;
-            font-weight: 400;
-        }
-        .breadcrumb .current {
-            color: #666;
-            font-weight: 500;
-        }
-        
-        /* Page Subtitle */
-        .page-subtitle {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 0 20px;
-        }
-        .page-subtitle p {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-        .categories-grid {
+
+        /* BENTO GRID SYSTEM */
+        .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 32px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 240px; /* Base height for rows */
+            gap: 20px;
         }
-        
-        /* Responsive Grid for Large Screens */
-        @media (min-width: 1600px) {
-            .categories-grid {
-                grid-template-columns: repeat(5, 1fr);
-                gap: 40px;
-            }
-        }
-        
-        @media (min-width: 1920px) {
-            .categories-grid {
-                grid-template-columns: repeat(6, 1fr);
-                gap: 48px;
-            }
-        }
-        
-        @media (min-width: 2560px) {
-            .categories-grid {
-                grid-template-columns: repeat(7, 1fr);
-                gap: 56px;
-            }
-        }
-        .category-card {
-            background: #fff;
+
+        /* CARD STYLING */
+        .bento-item {
+            position: relative;
+            background: var(--card-bg);
             border-radius: var(--radius);
+            overflow: hidden;
             box-shadow: var(--shadow);
-            padding: 32px 18px 24px 18px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 1px solid rgba(0,0,0,0.05);
+            text-decoration: none;
+            color: inherit;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            transition: box-shadow 0.2s, transform 0.2s;
-            border: 1.5px solid rgba(255,255,255,0.08);
+            justify-content: flex-end;
+            padding: 25px;
         }
-        
-        /* Responsive Card Padding for Large Screens */
-        @media (min-width: 1600px) {
-            .category-card {
-                padding: 40px 24px 32px 24px;
-            }
+
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
         }
-        
-        @media (min-width: 1920px) {
-            .category-card {
-                padding: 48px 28px 36px 28px;
-            }
-        }
-        
-        @media (min-width: 2560px) {
-            .category-card {
-                padding: 56px 32px 40px 32px;
-            }
-        }
-        .category-card:hover {
-            box-shadow: 0 12px 40px 0 rgba(255,214,0,0.13), 0 4px 24px rgba(0,0,0,0.08);
-            transform: translateY(-6px) scale(1.03);
-        }
-        .category-img {
-            width: 120px;
-            height: 120px;
+
+        /* Image Handling */
+        .bento-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 16px;
-            margin-bottom: 16px;
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(255,214,0,0.10);
+            z-index: 1;
+            transition: transform 0.6s ease;
         }
-        
-        /* Responsive Image Sizing for Large Screens */
-        @media (min-width: 1600px) {
-            .category-img {
-                width: 140px;
-                height: 140px;
-            }
+
+        .bento-item:hover .bento-img {
+            transform: scale(1.08);
         }
-        
-        @media (min-width: 1920px) {
-            .category-img {
-                width: 160px;
-                height: 160px;
-            }
+
+        /* Overlay for legibility */
+        .bento-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%);
+            z-index: 2;
         }
-        
-        @media (min-width: 2560px) {
-            .category-img {
-                width: 180px;
-                height: 180px;
-            }
+
+        /* Content info */
+        .bento-content {
+            position: relative;
+            z-index: 3;
+            color: white;
         }
-        .category-name {
-            font-size: 1.18rem;
+
+        .bento-name {
+            font-size: 1.4rem;
             font-weight: 700;
-            color: #232526;
-            margin-bottom: 12px;
-            text-align: center;
+            margin-bottom: 5px;
         }
-        .category-btn {
-            background: linear-gradient(90deg, #ffd600 0%, #ffb300 100%);
-            color: #232526;
+
+        .bento-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
             font-weight: 700;
-            border: none;
-            border-radius: 999px;
-            padding: 10px 28px;
-            font-size: 1rem;
-            box-shadow: 0 2px 8px rgba(255,214,0,0.10);
-            cursor: pointer;
-            transition: background 0.18s, color 0.18s;
-            text-decoration: none;
+            text-transform: uppercase;
         }
-        .category-btn:hover {
-            background: #ffb300;
-            color: #fff;
+
+        /* VARIATIONS (The "Bento" Logic) */
+        /* Make every 1st and 5th item large */
+        .bento-item:nth-child(6n+1) {
+            grid-column: span 2;
+            grid-row: span 2;
         }
+
+        /* Make every 4th item wide */
+        .bento-item:nth-child(6n+4) {
+            grid-column: span 2;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .bento-item:nth-child(n) { grid-column: span 1; grid-row: span 1; } /* Reset for mobile */
+        }
+
         @media (max-width: 600px) {
-            .page-title { font-size: 1.2rem; }
-            .categories-grid { gap: 18px; }
-            .category-card { padding: 12px 4px 8px 4px; }
-            .category-img { width: 80px; height: 80px; }
+            .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+            .page-title { font-size: 1.8rem; }
         }
-        
-        /* Responsive Typography for Large Screens */
-        @media (min-width: 1600px) {
-            .page-title {
-                font-size: 3rem;
-            }
-            .page-subtitle p {
-                font-size: 1.2rem;
-            }
-            .category-name {
-                font-size: 1.3rem;
-            }
-            .category-btn {
-                font-size: 1.1rem;
-                padding: 12px 32px;
-            }
-        }
-        
-        @media (min-width: 1920px) {
-            .page-title {
-                font-size: 3.5rem;
-            }
-            .page-subtitle p {
-                font-size: 1.3rem;
-            }
-            .category-name {
-                font-size: 1.4rem;
-            }
-            .category-btn {
-                font-size: 1.15rem;
-                padding: 14px 36px;
-            }
-        }
-        
-        @media (min-width: 2560px) {
-            .page-title {
-                font-size: 4rem;
-            }
-            .page-subtitle p {
-                font-size: 1.4rem;
-            }
-            .category-name {
-                font-size: 1.5rem;
-            }
-            .category-btn {
-                font-size: 1.2rem;
-                padding: 16px 40px;
-            }
-        }
-        
     </style>
 </head>
 <body>
-    <?php 
-    $_GET['from_products'] = true;
-    include __DIR__ . '/../components/navbar.php'; 
-    ?>
-    <div class="page-header">
-        <div class="container">
-            <h1 class="page-title">Categories</h1>
-            <div class="breadcrumb">
-                <a href="../index.php">Home</a>
-                <span class="separator">></span>
-                <span class="current">Categories</span>
-            </div>
-        </div>
-    </div>
-    
-    <div class="container">
-        <div class="categories-grid">
-            <?php foreach ($categories as $cat):
-                $img = $cat['image'] ? '../uploads/categories/' . htmlspecialchars($cat['image']) : 'https://via.placeholder.com/120x120?text=No+Image';
-            ?>
-                <div class="category-card">
-                    <img src="<?php echo $img; ?>" alt="<?php echo htmlspecialchars($cat['name']); ?>" class="category-img" />
-                    <div class="category-name"><?php echo htmlspecialchars($cat['name']); ?></div>
-                    <a href="../products/index.php?category=<?php echo $cat['category_id']; ?>" class="category-btn">View Products</a>
+
+<?php 
+$_GET['from_products'] = true;
+include __DIR__ . '/../components/navbar.php'; 
+?>
+
+<div class="container">
+    <header class="page-header">
+        <h1 class="page-title">Shop by Category</h1>
+        <p style="color: #666;">Discover our curated collections</p>
+    </header>
+
+    <div class="bento-grid">
+        <?php foreach ($categories as $index => $cat): 
+            $img = $cat['image'] 
+                ? '../uploads/categories/' . htmlspecialchars($cat['image']) 
+                : 'https://via.placeholder.com/600x600?text=' . urlencode($cat['name']);
+        ?>
+            <a href="../products/index.php?category=<?php echo $cat['category_id']; ?>" 
+               class="bento-item" 
+               style="animation-delay: <?php echo $index * 0.1; ?>s">
+                
+                <img src="<?php echo $img; ?>" alt="<?php echo htmlspecialchars($cat['name']); ?>" class="bento-img">
+                <div class="bento-overlay"></div>
+                
+                <div class="bento-content">
+                    <span class="bento-badge">Collection</span>
+                    <div class="bento-name"><?php echo htmlspecialchars($cat['name']); ?></div>
+                    <small>Explore Items <i class="bi bi-arrow-right-short"></i></small>
                 </div>
-            <?php endforeach; ?>
-            <?php if (empty($categories)): ?>
-                <div style="text-align:center; color:#aaa; padding:24px; grid-column: 1 / -1;">No categories found</div>
-            <?php endif; ?>
-        </div>
+            </a>
+        <?php endforeach; ?>
+
+        <?php if (empty($categories)): ?>
+            <div style="grid-column: 1/-1; text-align: center; padding: 50px;">
+                <i class="bi bi-box-seam" style="font-size: 3rem; color: #ccc;"></i>
+                <p>No categories found.</p>
+            </div>
+        <?php endif; ?>
     </div>
-    <?php 
-    $_GET['from_products'] = true;
-    include '../components/footer.php'; 
-    ?>
+</div>
+
+<?php include '../components/footer.php'; ?>
+
 </body>
-</html> 
+</html>

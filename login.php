@@ -285,6 +285,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            padding:40px;
             display: block;
         }
 

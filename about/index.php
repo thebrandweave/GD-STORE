@@ -11,626 +11,275 @@ require_once __DIR__ . '/../config/config.php';
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
+  <style>
         :root {
-            --primary: #f7f7fa;
-            --secondary: #232526;
+            --primary-bg: #fdfdfd;
+            --dark: #1a1a1d;
             --accent: #ffd600;
-            --accent-dark: #ffb300;
-            --success: #28a745;
-            --warning: #ffc107;
-            --danger: #dc3545;
-            --info: #17a2b8;
-            --card-bg: #fff;
-            --radius: 20px;
-            --shadow: 0 8px 32px 0 rgba(0,0,0,0.08);
-            --font-main: 'Montserrat', Arial, sans-serif;
-        }
-        body, html {
-            background: var(--primary);
-            color: var(--secondary);
-            font-family: var(--font-main);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
-        
-        /* Page Header */
-        .page-header {
-            background: #fff;
-            padding: 40px 0;
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        /* Responsive Spacing for Large Screens */
-        @media (min-width: 1600px) {
-            .page-header {
-                padding: 60px 0;
-                margin-bottom: 60px;
-            }
-        }
-        
-        @media (min-width: 1920px) {
-            .page-header {
-                padding: 80px 0;
-                margin-bottom: 80px;
-            }
-        }
-        
-        @media (min-width: 2560px) {
-            .page-header {
-                padding: 100px 0;
-                margin-bottom: 100px;
-            }
-        }
-        .page-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--secondary);
-            margin-bottom: 16px;
-        }
-        
-        /* Responsive Typography for Large Screens */
-        @media (min-width: 1600px) {
-            .page-title {
-                font-size: 3rem;
-            }
-            .page-subtitle p {
-                font-size: 1.2rem;
-            }
-        }
-        
-        @media (min-width: 1920px) {
-            .page-title {
-                font-size: 3.5rem;
-            }
-            .page-subtitle p {
-                font-size: 1.3rem;
-            }
-        }
-        
-        @media (min-width: 2560px) {
-            .page-title {
-                font-size: 4rem;
-            }
-            .page-subtitle p {
-                font-size: 1.4rem;
-            }
-        }
-        .page-subtitle {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 0 20px;
-        }
-        .page-subtitle p {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-        
-        /* Breadcrumb Navigation */
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            color: #666;
-        }
-        .breadcrumb a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-        .breadcrumb a:hover {
-            color: var(--accent);
-        }
-        .breadcrumb .separator {
-            color: #ccc;
-            font-weight: 400;
-        }
-        .breadcrumb .current {
-            color: #666;
-            font-weight: 500;
-        }
-        
-        /* Main Content */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 16px;
-        }
-        
-        /* Container Fluid for Large Screens */
-        .container-fluid {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        @media (min-width: 1600px) {
-            .container-fluid {
-                max-width: 1600px;
-                padding: 0 40px;
-            }
-            .container {
-                max-width: 1600px;
-            }
-        }
-        
-        @media (min-width: 1920px) {
-            .container-fluid {
-                max-width: 1800px;
-                padding: 0 60px;
-            }
-            .container {
-                max-width: 1800px;
-            }
-        }
-        
-        @media (min-width: 2560px) {
-            .container-fluid {
-                max-width: 2200px;
-                padding: 0 80px;
-            }
-            .container {
-                max-width: 2200px;
-            }
-        }
-        .main-content {
-            padding: 40px 0;
-        }
-        
-        /* Responsive Main Content for Large Screens */
-        @media (min-width: 1600px) {
-            .main-content {
-                padding: 60px 0;
-            }
-        }
-        
-        @media (min-width: 1920px) {
-            .main-content {
-                padding: 80px 0;
-            }
-        }
-        
-        @media (min-width: 2560px) {
-            .main-content {
-                padding: 100px 0;
-            }
-        }
-        .about-section {
-            padding: 40px;
-            margin-bottom: 40px;
-        }
-        .about-info h3 {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--secondary);
-            margin-bottom: 25px;
-            position: relative;
-        }
-        .about-info h3:after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-        .about-info p {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        .mission-section {
-            padding: 40px;
-            margin-bottom: 40px;
-        }
-        .mission-section h3 {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--secondary);
-            margin-bottom: 20px;
-            position: relative;
-        }
-        .mission-section h3:after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-        .mission-section > p {
-            font-size: 1.1rem;
-            color: #666;
-            font-style: italic;
-            margin-bottom: 25px;
-        }
-        .mission-content {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 16px;
-            border-left: 4px solid var(--accent);
-        }
-        .mission-content p {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        .mission-points {
-            list-style: none;
-            padding: 0;
-            margin: 25px 0;
-        }
-        .mission-points li {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-        }
-        .mission-points li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 1.2rem;
+            --accent-soft: rgba(255, 214, 0, 0.1);
+            --text-muted: #6c757d;
+            --glass: rgba(255, 255, 255, 0.8);
+            --border-color: #eee;
         }
 
-        .cta-section {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            border-radius: 20px;
-            padding: 50px 40px;
+        body {
+            background-color: var(--primary-bg);
+            color: var(--dark);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- Hero Section --- */
+        .hero-banner {
+            padding: 120px 0 60px;
+            background: radial-gradient(circle at top right, var(--accent-soft), transparent);
             text-align: center;
-            color: var(--secondary);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-            margin-bottom: 20px;
         }
-        .cta-section h3 {
-            font-size: 2.2rem;
+
+        .hero-banner h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
         }
-        .cta-section p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
-        .cta-btn {
-            display: inline-block;
-            background: var(--secondary);
-            color: var(--accent);
-            padding: 18px 45px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-        @media (max-width: 768px) {
-            .about-section, .mission-section, .stats-section {
-                padding: 30px 20px;
-                margin-bottom: 30px;
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-            .stat-number {
-                font-size: 2rem;
-            }
-            .cta-section {
-                padding: 40px 20px;
-            }
-            .page-title {
-                font-size: 2rem;
-            }
-        }
-        
-        /* Mission Vision Section */
-        .mission-vision {
+
+        .breadcrumb a { color: var(--text-muted); text-decoration: none; }
+        .breadcrumb .active { color: var(--accent-dark); }
+
+        /* --- Intro Section --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
             padding: 80px 0;
         }
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--secondary);
-            margin-bottom: 60px;
-        }
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin-bottom: 80px;
-        }
-        .mission-card, .vision-card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 40px;
+
+        .image-stack {
             position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
+            padding: 20px;
         }
-        .mission-card:hover, .vision-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+
+        .image-stack img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-        .mission-card::before, .vision-card::before {
+
+        .image-stack::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-dark) 100%);
+            top: -10px;
+            left: -10px;
+            width: 100px;
+            height: 100px;
+            border-left: 8px solid var(--accent);
+            border-top: 8px solid var(--accent);
+            border-radius: 10px 0 0 0;
         }
-        .card-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-            font-size: 2rem;
-            color: var(--secondary);
+
+        .content-box h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
         }
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-        .card-text {
+
+        .content-box p {
             font-size: 1.1rem;
-            color: #666;
-            line-height: 1.7;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 1.5rem;
         }
+
+        /* --- Vision & Mission Cards --- */
+        .mission-vision-wrapper {
+            background: var(--dark);
+            color: white;
+            padding: 100px 0;
+            border-radius: 60px 60px 0 0;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .mv-card {
+            background: rgba(255,255,255,0.05);
+            padding: 50px;
+            border-radius: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.4s ease;
+        }
+
+        .mv-card:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-10px);
+        }
+
+        .mv-card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .mv-card h3 { font-size: 1.8rem; margin-bottom: 15px; }
+
+        /* --- Core Values --- */
+        .values-section { padding: 100px 0; text-align: center; }
         
-        /* Values Section */
-        .values-section {
-            padding: 80px 0;
-            background: #fff;
-            border-radius: var(--radius);
-            margin: 40px 0;
-        }
         .values-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 40px;
+            margin-top: 50px;
         }
-        .value-item {
-            text-align: center;
-            padding: 30px 20px;
-        }
-        .value-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 1.8rem;
-            color: var(--secondary);
-        }
-        .value-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 12px;
-        }
-        .value-text {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        /* Team Section */
-        .team-section {
-            padding: 80px 0;
-        }
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-        .team-member {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 30px 25px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .team-member:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 48px rgba(0,0,0,0.15);
-        }
-        .member-avatar {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 2.5rem;
-            color: var(--secondary);
-        }
-        .member-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 8px;
-        }
-        .member-role {
-            font-size: 0.9rem;
-            color: var(--accent-dark);
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        .member-bio {
-            font-size: 0.95rem;
-            color: #666;
-            line-height: 1.6;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        .social-link {
-            width: 36px;
-            height: 36px;
-            background: #f8f9fa;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-        .social-link:hover {
+
+        .value-item i {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
             background: var(--accent);
-            color: var(--secondary);
-            transform: scale(1.1);
-        }
-        
-        /* Story Section */
-        .story-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: var(--radius);
-            margin: 40px 0;
-        }
-        .story-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .story-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--secondary);
-            margin-bottom: 30px;
-        }
-        .story-text {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-        .story-highlight {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            color: var(--secondary);
-            padding: 20px 30px;
-            border-radius: 16px;
-            font-size: 1.2rem;
-            font-weight: 700;
+            border-radius: 20px;
+            font-size: 2rem;
+            margin-bottom: 20px;
             display: inline-block;
-            margin: 20px 0;
         }
-        
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .hero-stats { grid-template-columns: repeat(2, 1fr); }
-            .team-grid { grid-template-columns: repeat(3, 1fr); }
+
+        /* --- Modern CTA --- */
+        .cta-box {
+            background: var(--accent);
+            border-radius: 40px;
+            padding: 80px 40px;
+            text-align: center;
+            margin: 80px 0;
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
         }
-        @media (max-width: 900px) {
-            .hero-title { font-size: 2.8rem; }
-            .cards-grid { grid-template-columns: 1fr; }
-            .values-grid { grid-template-columns: repeat(2, 1fr); }
-            .team-grid { grid-template-columns: repeat(2, 1fr); }
+
+        .cta-btn {
+            background: var(--dark);
+            color: white;
+            padding: 20px 50px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 800;
+            display: inline-block;
+            margin-top: 30px;
+            transition: 0.3s;
         }
-        @media (max-width: 600px) {
-            .hero-title { font-size: 2.2rem; }
-            .hero-stats { grid-template-columns: 1fr; }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+            .about-grid { grid-template-columns: 1fr; }
             .values-grid { grid-template-columns: 1fr; }
-            .team-grid { grid-template-columns: 1fr; }
-            .container { padding: 0 15px; }
+            .image-stack { order: 2; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
     </style>
 </head>
 <body>
+
     <?php 
     $_GET['from_products'] = true;
     include __DIR__ . '/../components/navbar.php'; 
     ?>
-    <div class="page-header">
+
+    <section class="hero-banner">
         <div class="container">
-            <h1 class="page-title">About Us</h1>
+            <h1>Our Story</h1>
             <div class="breadcrumb">
                 <a href="../index.php">Home</a>
-                <span class="separator">></span>
-                <span class="current">About</span>
+                <span>/</span>
+                <span class="active">About Us</span>
             </div>
         </div>
-    </div>
+    </section>
+
     <div class="container">
-        <div class="main-content">
-            <div class="about-section">
-            <div class="about-info">
-                <h3>Who We Are</h3>
-                <p>The GD Store is the official online store of Progee Dee Ventures, created specifically for our qualified clients to exchange Progee Dee company vouchers for premium items of their choice. In addition to the GoldenDream Shop experience, we have a diverse range of items, from fashion and lifestyle products to essentials, that provide enduring value and joy.</p>
-                
-                <p>In our commitment to excellence, we deliver remarkable value to the customer as our core value is remarkable service and outstanding dependable quality.</p>
+        <section class="about-grid">
+            <div class="image-stack">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1000" alt="About GD Store">
             </div>
-
-        </div>
-
-        <!-- Mission Section -->
-        <div class="mission-section">
-            <h3>Our Mission</h3>
-            <div class="mission-content">
-                <p>GD Store's mission centers on trust, transparency, and service. It focuses on a meaningful and purposeful shopping experience using a customer-first philosophy.</p>
+            <div class="content-box">
+                <h2>Who We Are</h2>
+                <p>The GD Store is the official online store of <strong>Progee Dee Ventures</strong>, a platform where quality meets convenience. We were born out of a desire to provide qualified clients a premium way to utilize company vouchers for high-end items.</p>
+                <p>From fashion and lifestyle to daily essentials, we curate products that provide enduring value. At our core, we believe in remarkable service and outstanding, dependable quality.</p>
             </div>
-        </div>
-
-
-
-
-
-        <!-- CTA Section -->
-        <div class="cta-section">
-            <h3>Ready to Shop?</h3>
-            <p>Explore our amazing collection of products and discover quality items that will enhance your lifestyle.</p>
-            <a href="../products/" class="cta-btn">Shop Now</a>
-            </div>
-        </div>
+        </section>
     </div>
+
+    <section class="mission-vision-wrapper">
+        <div class="container">
+            <div class="cards-container">
+                <div class="mv-card">
+                    <i class="bi bi-rocket-takeoff"></i>
+                    <h3>Our Mission</h3>
+                    <p>Centering on trust and transparency, we provide a purposeful shopping experience built on a customer-first philosophy.</p>
+                </div>
+                <div class="mv-card">
+                    <i class="bi bi-eye"></i>
+                    <h3>Our Vision</h3>
+                    <p>To become the leading benchmark for voucher-based luxury retail, known globally for our dependable quality and remarkable service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <div class="container">
+            <h2>Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <i class="bi bi-shield-check"></i>
+                    <h4>Trust</h4>
+                    <p>Building lasting relationships through honesty and transparency.</p>
+                </div>
+                <div class="value-item">
+                    <i class="bi bi-gem"></i>
+                    <h4>Quality</h4>
+                    <p>Only the finest products make it to our storefront.</p>
+                </div>
+                <div class="value-item">
+                    <i class="bi bi-heart"></i>
+                    <h4>Service</h4>
+                    <p>Exceeding customer expectations at every touchpoint.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="cta-box">
+            <h2>Experience the GoldenDream</h2>
+            <p>Your premium lifestyle is just a click away. Start exploring our curated collections today.</p>
+            <a href="../products/" class="cta-btn">BROWSE COLLECTION</a>
+        </section>
+    </div>
+
     <?php 
     $_GET['from_products'] = true;
     include '../components/footer.php'; 
     ?>
 </body>
-</html> 
+</html>

@@ -40,9 +40,15 @@ $is_login = (strpos($relative_path, 'login') === 0);
 <!-- Top Info Bar -->
 <div class="topbar">
   <div class="topbar-left">
-    <span>+91 8105753472</span>
-    <span>goldendream175@gmail.com</span>
-  </div>
+    <span>
+        <i class="bi bi-telephone-fill" style="margin-right: 8px; "></i>
+        +91 8105753472
+    </span>
+    <span style="margin-left: 20px;">
+        <i class="bi bi-envelope-fill" style="margin-right: 8px; "></i>
+        goldendream175@gmail.com
+    </span>
+</div>
   <div class="topbar-right">
     <a href="<?php echo $base_path; ?>contact/index.php">Contact Us</a>
     <a href="<?php echo $base_path; ?>about/index.php">About Us</a>
@@ -52,8 +58,9 @@ $is_login = (strpos($relative_path, 'login') === 0);
 <!-- Main Navbar -->
 <nav class="main-navbar">
   <div class="navbar-logo flex">
+    
     <a href="<?php echo $base_path; ?>index.php">
-      <img src="<?php echo $base_path; ?>assets/image/gd-store-logo2.png" alt="GD Store" class="logo-image">
+      <img src="<?php echo $base_path; ?>assets/image/gdlogo.png" alt="GD Store" class="logo-image">
     </a>
   </div>
   
@@ -128,11 +135,12 @@ $is_login = (strpos($relative_path, 'login') === 0);
       </div>
     <?php else: ?>
       <div style="display:flex;gap:12px;align-items:center;">
-        <a href="<?php echo $base_path; ?>login.php" class="navbar-btn" style="background:transparent;color:var(--accent-dark);border:2px solid var(--accent-dark);padding:8px 22px;border-radius:999px;font-weight:700;text-decoration:none;transition:background 0.18s,color 0.18s;">Login</a>
+        <a  href="<?php echo $base_path; ?>login.php" class="navbar-btn">Login</a>
         <!-- <a href="<?php echo $base_path; ?>signup.php" class="navbar-btn" style="background:var(--accent-dark);color:#fff;padding:8px 22px;border-radius:999px;font-weight:700;text-decoration:none;transition:background 0.18s,color 0.18s;">Sign Up</a> -->
       </div>
     <?php endif; ?>
   </div>
+  
 </nav>
 
 <!-- Mobile Bottom Navigation -->
@@ -172,8 +180,62 @@ $is_login = (strpos($relative_path, 'login') === 0);
     </a>
   <?php endif; ?>
 </nav>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.main-navbar');
+    const topbar = document.querySelector('.topbar');
+    
+    // Calculate when the navbar should trigger the "fade down"
+    // Usually after scrolling past the topbar height
+    const scrollThreshold = topbar ? topbar.offsetHeight : 50;
 
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > scrollThreshold) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+});
+</script>
 <style>
+    /* 1. Make the navbar sticky */
+.main-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px clamp(10px, 3vw, 40px);
+}
+
+/* 2. The "Scrolled" state (Fade Down Effect) */
+.main-navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95); /* Slight glass effect */
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid #eee;
+}
+.navbar-links {
+    display: flex;
+    gap: clamp(10px, 2vw, 25px);
+}
+.navbar-links a {
+    font-size: clamp(13px, 1vw, 16px);
+}
+
+/* Ensure the topbar remains relative so it scrolls away naturally */
+.topbar {
+    position: relative;
+    z-index: 1001;
+}
+
+/* Mobile specific: keep bottom nav fixed as per your original code */
+@media (max-width: 768px) {
+    .main-navbar {
+        position: sticky;
+        top: 0;
+    }
+}
 .navbar-links a.active {
     color: var(--accent-dark) !important;
     font-weight: bold;
@@ -185,11 +247,23 @@ $is_login = (strpos($relative_path, 'login') === 0);
 }
 
 .logo-image {
-    height: 60px;
+    height: clamp(40px, 6vw, 80px); /* auto scales */
     width: auto;
     object-fit: contain;
     transition: transform 0.2s ease;
-    margin: 2px 0;
+    margin: 4px 0;
+    display:block;
+}
+
+.topbar-left span {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.topbar-left i {
+    font-size: 1rem; /* Adjust icon size */
+    vertical-align: middle;
 }
 
 .logo-image:hover {
@@ -207,6 +281,67 @@ $is_login = (strpos($relative_path, 'login') === 0);
 .profile-icon:hover {
     color: var(--accent-dark);
 }
+
+@media (max-width: 1024px) {
+    .navbar-links {
+        gap: 15px;
+    }
+
+    .navbar-search {
+        max-width: 250px;
+    }
+
+    .navbar-icons {
+        gap: 10px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+
+    .navbar-search {
+        flex: 1;
+        margin: 0 10px;
+    }
+
+    .navbar-search input {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 360px) {
+    .navbar-search {
+        display: none; /* hide if no space */
+    }
+
+    .logo-image {
+        height: 38px;
+    }
+
+    .navbar-btn {
+        padding: 4px 10px !important;
+        font-size: 10px !important;
+    }
+}
+
+@media (min-width: 1400px) {
+    .main-navbar {
+        padding: 4px 80px;
+    }
+
+    .navbar-links a {
+        font-size: 16px;
+    }
+}
+
+
 
 /* Ensure badge is always visible */
 .icon-badge .badge {
@@ -337,17 +472,16 @@ $is_login = (strpos($relative_path, 'login') === 0);
     /* Mobile search adjustments */
     .navbar-search {
         flex: 1;
-        max-width: 300px;
-        margin: 0 15px;
+        max-width: 500px;
+        /* margin: 0 15px; */
     }
     
-    .navbar-search input {
-        width: 100%;
-        padding: 10px 15px;
-        border: 1px solid #e0e0e0;
-        border-radius: 20px;
-        font-size: 14px;
-    }
+   .navbar-search input {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 30px;
+    font-size: clamp(12px, 1vw, 14px);
+}
     
     /* Mobile icons adjustments */
     .navbar-icons {
@@ -370,7 +504,7 @@ $is_login = (strpos($relative_path, 'login') === 0);
     }
     
     .logo-image {
-        height: 40px;
+        height: 65px;
     }
     
     .navbar-search {
@@ -448,3 +582,4 @@ $is_login = (strpos($relative_path, 'login') === 0);
     }
 }
 </style> 
+

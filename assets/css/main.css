@@ -13,7 +13,7 @@
     --font-size-base: 0.96rem;
     --font-size-lg: 1.15rem;
     --font-size-xl: 1.5rem;
-    --font-size-sm: 0.88rem;
+    --font-size-sm: 1.02rem;
     --font-size-xs: 0.2rem;
 }
 body, html {
@@ -37,23 +37,33 @@ button, .navbar-btn, .login-btn, input, select, textarea {
     font-family: var(--font-main);
     font-size: var(--font-size-base);
 }
+.navbar-btn{
+    background:transparent;color:var(--accent-dark);border:2px solid var(--accent-dark);padding:8px 22px;border-radius:999px;font-weight:700;text-decoration:none;transition:background 0.18s,color 0.18s;
+}
+.navbar-btn:hover{
+    background-color: #ffd863;
+    color: #392b19;
+}
 
 .topbar {
-    background: #fafafa;
-    color: #232526;
-    font-size: 0.98rem;
+    background: #000000;
+    color: #ffffff;
+    font-size: 0.95rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 7px 4vw 7px 4vw;
+    padding: 5px 4vw 5px 4vw;
     border-bottom: 1px solid #ececec;
+}
+.topbar-left{
+    cursor: pointer;
 }
 .topbar-left span {
     margin-right: 24px;
 }
 .topbar-right a, .topbar-right span {
     margin-left: 18px;
-    color: #232526;
+    color: #ffffff;
     text-decoration: none;
     font-weight: 500;
     font-size: 0.98rem;
@@ -242,7 +252,7 @@ button, .navbar-btn, .login-btn, input, select, textarea {
     background: #fff;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    padding: 24px 18px 18px 18px;
+    padding: 0px 0px 0px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -254,7 +264,7 @@ button, .navbar-btn, .login-btn, input, select, textarea {
     width: 120px;
     height: 120px;
     object-fit: cover;
-    border-radius: 16px;
+    border-radius: 0px;
     margin-bottom: 16px;
     background: #fff;
 }
@@ -384,3 +394,5 @@ button, .navbar-btn, .login-btn, input, select, textarea {
     width: 100% !important;
   }
 } 
+
+
