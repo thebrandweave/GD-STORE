@@ -94,8 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
-echo $_SESSION['user_id'];
-exit;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
