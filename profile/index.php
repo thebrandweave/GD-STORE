@@ -1,12 +1,9 @@
 <?php
 session_start();
-
-
 header("Cache-Control: no-cache, no-store, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: 0");
-
-if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id'])) {
     header('Location: ../login.php');
     exit();
 }
@@ -20,11 +17,6 @@ $success = '';
 
 // Get current user data
 $user = $userManager->getUserById($_SESSION['user_id']);
-
-// DEBUG (remove later)
-if (!$user) {
-    echo "Invalid session user_id: " . $_SESSION['user_id'];
-}
 
 if (!$user) {
     session_destroy();
