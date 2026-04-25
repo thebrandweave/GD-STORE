@@ -7,9 +7,10 @@ header("Pragma: no-cache");
 header("Expires: 0");
 
 
-if (isset($_SESSION['user_id']) && $_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: index.php');
-    exit();
+if (isset($_SESSION['user_id'])) {
+    session_unset();       // clear old session
+    session_destroy();     // destroy it
+    session_start();       // start fresh session
 }
 
 require_once 'config/config.php';
@@ -32,8 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($identifier && $password) {
             // Only authenticate shop user by email or phone
             $shopResult = $userManager->authenticateShopUser($identifier, $password);
-            
             if ($shopResult['success']) {
+
+    session_unset();
+    session_destroy();
+    session_start();
+    session_regenerate_id(true);
 
           
 $_SESSION = array(); 
