@@ -195,21 +195,21 @@ if (!empty($project_folder)) {
         <h5 class="block-title">Electronics</h5>
         <ul class="footer-nav">
           <li><a href="/products">Smart LED TVs</a></li>
-          <li><a href="#">Air Conditioners</a></li>
-          <li><a href="#">Refrigerators</a></li>
-          <li><a href="#">Washing Machines</a></li>
-          <li><a href="#">Kitchen Appliances</a></li>
+          <li><a href="/products">Air Conditioners</a></li>
+          <li><a href="/products">Refrigerators</a></li>
+          <li><a href="/products">Washing Machines</a></li>
+          <li><a href="/products">Kitchen Appliances</a></li>
         </ul>
       </div>
 
       <div class="footer-block">
         <h5 class="block-title">Furniture</h5>
         <ul class="footer-nav">
-          <li><a href="#">Sofa Sets</a></li>
-          <li><a href="#">Dining Tables</a></li>
-          <li><a href="#">Bedroom Sets</a></li>
-          <li><a href="#">Office Desks</a></li>
-          <li><a href="#">Home Decor</a></li>
+          <li><a href="/products">Sofa Sets</a></li>
+          <li><a href="/products">Dining Tables</a></li>
+          <li><a href="/products">Bedroom Sets</a></li>
+          <li><a href="/products">Office Desks</a></li>
+          <li><a href="/products">Home Decor</a></li>
         </ul>
       </div>
       
