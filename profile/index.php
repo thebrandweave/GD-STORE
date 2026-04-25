@@ -738,10 +738,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <label for="contact">Phone Number</label>
                                 <input type="text" id="contact" name="contact" value="<?php echo htmlspecialchars($user['Contact']); ?>" required>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="unique_id">Unique ID</label>
                                 <input type="text" id="unique_id" value="<?php echo htmlspecialchars($user['CustomerUniqueID']); ?>" disabled>
-                            </div>
+                            </div> -->
                         </div>
                         
                         <div class="form-group">
