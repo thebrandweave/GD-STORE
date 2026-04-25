@@ -17,8 +17,13 @@ require_once '../config/UserManager.php';
 $userManager = new UserManager();
 
 
-// Get current user data
-$user = $userManager->getUserById($_SESSION['user_id']);
+// Get current user data (prefer immutable unique id to avoid cross-user data mixups)
+$sessionUniqueId = $_SESSION['user_unique_id'] ?? '';
+if (!empty($sessionUniqueId)) {
+    $user = $userManager->getUserByUniqueId($sessionUniqueId);
+} else {
+    $user = $userManager->getUserById($_SESSION['user_id']);
+}
 
 if (!$user) {
     $_SESSION = array();
@@ -52,7 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if ($result) {
                         $success = 'Profile updated successfully!';
                         // Refresh user data
-                        $user = $userManager->getUserById($_SESSION['user_id']);
+                        $sessionUniqueId = $_SESSION['user_unique_id'] ?? '';
+                        if (!empty($sessionUniqueId)) {
+                            $user = $userManager->getUserByUniqueId($sessionUniqueId);
+                        } else {
+                            $user = $userManager->getUserById($_SESSION['user_id']);
+                        }
                         // Update session variables
                         $_SESSION['user_name'] = $user['Name'];
                         $_SESSION['user_email'] = $user['Email'];

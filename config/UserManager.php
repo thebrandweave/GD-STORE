@@ -114,6 +114,19 @@ class UserManager {
         }
         return $user;
     }
+
+    /**
+     * Get user by immutable unique id from shop_users
+     */
+    public function getUserByUniqueId($customerUniqueID) {
+        $stmt = $this->conn->prepare('SELECT CustomerID, CustomerUniqueID, Name, Contact, Email, PasswordHash, Address FROM shop_users WHERE CustomerUniqueID = ? LIMIT 1');
+        $stmt->execute([trim($customerUniqueID)]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($user) {
+            $user['Source'] = 'shop_db';
+        }
+        return $user;
+    }
     
     /**
      * Update shop user profile

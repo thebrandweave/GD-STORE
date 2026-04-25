@@ -93,10 +93,14 @@ $is_login = (strpos($relative_path, 'login') === 0);
                 $user_source = $_SESSION['user_source'] ?? '';
                 
                 if ($user_source === Database::$shop_db) {
-                    // For shop users, get CustomerUniqueID from shop_users table
-                    $stmt = $conn->prepare('SELECT CustomerUniqueID FROM shop_users WHERE CustomerID = ?');
-                    $stmt->execute([$user_id]);
-                    $customer_unique_id = $stmt->fetchColumn();
+                    // For shop users, trust the login session unique id directly
+                    $customer_unique_id = $_SESSION['user_unique_id'] ?? null;
+                    if (!$customer_unique_id) {
+                        // Fallback only if unique id is not present in session
+                        $stmt = $conn->prepare('SELECT CustomerUniqueID FROM shop_users WHERE CustomerID = ? LIMIT 1');
+                        $stmt->execute([$user_id]);
+                        $customer_unique_id = $stmt->fetchColumn();
+                    }
                 } else {
                     // For main users, use the user_id directly as CustomerUniqueID
                     $customer_unique_id = $user_id;
