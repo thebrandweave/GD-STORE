@@ -2506,7 +2506,7 @@ document.addEventListener('DOMContentLoaded', startCountdown);
 </div> -->
     <?php include __DIR__ . '/components/navbar.php'; ?>
 <div class="promo-bar">
-    <div class="promo-text">MID-SEASON SALE: <strong>UP TO 10% OFF</strong></div>
+    <div class="promo-text">MID-njwdncoinc SALE: <strong>UP TO 10% OFF</strong></div>
     <div class="promo-timer">
         ENDS IN: <span id="timer">02h : 45m : 12s</span>
     </div>
