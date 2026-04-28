@@ -7,7 +7,7 @@ class Database
     private $host = "82.25.121.121";
     private $db_name = "u232955123_gdShop";
     private $username = "u232955123_gdShop";
-    private $password = "Brandweave@26";
+    private $password = "Brandweave@24";
     public $conn;
 
     // public $host = "localhost";
