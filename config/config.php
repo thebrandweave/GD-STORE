@@ -24,7 +24,7 @@ class Database
         //     $this->password = "";
 
             // self::$baseUrl = "http://localhost/gstore/";
-                $this->host = "localhost";
+             if(   $this->host = "localhost";){
             $this->db_name = "u232955123_gdShop";
             $this->username = "u232955123_gdShop";
             $this->password = "Brandweave@24";
