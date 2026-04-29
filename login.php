@@ -7,8 +7,8 @@ header("Pragma: no-cache");
 header("Expires: 0");
 
 
-require_once __DIR__ . '/config/config.php';
-require_once __DIR__ .  'config/UserManager.php';
+require_once __DIR__ . 'config/config.php';
+require_once __DIR__ . 'config/UserManager.php';
 require_once 'vendor/firebase/php-jwt/src/JWT.php';
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
