@@ -796,7 +796,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <a href="../logout.php" class="btn btn-secondary">
                             <i class="bi bi-box-arrow-right"></i>Logout
                         </a>
-                        <button class="btn btn-secondary" onclick="if(confirm('Are you sure you want to delete your account? This action cannot be undone.')) { window.location.href='../delete_account.php'; }">
+                        <button class="btn btn-secondary" onclick="if(confirm('Are you sure you want to delete your account? This action cannot be undone.')) { window.location.href='/delete_account.php'; }">
                             <i class="bi bi-trash"></i>Delete Account
                         </button>
                     </div>
