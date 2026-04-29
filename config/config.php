@@ -17,13 +17,19 @@ class Database
         $server = $_SERVER['HTTP_HOST'];
 
         // 👉 LOCAL ENVIRONMENT
-        if ($server === 'localhost' || $server === '127.0.0.1') {
-            $this->host = "localhost";
-            $this->db_name = "gstore"; // change this
-            $this->username = "root";
-            $this->password = "";
+        // if ($server === 'localhost' || $server === '127.0.0.1') {
+        //     $this->host = "localhost";
+        //     $this->db_name = "gstore"; // change this
+        //     $this->username = "root";
+        //     $this->password = "";
 
-            self::$baseUrl = "http://localhost/gstore/";
+            // self::$baseUrl = "http://localhost/gstore/";
+                $this->host = "localhost";
+            $this->db_name = "u232955123_gdShop";
+            $this->username = "u232955123_gdShop";
+            $this->password = "Brandweave@24";
+
+            self::$baseUrl = "https://shop.goldendream.in/";
         } 
         // 👉 LIVE (HOSTINGER)
         else {
