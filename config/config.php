@@ -2,53 +2,46 @@
 
 class Database
 {
-    private $host;
-    private $db_name;
-    private $username;
-    private $password;
+    // Live database configuration
+    // private $host = "localhost";
+    private $host = "82.25.121.121";
+    private $db_name = "u232955123_gdShop";
+    private $username = "u232955123_gdShop";
+    private $password = "Brandweave@24";
     public $conn;
 
-    public static $baseUrl;
+    // public $host = "localhost";
+    // public $db_name = "u229215627_sp_goldenDream";
+    // public $username = "root";
+    // public $password = "";
+    // public $conn;
 
-    public function __construct()
-    {
-        $server = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    // Database configurations
+    // public static $main_db = "u229215627_goldenDreamSQL"; 
+    public static $shop_db = "u232955123_gdShop"; 
 
-        if ($server === 'localhost' || $server === '127.0.0.1') {
-            // LOCAL
-            $this->host = "localhost";
-            $this->db_name = "gstore";
-            $this->username = "root";
-            $this->password = "";
-
-            self::$baseUrl = "http://localhost/gstore/";
-        } else {
-            // LIVE
-            $this->host = "localhost"; // FIXED
-            $this->db_name = "u232955123_gdShop";
-            $this->username = "u232955123_gdShop";
-            $this->password = "Brandweave@24";
-
-            self::$baseUrl = "https://shop.goldendream.in/";
-        }
-    }
+    
+    // Base URL configuration for live environment
+    public static $baseUrl = "https://shop.goldendream.in/";
 
     public function getConnection()
     {
+        $this->conn = null;
+
         try {
             $this->conn = new PDO(
-                "mysql:host={$this->host};dbname={$this->db_name};charset=utf8mb4",
+                "mysql:host=" . $this->host . ";dbname=" . $this->db_name,
                 $this->username,
-                $this->password,
-                [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-                ]
+                $this->password
             );
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            error_log("DB Error: " . $e->getMessage());
-            echo "Database connection failed.";
-            exit;
+            // Log the error for debugging
+            error_log("Database connection failed: " . $e->getMessage());
+            
+            // Redirect to local error page
+            header("Location: " . self::$baseUrl . "error.php");
+            exit();
         }
 
         return $this->conn;
