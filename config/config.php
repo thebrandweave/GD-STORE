@@ -3,8 +3,8 @@
 class Database
 {
     // Live database configuration
-    // private $host = "localhost";
-    private $host = "82.25.121.121";
+    private $host = "localhost";
+    // private $host = "82.25.121.121";
     private $db_name = "u232955123_gdShop";
     private $username = "u232955123_gdShop";
     private $password = "Brandweave@24";
