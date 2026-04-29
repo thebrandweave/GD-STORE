@@ -19,11 +19,11 @@ class Database
         // 👉 LOCAL ENVIRONMENT
         if ($server === 'localhost' || $server === '127.0.0.1') {
             $this->host = "localhost";
-            $this->db_name = "local_db_name"; // change this
+            $this->db_name = "gstore"; // change this
             $this->username = "root";
             $this->password = "";
 
-            self::$baseUrl = "http://localhost/your-project-folder/";
+            self::$baseUrl = "http://localhost/gstore/";
         } 
         // 👉 LIVE (HOSTINGER)
         else {
