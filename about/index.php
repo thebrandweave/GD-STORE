@@ -222,7 +222,7 @@ require_once __DIR__ . '/../config/config.php';
     <div class="container">
         <section class="about-grid">
             <div class="image-stack">
-                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1000" alt="About GD Store">
+                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1000" alt="About GD Store">
             </div>
             <div class="content-box">
                 <h2>Who We Are</h2>
