@@ -60,7 +60,8 @@ $is_login = (strpos($relative_path, 'login') === 0);
   <div class="navbar-logo flex">
     
     <a href="<?php echo $base_path; ?>">
-      <img src="<?php echo $base_path; ?>assets/image/gdlogo.png" alt="GD Store" class="logo-image">
+      <img src="<?php echo $base_path; ?>assets/image/gdlogo.png" alt="GD Store" class="logo-image"     loading="eager"
+     decoding="async">
     </a>
   </div>
   
