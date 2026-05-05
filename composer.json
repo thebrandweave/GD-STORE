@@ -1,6 +1,6 @@
 {
     "name": "goldendream/shop",
-    "description": "goldendream Store - E-commerce platform",
+    "description": "GoldenDream Store - E-commerce platform",
     "type": "project",
     "require": {
         "php": ">=7.4",

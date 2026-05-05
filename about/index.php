@@ -6,7 +6,7 @@ require_once __DIR__ . '/../config/config.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About - goldendream Store</title>
+    <title>About - GoldenDream Store</title>
       <link rel="icon" type="image/png" href="../assets/image/gdlogo.png">
 <link rel="shortcut icon" href="../assets/image/gdlogo.ico">
 <link rel="apple-touch-icon" href="../assets/image/gdlogo.png">
