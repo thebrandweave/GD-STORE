@@ -213,11 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
     justify-content: space-between;
     gap: 20px;
     padding: 10px clamp(10px, 3vw, 40px);
-      position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
+
 }
 
 /* 2. The "Scrolled" state (Fade Down Effect) */
