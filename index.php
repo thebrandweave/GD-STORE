@@ -2528,9 +2528,9 @@ document.addEventListener('DOMContentLoaded', startCountdown);
             <div class="info-inner">
     <h2 class="brand-name">TECH & <br>LIVING.</h2>
   <div class="buttons">
-      <a href="#" class="btn-outline-shop">Shop Electronics</a>
+      <a href="/products" class="btn-outline-shop">Shop Electronics</a>
 
-     <a href="#" class="btn-outline-shop-1">View Furniture</a>
+     <a href="/products" class="btn-outline-shop-1">View Furniture</a>
   </div>
     <!-- <a href="#" class="explore-link">+ Explore Collection</a> -->
 </div>
