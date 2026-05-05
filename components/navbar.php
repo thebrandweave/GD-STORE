@@ -69,9 +69,9 @@ $is_login = (strpos($relative_path, 'login') === 0);
   <ul class="navbar-links desktop-nav">
     <li><a href="<?php echo $base_path; ?>"  class="<?php echo $is_home ? 'active' : ''; ?>">Home</a></li>
     <li><a href="<?php echo $base_path; ?>category/index.php"  class="<?php echo $is_category ? 'active' : ''; ?>">Categories</a></li>
-    <li><a href="<?php echo $base_path; ?>products/index.php" class="nav-link" class="<?php echo $is_products ? 'active' : ''; ?>">Products</a></li>
-    <li><a href="<?php echo $base_path; ?>about/index.php" class="nav-link" class="<?php echo $is_about ? 'active' : ''; ?>">About</a></li>
-    <li><a href="<?php echo $base_path; ?>contact/index.php" class="nav-link" class="<?php echo $is_contact ? 'active' : ''; ?>">Contact</a></li>
+    <li><a href="<?php echo $base_path; ?>products/index.php"  class="<?php echo $is_products ? 'active' : ''; ?>">Products</a></li>
+    <li><a href="<?php echo $base_path; ?>about/index.php"  class="<?php echo $is_about ? 'active' : ''; ?>">About</a></li>
+    <li><a href="<?php echo $base_path; ?>contact/index.php"  class="<?php echo $is_contact ? 'active' : ''; ?>">Contact</a></li>
   </ul>
   
   <div class="navbar-search-icons">
