@@ -66,11 +66,11 @@ $is_login = (strpos($relative_path, 'login') === 0);
   
   <!-- Desktop Navigation -->
   <ul class="navbar-links desktop-nav">
-    <li><a href="<?php echo $base_path; ?>" class="<?php echo $is_home ? 'active' : ''; ?>">Home</a></li>
-    <li><a href="<?php echo $base_path; ?>category/index.php" class="<?php echo $is_category ? 'active' : ''; ?>">Categories</a></li>
-    <li><a href="<?php echo $base_path; ?>products/index.php" class="<?php echo $is_products ? 'active' : ''; ?>">Products</a></li>
-    <li><a href="<?php echo $base_path; ?>about/index.php" class="<?php echo $is_about ? 'active' : ''; ?>">About</a></li>
-    <li><a href="<?php echo $base_path; ?>contact/index.php" class="<?php echo $is_contact ? 'active' : ''; ?>">Contact</a></li>
+    <li><a href="<?php echo $base_path; ?>" class="nav-link" class="<?php echo $is_home ? 'active' : ''; ?>">Home</a></li>
+    <li><a href="<?php echo $base_path; ?>category/index.php" class="nav-link" class="<?php echo $is_category ? 'active' : ''; ?>">Categories</a></li>
+    <li><a href="<?php echo $base_path; ?>products/index.php" class="nav-link" class="<?php echo $is_products ? 'active' : ''; ?>">Products</a></li>
+    <li><a href="<?php echo $base_path; ?>about/index.php" class="nav-link" class="<?php echo $is_about ? 'active' : ''; ?>">About</a></li>
+    <li><a href="<?php echo $base_path; ?>contact/index.php" class="nav-link" class="<?php echo $is_contact ? 'active' : ''; ?>">Contact</a></li>
   </ul>
   
   <div class="navbar-search-icons">
@@ -210,6 +210,11 @@ document.addEventListener('DOMContentLoaded', function() {
     justify-content: space-between;
     gap: 20px;
     padding: 10px clamp(10px, 3vw, 40px);
+      position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 /* 2. The "Scrolled" state (Fade Down Effect) */
@@ -587,3 +592,24 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style> 
 
+<script>
+    document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const url = this.href;
+
+        fetch(url)
+            .then(res => res.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+
+                document.querySelector('.main-content').innerHTML =
+                    doc.querySelector('.main-content').innerHTML;
+
+                window.history.pushState({}, '', url);
+            });
+    });
+});
+</script>
