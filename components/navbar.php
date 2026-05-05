@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', function() {
 @media (min-width: 1400px) {
     .main-navbar {
         padding: 4px 80px;
-        margin-top:20px;
+        /* margin-top:20px; */
     }
 
     .navbar-links a {
