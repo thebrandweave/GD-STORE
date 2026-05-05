@@ -204,6 +204,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <style>
+
+    body {
+    padding-top: 80px; /* adjust based on navbar height */
+}
     /* 1. Make the navbar sticky */
 .main-navbar {
     display: flex;
