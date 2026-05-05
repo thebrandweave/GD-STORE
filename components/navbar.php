@@ -237,7 +237,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* Ensure the topbar remains relative so it scrolls away naturally */
 .topbar {
-    position: relative;
+    width:100%;
+    position: fixed;
     z-index: 1001;
 }
 
