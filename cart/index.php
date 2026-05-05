@@ -45,7 +45,7 @@ foreach ($result as $row) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your Cart - GoldenDream Shop</title>
+    <title>Your Cart - goldendream Store</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -1733,7 +1733,7 @@ function downloadOrderDetails() {
         <!DOCTYPE html>
         <html>
         <head>
-            <title>Order Details - GoldenDream Shop</title>
+            <title>Order Details - goldendream Store</title>
             <style>
                 @page {
                     margin: 20mm;
@@ -1818,7 +1818,7 @@ function downloadOrderDetails() {
         </head>
         <body>
             <div class="header">
-                <div class="logo">GoldenDream Shop</div>
+                <div class="logo">goldendream Store</div>
                 <div class="company-info">Quality Products, Great Prices</div>
                 <div style="font-size: 16px; color: #888;">Order Details</div>
             </div>
@@ -1858,7 +1858,7 @@ function downloadOrderDetails() {
             
             <div class="footer">
                 <div class="thank-you">Thank you for your purchase!</div>
-                <div>GoldenDream Shop - Your Trusted Shopping Partner</div>
+                <div>goldendream Store - Your Trusted Shopping Partner</div>
                 <div style="margin-top: 10px;">
                     For any queries, please contact our customer support<br>
                     Email: support@goldendreamshop.com | Phone: +91-XXXXXXXXXX

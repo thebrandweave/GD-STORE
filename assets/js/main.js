@@ -1,1 +1,1 @@
-// main.js - GoldenDream Shop custom scripts 
+// main.js - goldendream Store custom scripts 

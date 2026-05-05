@@ -14,7 +14,7 @@ $categories = $conn->query('SELECT * FROM categories ORDER BY name')->fetchAll(P
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Categories - GoldenDream Shop</title>
+    <title>Categories - goldendream Store</title>
        <link rel="icon" type="image/png" href="../assets/image/gdlogo.png">
 <link rel="shortcut icon" href="../assets/image/gdlogo.ico">
 <link rel="apple-touch-icon" href="../assets/image/gdlogo.png">
