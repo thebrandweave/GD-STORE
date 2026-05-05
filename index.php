@@ -47,56 +47,55 @@ try {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
 
-    <meta charset="UTF-8">
-    
-    <!-- Title (VERY IMPORTANT for SEO ranking) -->
-    <title>GoldenDream Store - Buy Gold Jewellery Online | Best Prices</title>
+<!-- Title -->
+<title>GoldenDream Store - Buy Furniture & Electronics Online | Best Prices</title>
 
-    <!-- Meta Description (appears in Google search results) -->
-    <meta name="description" content="Shop premium gold jewellery at GoldenDream Store. Discover rings, necklaces, bracelets, and more at the best prices with secure shopping.">
+<!-- Meta Description -->
+<meta name="description" content="Shop high-quality furniture and electronics at GoldenDream Store. Explore sofas, beds, TVs, appliances, and more at the best prices with secure shopping.">
 
-    <!-- Keywords (less important but okay to include) -->
-    <meta name="keywords" content="gold jewellery, buy gold online, rings, necklaces, bracelets, GoldenDream Store">
+<!-- Keywords -->
+<meta name="keywords" content="buy furniture online, electronics store, sofas, beds, TV, appliances, GoldenDream Store">
 
-    <!-- Author -->
-    <meta name="author" content="GoldenDream Store">
+<!-- Author -->
+<meta name="author" content="GoldenDream Store">
 
-    <!-- Viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/image/gdlogo.png">
-    <link rel="shortcut icon" href="assets/image/gdlogo.ico">
-    <link rel="apple-touch-icon" href="assets/image/gdlogo.png">
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="assets/image/gdlogo.png">
+<link rel="shortcut icon" href="assets/image/gdlogo.ico">
+<link rel="apple-touch-icon" href="assets/image/gdlogo.png">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
+<!-- CSS -->
+<link rel="stylesheet" href="assets/css/main.css">
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Open Graph (for WhatsApp, Facebook sharing) -->
-    <meta property="og:title" content="GoldenDream Store">
-    <meta property="og:description" content="Shop premium gold jewellery online at the best prices.">
-    <meta property="og:image" content="assets/image/gdlogo.png">
-    <meta property="og:url" content="https://yourdomain.com">
-    <meta property="og:type" content="website">
+<!-- Open Graph -->
+<meta property="og:title" content="GoldenDream Store - Furniture & Electronics">
+<meta property="og:description" content="Shop furniture and electronics online at the best prices.">
+<meta property="og:image" content="assets/image/gdlogo.png">
+<meta property="og:url" content="https://shop.goldendream.in">
+<meta property="og:type" content="website">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="GoldenDream Store">
-    <meta name="twitter:description" content="Buy gold jewellery online with best deals.">
-    <meta name="twitter:image" content="assets/image/gdlogo.png">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GoldenDream Store">
+<meta name="twitter:description" content="Buy furniture and electronics online with best deals.">
+<meta name="twitter:image" content="assets/image/gdlogo.png">
 
-    <!-- Robots -->
-    <meta name="robots" content="index, follow">
+<!-- Robots -->
+<meta name="robots" content="index, follow">
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://yourdomain.com">
+<!-- Canonical -->
+<link rel="canonical" href="https://shop.goldendream.in">
     <style>
         :root {
             --primary: #f7f7fa;
