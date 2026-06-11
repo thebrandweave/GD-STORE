@@ -903,9 +903,12 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             <form method="post" action="add_to_cart.php" style="display:inline;">
                 <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
                 <input type="hidden" name="quantity" value="1">
-                <button type="submit" class="action-btn" title="Add to Cart">
-                    <i class="bi bi-cart-plus"></i>
-                </button>
+                <button
+    class="mg-icon-btn"
+    title="Add to Cart"
+    onclick="addToCart(<?= $prod['product_id'] ?>)">
+    <i class="bi bi-cart-plus"></i>
+</button>
             </form>
             <button class="action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
             <button class="action-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
@@ -956,6 +959,32 @@ window.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 });
+</script>
+<script>
+function addToCart(productId) {
+    fetch('../cart/add_to_cart.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            product_id: productId,
+            quantity: 1
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Product added to cart');
+        } else {
+            alert(data.message || 'Failed to add product');
+        }
+    })
+    .catch(error => {
+        console.error(error);
+        alert('Error adding product');
+    });
+}
 </script>
 </body>
 </html> 
