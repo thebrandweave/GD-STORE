@@ -2670,9 +2670,10 @@ document.addEventListener('DOMContentLoaded', startCountdown);
                 $statusClass = ($prod['stock'] <= 5) ? 'mg-badge-low' : (($prod['stock'] <= 15) ? 'mg-badge-medium' : 'mg-badge-high');
                 $statusText = ($prod['stock'] <= 5) ? 'Low Stock' : (($prod['stock'] <= 15) ? 'Limited' : 'In Stock');
             ?>
-                 <a href="products/index.php?id=<?= $prod['product_id'] ?>"> <div class="mg-card">
+                
                     <div class="mg-media-wrapper">
-                        <span class="mg-status-badge <?php echo $statusClass; ?>"><?php echo $statusText; ?></span>
+                        <a href="products/index.php?id=<?= $prod['product_id'] ?>"> <div class="mg-card">
+                             <span class="mg-status-badge <?php echo $statusClass; ?>"><?php echo $statusText; ?></span>
                         
                         <img src="<?php echo $img; ?>" class="mg-image" alt="<?php echo htmlspecialchars($prod['name']); ?>">
                         
@@ -2689,8 +2690,8 @@ document.addEventListener('DOMContentLoaded', startCountdown);
                             <a href="products/details.php?id=<?= $prod['product_id'] ?>"><?php echo htmlspecialchars($prod['name']); ?></a>
                         </h3>
                         <div class="mg-price-tag">₹<?php echo number_format($prod['price'], 2); ?></div>
-                    </div>
-                </div></a>
+                    </div></a>
+                </div>
             <?php endforeach; ?>
         </div>
 
