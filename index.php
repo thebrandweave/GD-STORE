@@ -2671,7 +2671,7 @@ document.addEventListener('DOMContentLoaded', startCountdown);
                 $statusText = ($prod['stock'] <= 5) ? 'Low Stock' : (($prod['stock'] <= 15) ? 'Limited' : 'In Stock');
             ?>
                 
-                  <div class="mg-card">
+                 <a href=""> <div class="mg-card">
                     <div class="mg-media-wrapper">
                         <span class="mg-status-badge <?php echo $statusClass; ?>"><?php echo $statusText; ?></span>
                         
@@ -2692,7 +2692,7 @@ document.addEventListener('DOMContentLoaded', startCountdown);
                         </h3>
                         <div class="mg-price-tag">₹<?php echo number_format($prod['price'], 2); ?></div>
                     </div>
-                </div>
+                </div></a>
             <?php endforeach; ?>
         </div>
 
