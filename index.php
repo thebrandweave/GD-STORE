@@ -2116,6 +2116,11 @@ try {
     gap: 8px;
     /* z-index: -9; */
 }
+.mg-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
 
 /* Make the specific values stand out */
 .promo-timer span {
@@ -2671,28 +2676,42 @@ document.addEventListener('DOMContentLoaded', startCountdown);
                 $statusText = ($prod['stock'] <= 5) ? 'Low Stock' : (($prod['stock'] <= 15) ? 'Limited' : 'In Stock');
             ?>
                 
-                  <div class="mg-card">
-                    <div class="mg-media-wrapper">
-                        <span class="mg-status-badge <?php echo $statusClass; ?>"><?php echo $statusText; ?></span>
-                        
-                        <img src="<?php echo $img; ?>" class="mg-image" alt="<?php echo htmlspecialchars($prod['name']); ?>">
-                        
-                        <div class="mg-overlay">
-                            <div class="mg-button-group">
-                                <button class="mg-icon-btn" title="Add to Cart"><i class="bi bi-cart-plus"></i></button>
-                                <button class="mg-icon-btn" title="Quick View" onclick="quickView(<?php echo $prod['product_id']; ?>)"><i class="bi bi-eye"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                <a href="products/details.php?id=<?= $prod['product_id'] ?>" class="mg-card-link">
+    <div class="mg-card">
+        <div class="mg-media-wrapper">
+            <span class="mg-status-badge <?php echo $statusClass; ?>">
+                <?php echo $statusText; ?>
+            </span>
 
-                    <div class="mg-details">
-                        <span class="mg-category"><?php echo htmlspecialchars($prod['category_name'] ?? 'General'); ?></span>
-                        <h3 class="mg-item-name">
-                            <a href="products/details.php?id=<?= $prod['product_id'] ?>"><?php echo htmlspecialchars($prod['name']); ?></a>
-                        </h3>
-                        <div class="mg-price-tag">₹<?php echo number_format($prod['price'], 2); ?></div>
-                    </div>
+            <img src="<?php echo $img; ?>" class="mg-image" alt="<?php echo htmlspecialchars($prod['name']); ?>">
+
+            <div class="mg-overlay">
+                <div class="mg-button-group">
+                    <button class="mg-icon-btn" title="Add to Cart">
+                        <i class="bi bi-cart-plus"></i>
+                    </button>
+                    <button class="mg-icon-btn" title="Quick View" onclick="quickView(<?php echo $prod['product_id']; ?>)">
+                        <i class="bi bi-eye"></i>
+                    </button>
                 </div>
+            </div>
+        </div>
+
+        <div class="mg-details">
+            <span class="mg-category">
+                <?php echo htmlspecialchars($prod['category_name'] ?? 'General'); ?>
+            </span>
+
+            <h3 class="mg-item-name">
+                <?php echo htmlspecialchars($prod['name']); ?>
+            </h3>
+
+            <div class="mg-price-tag">
+                ₹<?php echo number_format($prod['price'], 2); ?>
+            </div>
+        </div>
+    </div>
+</a>
             <?php endforeach; ?>
         </div>
 
