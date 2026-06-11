@@ -19,9 +19,26 @@ $user = $userManager->getUserById(
     $_SESSION['user_source']
 );
 
+if (!$user) {
+    session_destroy();
+    echo json_encode([
+        'success' => false,
+        'message' => 'User session invalid'
+    ]);
+    exit;
+}
+
 $customerUniqueID = $user['CustomerUniqueID'];
 
 $data = json_decode(file_get_contents("php://input"), true);
+
+if (!isset($data['product_id']) || !is_numeric($data['product_id'])) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Invalid product ID'
+    ]);
+    exit;
+}
 
 $product_id = (int)$data['product_id'];
 $quantity = (int)($data['quantity'] ?? 1);
@@ -59,7 +76,13 @@ if ($item) {
     ]);
 }
 
+// Query total count of cart items
+$countStmt = $conn->prepare("SELECT COUNT(*) FROM cart_items WHERE CustomerUniqueID = ?");
+$countStmt->execute([$customerUniqueID]);
+$cart_count = $countStmt->fetchColumn();
+
 echo json_encode([
     'success' => true,
-    'message' => 'Added to cart'
+    'message' => 'Added to cart',
+    'cart_count' => (int)$cart_count
 ]);

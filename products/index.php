@@ -900,16 +900,13 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
         </a>
         
         <div class="product-actions">
-            <form method="post" action="add_to_cart.php" style="display:inline;">
-                <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
-                <input type="hidden" name="quantity" value="1">
-                <button
-    class="mg-icon-btn"
-    title="Add to Cart"
-    onclick="addToCart(<?= $prod['product_id'] ?>)">
-    <i class="bi bi-cart-plus"></i>
-</button>
-            </form>
+            <button
+                type="button"
+                class="action-btn"
+                title="Add to Cart"
+                onclick="addToCart(<?= $product['product_id'] ?>)">
+                <i class="bi bi-cart-plus"></i>
+            </button>
             <button class="action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
             <button class="action-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
         </div>
@@ -961,6 +958,61 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script>
+function showToast(message) {
+    // Remove existing toast if any
+    const existingToast = document.getElementById('cart-toast');
+    if (existingToast) {
+        existingToast.remove();
+    }
+    
+    const toast = document.createElement('div');
+    toast.id = 'cart-toast';
+    toast.className = 'cart-toast';
+    toast.innerText = message;
+    document.body.appendChild(toast);
+    
+    // Auto-remove toast after 3 seconds to match CSS animation duration
+    setTimeout(() => {
+        if (toast.parentNode) {
+            toast.remove();
+        }
+    }, 3000);
+}
+
+function updateCartBadges(count) {
+    // Update Desktop navbar cart badge
+    const desktopCartLink = document.querySelector('a.icon-badge[href*="cart/index.php"]');
+    if (desktopCartLink) {
+        let badge = desktopCartLink.querySelector('.badge');
+        if (count > 0) {
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = 'badge';
+                desktopCartLink.appendChild(badge);
+            }
+            badge.textContent = count;
+        } else if (badge) {
+            badge.remove();
+        }
+    }
+
+    // Update Mobile bottom nav cart badge
+    const mobileCartLink = document.querySelector('a.mobile-nav-item[href*="cart/index.php"]');
+    if (mobileCartLink) {
+        let badge = mobileCartLink.querySelector('.mobile-cart-badge');
+        if (count > 0) {
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = 'mobile-cart-badge';
+                mobileCartLink.appendChild(badge);
+            }
+            badge.textContent = count;
+        } else if (badge) {
+            badge.remove();
+        }
+    }
+}
+
 function addToCart(productId) {
     fetch('../cart/add_to_cart.php', {
         method: 'POST',
@@ -975,14 +1027,17 @@ function addToCart(productId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Product added to cart');
+            showToast('Product added to cart!');
+            if (typeof data.cart_count !== 'undefined') {
+                updateCartBadges(data.cart_count);
+            }
         } else {
-            alert(data.message || 'Failed to add product');
+            showToast(data.message || 'Failed to add product');
         }
     })
     .catch(error => {
         console.error(error);
-        alert('Error adding product');
+        showToast('Error adding product');
     });
 }
 </script>
