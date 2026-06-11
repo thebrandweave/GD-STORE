@@ -23,8 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = 'Email already exists.';
         } else {
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            $stmt = $conn->prepare('INSERT INTO shop_users (Name, Email, Contact, PasswordHash) VALUES (?, ?, ?, ?)');
-            if ($stmt->execute([$name, $email, $contact, $hash])) {
+            $customerUniqueID = 'SHOP_' . uniqid() . '_' . time();
+            $stmt = $conn->prepare('INSERT INTO shop_users (CustomerUniqueID, Name, Email, Contact, PasswordHash) VALUES (?, ?, ?, ?, ?)');
+            if ($stmt->execute([$customerUniqueID, $name, $email, $contact, $hash])) {
                 header('Location: index.php?success=1');
                 exit();
             } else {

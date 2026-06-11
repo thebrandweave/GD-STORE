@@ -111,6 +111,12 @@ class UserManager {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($user) {
             $user['Source'] = 'shop_db';
+            if (empty($user['CustomerUniqueID'])) {
+                $newUniqueID = 'SHOP_' . uniqid() . '_' . time();
+                $updateStmt = $this->conn->prepare('UPDATE shop_users SET CustomerUniqueID = ? WHERE CustomerID = ?');
+                $updateStmt->execute([$newUniqueID, $userId]);
+                $user['CustomerUniqueID'] = $newUniqueID;
+            }
         }
         return $user;
     }
