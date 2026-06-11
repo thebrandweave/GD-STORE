@@ -2671,6 +2671,7 @@ document.addEventListener('DOMContentLoaded', startCountdown);
                 $statusText = ($prod['stock'] <= 5) ? 'Low Stock' : (($prod['stock'] <= 15) ? 'Limited' : 'In Stock');
             ?>
                 
+                  <div class="mg-card">
                     <div class="mg-media-wrapper">
                         <span class="mg-status-badge <?php echo $statusClass; ?>"><?php echo $statusText; ?></span>
                         
@@ -2679,6 +2680,7 @@ document.addEventListener('DOMContentLoaded', startCountdown);
                         <div class="mg-overlay">
                             <div class="mg-button-group">
                                 <button class="mg-icon-btn" title="Add to Cart"><i class="bi bi-cart-plus"></i></button>
+                                <button class="mg-icon-btn" title="Quick View" onclick="quickView(<?php echo $prod['product_id']; ?>)"><i class="bi bi-eye"></i></button>
                             </div>
                         </div>
                     </div>
