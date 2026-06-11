@@ -2671,8 +2671,9 @@ document.addEventListener('DOMContentLoaded', startCountdown);
                 $statusText = ($prod['stock'] <= 5) ? 'Low Stock' : (($prod['stock'] <= 15) ? 'Limited' : 'In Stock');
             ?>
                 
-                 <a href="products/index.php"> <div class="mg-card">
+                
                     <div class="mg-media-wrapper">
+                         <a href="products/index.php"> <div class="mg-card">
                         <span class="mg-status-badge <?php echo $statusClass; ?>"><?php echo $statusText; ?></span>
                         
                         <img src="<?php echo $img; ?>" class="mg-image" alt="<?php echo htmlspecialchars($prod['name']); ?>">
