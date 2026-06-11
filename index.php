@@ -2672,8 +2672,7 @@ document.addEventListener('DOMContentLoaded', startCountdown);
             ?>
                 
                     <div class="mg-media-wrapper">
-                        <a href="products/index.php?id=<?= $prod['product_id'] ?>"> <div class="mg-card">
-                             <span class="mg-status-badge <?php echo $statusClass; ?>"><?php echo $statusText; ?></span>
+                        <span class="mg-status-badge <?php echo $statusClass; ?>"><?php echo $statusText; ?></span>
                         
                         <img src="<?php echo $img; ?>" class="mg-image" alt="<?php echo htmlspecialchars($prod['name']); ?>">
                         
@@ -2690,7 +2689,7 @@ document.addEventListener('DOMContentLoaded', startCountdown);
                             <a href="products/details.php?id=<?= $prod['product_id'] ?>"><?php echo htmlspecialchars($prod['name']); ?></a>
                         </h3>
                         <div class="mg-price-tag">₹<?php echo number_format($prod['price'], 2); ?></div>
-                    </div></a>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
