@@ -2673,9 +2673,9 @@ document.addEventListener('DOMContentLoaded', startCountdown);
                 
                 
                     <div class="mg-media-wrapper">
-                         <a href="products/index.php"> <div class="mg-card">
-                        <span class="mg-status-badge <?php echo $statusClass; ?>"><?php echo $statusText; ?></span>
                         
+                        <span class="mg-status-badge <?php echo $statusClass; ?>"><?php echo $statusText; ?></span>
+                         <a href="products/index.php"> <div class="mg-card">
                         <img src="<?php echo $img; ?>" class="mg-image" alt="<?php echo htmlspecialchars($prod['name']); ?>">
                         
                         <div class="mg-overlay">
