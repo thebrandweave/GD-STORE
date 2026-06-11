@@ -2685,16 +2685,7 @@ document.addEventListener('DOMContentLoaded', startCountdown);
 
             <img src="<?php echo $img; ?>" class="mg-image" alt="<?php echo htmlspecialchars($prod['name']); ?>">
 
-            <div class="mg-overlay">
-                <div class="mg-button-group">
-                    <button class="mg-icon-btn" title="Add to Cart">
-                        <i class="bi bi-cart-plus"></i>
-                    </button>
-                    <button class="mg-icon-btn" title="Quick View" onclick="quickView(<?php echo $prod['product_id']; ?>)">
-                        <i class="bi bi-eye"></i>
-                    </button>
-                </div>
-            </div>
+          
         </div>
 
         <div class="mg-details">
