@@ -2670,18 +2670,17 @@ document.addEventListener('DOMContentLoaded', startCountdown);
                 $statusClass = ($prod['stock'] <= 5) ? 'mg-badge-low' : (($prod['stock'] <= 15) ? 'mg-badge-medium' : 'mg-badge-high');
                 $statusText = ($prod['stock'] <= 5) ? 'Low Stock' : (($prod['stock'] <= 15) ? 'Limited' : 'In Stock');
             ?>
-                <div class="mg-card">
+                 <a href="products/index.php?id=<?= $prod['product_id'] ?>"> <div class="mg-card">
                     <div class="mg-media-wrapper">
                         <span class="mg-status-badge <?php echo $statusClass; ?>"><?php echo $statusText; ?></span>
                         
                         <img src="<?php echo $img; ?>" class="mg-image" alt="<?php echo htmlspecialchars($prod['name']); ?>">
                         
-                        <div class="mg-overlay">
+                        <!-- <div class="mg-overlay">
                             <div class="mg-button-group">
                                 <button class="mg-icon-btn" title="Add to Cart"><i class="bi bi-cart-plus"></i></button>
-                                <button class="mg-icon-btn" title="Quick View" onclick="quickView(<?php echo $prod['product_id']; ?>)"><i class="bi bi-eye"></i></button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="mg-details">
@@ -2691,7 +2690,7 @@ document.addEventListener('DOMContentLoaded', startCountdown);
                         </h3>
                         <div class="mg-price-tag">₹<?php echo number_format($prod['price'], 2); ?></div>
                     </div>
-                </div>
+                </div></a>
             <?php endforeach; ?>
         </div>
 
