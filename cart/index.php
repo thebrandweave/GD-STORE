@@ -1641,57 +1641,6 @@ function updateOrderSummary() {
     }
 }
 
-function updateQuantity(cartItemId, change, isDirectInput = false) {
-    let newQuantity;
-    if (isDirectInput) {
-        newQuantity = parseInt(change);
-    } else {
-        const input = event.target.parentNode.querySelector('.quantity-input');
-        const currentQty = parseInt(input.value);
-        newQuantity = currentQty + parseInt(change);
-    }
-    
-    if (newQuantity < 1) return;
-    
-    // Send AJAX request to update quantity
-    fetch('update_quantity.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            cart_item_id: cartItemId,
-            quantity: newQuantity
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Update the data attributes and order summary
-            const row = document.querySelector(`[data-cart-item-id="${cartItemId}"]`);
-            const checkbox = row.querySelector('.product-checkbox');
-            checkbox.dataset.quantity = newQuantity;
-            
-            // Update the quantity input value
-            const quantityInput = row.querySelector('.quantity-input');
-            quantityInput.value = newQuantity;
-            
-            // Update subtotal display
-            const price = parseFloat(checkbox.dataset.price);
-            const subtotal = price * newQuantity;
-            row.querySelector('.subtotal').textContent = '₹' + subtotal.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            
-            // Update order summary
-            updateOrderSummary();
-        } else {
-            alert('Error updating quantity: ' + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error updating quantity');
-    });
-}
 
 function downloadOrderDetails() {
     const selectedCheckboxes = document.querySelectorAll('.product-checkbox:checked');
